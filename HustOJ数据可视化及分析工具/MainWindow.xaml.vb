@@ -7,6 +7,8 @@ Class MainWindow
     Dim Updater As Process = New Process
     Dim IsUpdateFinished As Boolean = False
     Dim EmptyList As New List(Of String)
+    Dim IsUserSpecifiedAnalyzeStartDateEqualsLogStartDate As Boolean = True
+    Dim IsUserSpecifiedAnalyzeEndDateEqualsLogEndDate As Boolean = True
     Private Sub RefreshList()
         lstProblemList.ItemsSource = EmptyList
         lstStudentList.ItemsSource = EmptyList
@@ -74,9 +76,17 @@ Class MainWindow
         txtParticipateValuse_Eq.Text = ""
         txtStartDate.Text = ""
         txtEndDate.Text = ""
+        txtUserSpecifiedAnalyzeStartDate.Text = ""
+        txtUserSpecifiedAnalyzeEndDate.Text = ""
+        chartStudentACRate.Visibility = Windows.Visibility.Hidden
+        chartStudentSubmitByDay.Visibility = Windows.Visibility.Hidden
+        chartStudentTotalSubmitByDayLn.Visibility = Windows.Visibility.Hidden
+        chartStudentTotalSubmitByTime.Visibility = Windows.Visibility.Hidden
+        chartProblemACRate.Visibility = Windows.Visibility.Hidden
+        chartProblemSubmitByDay.Visibility = Windows.Visibility.Hidden
         pieStudentACRate.ItemsSource = Nothing
         linStudentSubmitByDay.ItemsSource = Nothing
-        linStudentTotalSubmitByDayLn.ItemsSource = Nothing
+        sctStudentTotalSubmitByDayLn.ItemsSource = Nothing
         linStudentTotalSubmitByDayLnFit.ItemsSource = Nothing
         colStudentTotalSubmitByTime.ItemsSource = Nothing
         pieProblemACRate.ItemsSource = Nothing
@@ -93,6 +103,7 @@ Class MainWindow
         OJLogCountFileReader.Close()
         Dim StudentTemp As OJStudentInfo
         Dim ProblemTemp As OJProblemInfo
+        Dim DateList As New List(Of Date)
         StudentList.Clear()
         StudentDictionary.Clear()
         ProblemList.Clear()
@@ -102,17 +113,27 @@ Class MainWindow
         For i = 0 To 23
             OJSysInfo.SubmitCountByHour(i) = 0
         Next
+        '预更新日志时间
+        While Not OJLogFileReader.EndOfStream
+            OJLogLine = OJLogFileReader.ReadLine()
+            OJLogTemp = ParseLog(OJLogLine)
+            DateList.Add(OJLogTemp.DateSubmit)
+        End While
+        OJSysInfo.StartDate = DateList.Min
+        OJSysInfo.EndDate = DateList.Max
+        If IsUserSpecifiedAnalyzeStartDateEqualsLogStartDate Then
+            UserSpecifiedAnalyzeStartDate = OJSysInfo.StartDate
+        End If
+        If IsUserSpecifiedAnalyzeEndDateEqualsLogEndDate Then
+            UserSpecifiedAnalyzeEndDate = OJSysInfo.EndDate
+        End If
+        OJLogFileReader.Dispose()
+        OJLogFileReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
         While Not OJLogFileReader.EndOfStream
             OJLogLine = OJLogFileReader.ReadLine()
             OJLogTemp = ParseLog(OJLogLine)
             '确定是否在用户指定的分析范围内
             If OJLogTemp.DateSubmit < UserSpecifiedAnalyzeStartDate Or OJLogTemp.DateSubmit > UserSpecifiedAnalyzeEndDate Then
-                If OJLogTemp.LogIndex = 1 Then
-                    OJSysInfo.StartDate = OJLogTemp.DateSubmit
-                End If
-                If OJLogTemp.LogIndex = OJLogCount Then
-                    OJSysInfo.EndDate = OJLogTemp.DateSubmit
-                End If
                 Continue While
             End If
             '此处加入详细分析代码
@@ -209,12 +230,6 @@ Class MainWindow
                 End If
             End If
             '系统数据
-            If OJLogTemp.LogIndex = 1 Then
-                OJSysInfo.StartDate = OJLogTemp.DateSubmit
-            End If
-            If OJLogTemp.LogIndex = OJLogCount Then
-                OJSysInfo.EndDate = OJLogTemp.DateSubmit
-            End If
             OJSysInfo.SubmitCountByHour(OJLogTemp.LogTime.Hour) += 1
             DoEvents()
         End While
@@ -223,6 +238,32 @@ Class MainWindow
         For i = 0 To StudentList.Count - 1
             With StudentDictionary(StudentList(i))
                 .FittingAC = IIf(.SubmitCount > 0, .ACCount + .ACCount / .SubmitCount, 0)
+                Dim DateLoop As New Date
+                DateLoop = UserSpecifiedAnalyzeStartDate
+                Dim DayLn() As Double
+                Dim SubmitAdjustedTotal() As Double
+                ReDim DayLn((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
+                ReDim SubmitAdjustedTotal((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
+                Dim StudentTotalSubmitSum As Integer = 0
+                Dim TotalProblems As Integer = 0
+                Dim Index = 0
+                While DateLoop < UserSpecifiedAnalyzeEndDate
+                    If OJSysInfo.NewProblemCount.ContainsKey(DateLoop) Then
+                        TotalProblems += OJSysInfo.NewProblemCount(DateLoop)
+                    End If
+                    If .SubmitCountByDay.ContainsKey(DateLoop) Then
+                        StudentTotalSubmitSum += .SubmitCountByDay(DateLoop)
+                    End If
+                    DayLn(Index) = Math.Log((DateLoop - UserSpecifiedAnalyzeStartDate).Days + 1)
+                    SubmitAdjustedTotal(Index) = StudentTotalSubmitSum - TotalProblems
+                    DateLoop = DateLoop.AddDays(1)
+                    Index += 1
+                End While
+                Dim LinearFitResult As New Tuple(Of Double, Double)(0, 0)
+                LinearFitResult = MathNet.Numerics.LinearRegression.SimpleRegression.Fit(DayLn, SubmitAdjustedTotal)
+                .FittingB = LinearFitResult.Item1
+                .FittingK_Kb = LinearFitResult.Item2
+                .FittingR_Stb = MathNet.Numerics.Statistics.Correlation.Pearson(DayLn, SubmitAdjustedTotal) ^ 2
             End With
         Next
         '题目拟合
@@ -379,6 +420,7 @@ Class MainWindow
         OJLogFileReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
         Dim StudentTemp As OJStudentInfo
         Dim ProblemTemp As OJProblemInfo
+        Dim DateList As New List(Of Date)
         StudentList.Clear()
         StudentDictionary.Clear()
         ProblemList.Clear()
@@ -487,27 +529,52 @@ Class MainWindow
                 End If
             End If
             '系统数据
-            If OJLogTemp.LogIndex = 1 Then
-                OJSysInfo.StartDate = OJLogTemp.DateSubmit
-            End If
-            If OJLogTemp.LogIndex = OJLogCount Then
-                OJSysInfo.EndDate = OJLogTemp.DateSubmit
-            End If
+            DateList.Add(OJLogTemp.DateSubmit)
             OJSysInfo.SubmitCountByHour(OJLogTemp.LogTime.Hour) += 1
             DoEvents()
         End While
+        OJSysInfo.EndDate = DateList.Max()
+        OJSysInfo.StartDate = DateList.Min()
+        '配置默认的分析起讫日期
+        UserSpecifiedAnalyzeStartDate = OJSysInfo.StartDate
+        UserSpecifiedAnalyzeEndDate = OJSysInfo.EndDate
         '拟合计算
         '学生拟合
         For i = 0 To StudentList.Count - 1
             With StudentDictionary(StudentList(i))
                 .FittingAC = IIf(.SubmitCount > 0, .ACCount + .ACCount / .SubmitCount, 0)
+                Dim DateLoop As New Date
+                DateLoop = UserSpecifiedAnalyzeStartDate
+                Dim DayLn() As Double
+                Dim SubmitAdjustedTotal() As Double
+                ReDim DayLn((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
+                ReDim SubmitAdjustedTotal((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
+                Dim StudentTotalSubmitSum As Integer = 0
+                Dim TotalProblems As Integer = 0
+                Dim Index = 0
+                While DateLoop < UserSpecifiedAnalyzeEndDate
+                    If OJSysInfo.NewProblemCount.ContainsKey(DateLoop) Then
+                        TotalProblems += OJSysInfo.NewProblemCount(DateLoop)
+                    End If
+                    If .SubmitCountByDay.ContainsKey(DateLoop) Then
+                        StudentTotalSubmitSum += .SubmitCountByDay(DateLoop)
+                    End If
+                    DayLn(Index) = Math.Log((DateLoop - UserSpecifiedAnalyzeStartDate).Days + 1)
+                    SubmitAdjustedTotal(Index) = StudentTotalSubmitSum - TotalProblems
+                    DateLoop = DateLoop.AddDays(1)
+                    Index += 1
+                End While
+                Dim LinearFitResult As New Tuple(Of Double, Double)(0, 0)
+                LinearFitResult = MathNet.Numerics.LinearRegression.SimpleRegression.Fit(DayLn, SubmitAdjustedTotal)
+                .FittingB = LinearFitResult.Item1
+                .FittingK_Kb = LinearFitResult.Item2
+                .FittingR_Stb = MathNet.Numerics.Statistics.Correlation.Pearson(DayLn, SubmitAdjustedTotal) ^ 2
             End With
         Next
         '题目拟合
         For i = 0 To ProblemList.Count - 1
             With ProblemDictionary(ProblemList(i))
                 .EffortValue_Jq = IIf(.ACCount > 0, .ParticipantCount / .ACCount, 0)
-
             End With
         Next
         OJLogFileReader.Close()
@@ -516,9 +583,6 @@ Class MainWindow
         lstStudentList.ItemsSource = StudentList
         ProblemList.Sort()
         lstProblemList.ItemsSource = ProblemList
-        '配置默认的分析起讫日期
-        UserSpecifiedAnalyzeStartDate = OJSysInfo.StartDate
-        UserSpecifiedAnalyzeEndDate = OJSysInfo.EndDate
         txtStartDate.Text = OJSysInfo.StartDate.ToLongDateString()
         txtEndDate.Text = OJSysInfo.EndDate.ToLongDateString()
         txtUserSpecifiedAnalyzeStartDate.Text = UserSpecifiedAnalyzeStartDate.ToLongDateString()
@@ -638,18 +702,29 @@ Class MainWindow
             With StudentDictionary(txtStudentID.Text)
                 txtStudentSubmitCount.Text = .SubmitCount
                 txtStudentACCount.Text = .ACCount
-                txtStudentACRate.Text = (Math.Round((.ACCount / .SubmitCount) * 10000) / 100).ToString() & "%"
+                txtStudentACRate.Text = (.ACCount / .SubmitCount).ToString("P")
                 txtStudentSubmitCountOnWorkdayAM.Text = .SubmitCountOnWorkdayAM
                 txtStudentSubmitCountOnWorkdayPM.Text = .SubmitCountOnWorkdayPM
                 txtStudentSubmitCountOnRestdayAM.Text = .SubmitCountOnRestdayAM
                 txtStudentSubmitCountOnRestdayPM.Text = .SubmitCountOnRestdayPM
-                txtFittingAC.Text = Math.Round(.FittingAC * 100000) / 100000
-                txtFittingK_Kb.Text = .FittingK_Kb
-                txtFittingR_Stb.Text = .FittingR_Stb
+                txtFittingAC.Text = .FittingAC.ToString("F5")
+                txtFittingK_Kb.Text = .FittingK_Kb.ToString("F5")
+                txtFittingR_Stb.Text = .FittingR_Stb.ToString("F5")
+                Dim OriginalSelection As Integer
+                OriginalSelection = tabStudentCharts.SelectedIndex
+
+                chartStudentACRate.Visibility = Windows.Visibility.Collapsed
+                tabStudentCharts.SelectedIndex = 0
+                DoEvents()
                 Dim StudentACRateDataSource As New List(Of KeyValuePair(Of String, Integer))
                 StudentACRateDataSource.Add(New KeyValuePair(Of String, Integer)("通过  ", .ACCount))
                 StudentACRateDataSource.Add(New KeyValuePair(Of String, Integer)("未通过", .SubmitCount - .ACCount))
                 pieStudentACRate.ItemsSource = StudentACRateDataSource
+                chartStudentACRate.Visibility = Windows.Visibility.Visible
+
+                chartStudentSubmitByDay.Visibility = Windows.Visibility.Collapsed
+                tabStudentCharts.SelectedIndex = 1
+                DoEvents()
                 Dim StudentSubmitByDayDataSource As New List(Of KeyValuePair(Of Date, Integer))
                 Dim i As Date
                 Dim j As Integer
@@ -663,12 +738,44 @@ Class MainWindow
                     i = i.AddDays(1)
                 End While
                 linStudentSubmitByDay.ItemsSource = StudentSubmitByDayDataSource
+                chartStudentSubmitByDay.Visibility = Windows.Visibility.Visible
 
+                chartStudentTotalSubmitByDayLn.Visibility = Windows.Visibility.Collapsed
+                tabStudentCharts.SelectedIndex = 2
+                DoEvents()
+                Dim StudentTotalSubmitByDayLnDataSource As New List(Of KeyValuePair(Of Double, Integer))
+                Dim StudentTotalSubmitByDayLnFitDataSource As New List(Of KeyValuePair(Of Double, Integer))
+                Dim StudentTotalSubmitSum As Integer = 0
+                Dim TotalProblems As Integer = 0
+                i = UserSpecifiedAnalyzeStartDate
+                StudentTotalSubmitSum = 0
+                TotalProblems = 0
+                While i <= UserSpecifiedAnalyzeEndDate
+                    If OJSysInfo.NewProblemCount.ContainsKey(i) Then
+                        TotalProblems += OJSysInfo.NewProblemCount(i)
+                    End If
+                    If .SubmitCountByDay.ContainsKey(i) Then
+                        StudentTotalSubmitSum += .SubmitCountByDay(i)
+                    End If
+                    StudentTotalSubmitByDayLnDataSource.Add(New KeyValuePair(Of Double, Integer)(Math.Log((i - UserSpecifiedAnalyzeStartDate).Days + 1), StudentTotalSubmitSum - TotalProblems))
+                    i = i.AddDays(1)
+                End While
+                StudentTotalSubmitByDayLnFitDataSource.Add(New KeyValuePair(Of Double, Integer)(0, .FittingB))
+                StudentTotalSubmitByDayLnFitDataSource.Add(New KeyValuePair(Of Double, Integer)(Math.Log((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days + 1), (Math.Log((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days + 1)) * .FittingK_Kb + .FittingB))
+                linStudentTotalSubmitByDayLnFit.ItemsSource = StudentTotalSubmitByDayLnFitDataSource
+                sctStudentTotalSubmitByDayLn.ItemsSource = StudentTotalSubmitByDayLnDataSource
+                chartStudentTotalSubmitByDayLn.Visibility = Windows.Visibility.Visible
+
+                chartStudentTotalSubmitByTime.Visibility = Windows.Visibility.Collapsed
+                tabStudentCharts.SelectedIndex = 3
+                DoEvents()
                 Dim StudentTotalSubmitByTimeDataSource As New List(Of KeyValuePair(Of String, Integer))
                 For j = 0 To 23
                     StudentTotalSubmitByTimeDataSource.Add(New KeyValuePair(Of String, Integer)(j.ToString("00") & ":00" & vbCrLf & "~" & vbCrLf & (j + 1).ToString("00") & ":00", .SubmitCountByHour(j)))
                 Next
                 colStudentTotalSubmitByTime.ItemsSource = StudentTotalSubmitByTimeDataSource
+                chartStudentTotalSubmitByTime.Visibility = Windows.Visibility.Visible
+                tabStudentCharts.SelectedIndex = OriginalSelection
             End With
             icoStudentLink.Foreground = SystemColors.WindowTextBrush
             btnStudentLink.IsEnabled = True
@@ -682,14 +789,24 @@ Class MainWindow
             With ProblemDictionary(txtProblemID.Text)
                 txtProblemSubmitCount.Text = .ParticipantCount
                 txtProblemACCount.Text = .ACCount
-                txtProblemACRate.Text = (Math.Round((.ACCount / .ParticipantCount) * 10000) / 100).ToString() & "%"
-                txtEffortValue_Jq.Text = Math.Round(.EffortValue_Jq*100000) / 100000
-                txtParticipateValuse_Eq.Text = .ParticipateValuse_Eq
-				Dim ProblemACRateDataSource As New List(Of KeyValuePair(Of String, Integer))
+                txtProblemACRate.Text = (.ACCount / .ParticipantCount).ToString("P")
+                txtEffortValue_Jq.Text = .EffortValue_Jq.ToString("F5")
+                txtParticipateValuse_Eq.Text = .ParticipateValuse_Eq.ToString("F5")
+                Dim OriginalSelection As Integer
+                OriginalSelection = tabProblemCharts.SelectedIndex
+
+                chartProblemACRate.Visibility = Windows.Visibility.Collapsed
+                tabProblemCharts.SelectedIndex = 0
+                DoEvents()
+                Dim ProblemACRateDataSource As New List(Of KeyValuePair(Of String, Integer))
                 ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("通过  ", .ACCount))
                 ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("未通过", .ParticipantCount - .ACCount))
                 pieProblemACRate.ItemsSource = ProblemACRateDataSource
+                chartProblemACRate.Visibility = Windows.Visibility.Visible
 
+                chartProblemSubmitByDay.Visibility = Windows.Visibility.Collapsed
+                tabProblemCharts.SelectedIndex = 1
+                DoEvents()
                 Dim ProblemSubmitByDayDataSource As New List(Of KeyValuePair(Of Date, Integer))
                 Dim i As Date
                 i = UserSpecifiedAnalyzeStartDate
@@ -702,6 +819,8 @@ Class MainWindow
                     i = i.AddDays(1)
                 End While
                 linProblemSubmitByDay.ItemsSource = ProblemSubmitByDayDataSource
+                chartProblemSubmitByDay.Visibility = Windows.Visibility.Visible
+                tabProblemCharts.SelectedIndex = OriginalSelection
             End With
             icoProblemLink.Foreground = SystemColors.WindowTextBrush
             btnProblemLink.IsEnabled = True

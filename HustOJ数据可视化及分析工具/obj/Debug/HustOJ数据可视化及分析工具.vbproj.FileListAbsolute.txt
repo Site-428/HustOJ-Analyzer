@@ -59,6 +59,7 @@ D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\ControlzEx.dll
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MahApps.Metro.dll
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MahApps.Metro.IconPacks.Modern.dll
+D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MathNet.Numerics.dll
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\Microsoft.Threading.Tasks.dll
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
@@ -73,6 +74,7 @@ D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MahApps.Metro.xml
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MahApps.Metro.IconPacks.Modern.pdb
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MahApps.Metro.IconPacks.Modern.xml
+D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\MathNet.Numerics.xml
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\Microsoft.Threading.Tasks.xml
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
 D:\学术工作室\srtp\软件\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml

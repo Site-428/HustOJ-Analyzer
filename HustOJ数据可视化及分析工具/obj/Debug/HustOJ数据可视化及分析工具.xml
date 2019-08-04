@@ -328,6 +328,12 @@ HustOJ数据可视化及分析工具
  </summary>
  <remarks>拟合曲线的斜率。</remarks>
 </member>
+<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingB">
+ <summary>
+ 拟合曲线的截距。
+ </summary>
+ <remarks></remarks>
+</member>
 <member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.#ctor">
  <summary>
  默认的构造函数。

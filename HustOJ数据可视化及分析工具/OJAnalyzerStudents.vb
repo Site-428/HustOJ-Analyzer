@@ -65,6 +65,11 @@
         ''' <remarks>拟合曲线的斜率。</remarks>
         Public FittingK_Kb As Double
         ''' <summary>
+        ''' 拟合曲线的截距。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public FittingB As Double
+        ''' <summary>
         ''' 默认的构造函数。
         ''' </summary>
         ''' <remarks></remarks>
