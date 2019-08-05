@@ -45,6 +45,9 @@ D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.exe
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.xml
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.pdb
-D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.vbprojResolveAssemblyReference.cache
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\MathNet.Numerics.dll
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\MathNet.Numerics.xml
+D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\Cluster.dll
+D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\LinearFit.dll
+D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.vbprojResolveAssemblyReference.cache
+D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\e_fit.dll

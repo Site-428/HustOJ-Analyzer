@@ -1,6 +1,9 @@
 ﻿Imports MahApps.Metro.Controls
+Imports MahApps.Metro.Controls.Dialogs
 Imports System.Windows.Controls
 Imports Microsoft.VisualBasic.FileIO.FileSystem
+Imports MathWorks.MATLAB.NET.Arrays
+Imports MathWorks.MATLAB.NET.Utility
 
 Class MainWindow
     Dim UpdateProgress As Dialogs.ProgressDialogController
@@ -9,12 +12,24 @@ Class MainWindow
     Dim EmptyList As New List(Of String)
     Dim IsUserSpecifiedAnalyzeStartDateEqualsLogStartDate As Boolean = True
     Dim IsUserSpecifiedAnalyzeEndDateEqualsLogEndDate As Boolean = True
+    Dim IsMCRFailedStageStudentTotalSubmitByDayLnFit As Boolean = False
+    Dim IsMCRFailedStageProblemParticipantFit As Boolean = False
+    Dim IsMCRFailedStageProblemClust As Boolean = False
+    Dim IsMCRFailedStageStudentClust As Boolean = False
     Private Sub RefreshList()
         lstProblemList.ItemsSource = EmptyList
         lstStudentList.ItemsSource = EmptyList
         lstStudentList.ItemsSource = StudentList
         lstProblemList.ItemsSource = ProblemList
     End Sub
+    Private Function LinearCalculate(Slope As Double, Intercept As Double, XValue As Double) As Double
+        Debug.Print("y=" & Slope & "x+" & Intercept & vbCrLf & "x=" & XValue)
+        Return Slope * XValue + Intercept
+    End Function
+    Private Function ExponentialCalculate(Coefficient As Double, Exponent As Double, Constant As Double, XValue As Double) As Double
+        Debug.Print("y=" & Coefficient & "e^(" & Exponent & "x)+" & Constant & vbCrLf & "x=" & XValue)
+        Return Coefficient * Math.Exp(Exponent * XValue) + Constant
+    End Function
     Private Async Sub mnuUpdate_Click(sender As Object, e As RoutedEventArgs) Handles mnuUpdate.Click
         IsUpdateFinished = False
         GenerateCurrentDirectory()
@@ -49,8 +64,8 @@ Class MainWindow
         lstProblemList.ItemsSource = ProblemList
         txtStudentSearch.Text = "搜索学生学号"
         txtStudentSearch.Foreground = SystemColors.ScrollBarBrush
-        txtStudentSearch.Text = "搜索学生学号"
-        txtStudentSearch.Foreground = SystemColors.ScrollBarBrush
+        txtProblemSearch.Text = "搜索题目编号"
+        txtProblemSearch.Foreground = SystemColors.ScrollBarBrush
         icoStudentLink.Foreground = SystemColors.GrayTextBrush
         btnStudentLink.IsEnabled = False
         btnStudentLink.Cursor = Cursors.Arrow
@@ -69,6 +84,7 @@ Class MainWindow
         txtFittingK_Kb.Text = ""
         txtFittingR_Stb.Text = ""
         txtProblemID.Text = ""
+        txtProblemCreateTime.Text = ""
         txtProblemSubmitCount.Text = ""
         txtProblemACCount.Text = ""
         txtProblemACRate.Text = ""
@@ -84,16 +100,22 @@ Class MainWindow
         chartStudentTotalSubmitByTime.Visibility = Windows.Visibility.Hidden
         chartProblemACRate.Visibility = Windows.Visibility.Hidden
         chartProblemSubmitByDay.Visibility = Windows.Visibility.Hidden
+        chartProblemParticipant.Visibility = Windows.Visibility.Hidden
+        chartSubmitCountByTime.Visibility = Windows.Visibility.Hidden
+        chartNewProblemCountByDay.Visibility = Windows.Visibility.Hidden
         pieStudentACRate.ItemsSource = Nothing
         linStudentSubmitByDay.ItemsSource = Nothing
         sctStudentTotalSubmitByDayLn.ItemsSource = Nothing
         linStudentTotalSubmitByDayLnFit.ItemsSource = Nothing
         colStudentTotalSubmitByTime.ItemsSource = Nothing
         pieProblemACRate.ItemsSource = Nothing
+        linProblemSubmitByDay.ItemsSource = Nothing
+        sctProblemParticipant.ItemsSource = Nothing
+        linProblemParticipantFit.ItemsSource = Nothing
         linNewProblemCountByDay.ItemsSource = Nothing
         colSubmitCountByTime.ItemsSource = Nothing
-		
-		'重新执行数据分析
+
+        '重新执行数据分析
         Dim OJLogFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
         Dim OJLogCountFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\DATA.txt")
         Dim OJLogLine As String
@@ -103,6 +125,7 @@ Class MainWindow
         OJLogCountFileReader.Close()
         Dim StudentTemp As OJStudentInfo
         Dim ProblemTemp As OJProblemInfo
+        Dim ProblemParticipantCheck As New Dictionary(Of String, Dictionary(Of String, Boolean))
         Dim DateList As New List(Of Date)
         StudentList.Clear()
         StudentDictionary.Clear()
@@ -195,16 +218,37 @@ Class MainWindow
                 End With
             End If
             '题目数据
+            If Not ProblemParticipantCheck.ContainsKey(OJLogTemp.ProblemID) Then
+                ProblemParticipantCheck.Add(OJLogTemp.ProblemID, New Dictionary(Of String, Boolean))
+            End If
             If ProblemDictionary.ContainsKey(OJLogTemp.ProblemID) Then
                 With ProblemDictionary(OJLogTemp.ProblemID)
-                    .ParticipantCount += 1
+                    .SubmitCount += 1
                     If OJLogTemp.IsPassed Then
                         .ACCount += 1
+                    End If
+                    If Not ProblemParticipantCheck(OJLogTemp.ProblemID).ContainsKey(OJLogTemp.StudentID) Then
+                        .ParticipantCount += 1
+                        ProblemParticipantCheck(OJLogTemp.ProblemID).Add(OJLogTemp.StudentID, True)
                     End If
                     If .SubmitCountByDay.ContainsKey(OJLogTemp.DateSubmit) Then
                         .SubmitCountByDay(OJLogTemp.DateSubmit) += 1
                     Else
                         .SubmitCountByDay(OJLogTemp.DateSubmit) = 1
+                    End If
+                    '提高鲁棒性：当一个题目出现更早的提交时更新数据
+                    If OJLogTemp.DateSubmit < .CreateTime Then
+                        If OJSysInfo.NewProblemCount.ContainsKey(.CreateTime) Then
+                            If OJSysInfo.NewProblemCount(.CreateTime) > 0 Then
+                                OJSysInfo.NewProblemCount(.CreateTime) -= 1
+                            End If
+                        End If
+                        .CreateTime = OJLogTemp.DateSubmit
+                        If OJSysInfo.NewProblemCount.ContainsKey(OJLogTemp.DateSubmit) Then
+                            OJSysInfo.NewProblemCount(OJLogTemp.DateSubmit) += 1
+                        Else
+                            OJSysInfo.NewProblemCount.Add(OJLogTemp.DateSubmit, 1)
+                        End If
                     End If
                 End With
             Else
@@ -212,9 +256,14 @@ Class MainWindow
                 ProblemDictionary(OJLogTemp.ProblemID) = ProblemTemp
                 ProblemList.Add(OJLogTemp.ProblemID)
                 With ProblemDictionary(OJLogTemp.ProblemID)
-                    .ParticipantCount += 1
+                    .SubmitCount += 1
+                    .CreateTime = OJLogTemp.DateSubmit
                     If OJLogTemp.IsPassed Then
                         .ACCount += 1
+                    End If
+                    If Not ProblemParticipantCheck(OJLogTemp.ProblemID).ContainsKey(OJLogTemp.StudentID) Then
+                        .ParticipantCount += 1
+                        ProblemParticipantCheck(OJLogTemp.ProblemID).Add(OJLogTemp.StudentID, True)
                     End If
                     If .SubmitCountByDay.ContainsKey(OJLogTemp.DateSubmit) Then
                         .SubmitCountByDay(OJLogTemp.DateSubmit) += 1
@@ -233,7 +282,10 @@ Class MainWindow
             OJSysInfo.SubmitCountByHour(OJLogTemp.LogTime.Hour) += 1
             DoEvents()
         End While
+        OJLogFileReader.Close()
         '拟合计算
+        StudentList.Sort()
+        ProblemList.Sort()
         '学生拟合
         For i = 0 To StudentList.Count - 1
             With StudentDictionary(StudentList(i))
@@ -242,8 +294,8 @@ Class MainWindow
                 DateLoop = UserSpecifiedAnalyzeStartDate
                 Dim DayLn() As Double
                 Dim SubmitAdjustedTotal() As Double
-                ReDim DayLn((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
-                ReDim SubmitAdjustedTotal((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
+                ReDim DayLn((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days - 1)
+                ReDim SubmitAdjustedTotal((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days - 1)
                 Dim StudentTotalSubmitSum As Integer = 0
                 Dim TotalProblems As Integer = 0
                 Dim Index = 0
@@ -259,35 +311,110 @@ Class MainWindow
                     DateLoop = DateLoop.AddDays(1)
                     Index += 1
                 End While
-                Dim LinearFitResult As New Tuple(Of Double, Double)(0, 0)
-                LinearFitResult = MathNet.Numerics.LinearRegression.SimpleRegression.Fit(DayLn, SubmitAdjustedTotal)
-                .FittingB = LinearFitResult.Item1
-                .FittingK_Kb = LinearFitResult.Item2
-                .FittingR_Stb = MathNet.Numerics.Statistics.Correlation.Pearson(DayLn, SubmitAdjustedTotal) ^ 2
+                'Dim LinearFitResult As New Tuple(Of Double, Double)(0, 0)
+                'LinearFitResult = MathNet.Numerics.LinearRegression.SimpleRegression.Fit(DayLn, SubmitAdjustedTotal)
+                '.FittingB = LinearFitResult.Item1
+                '.FittingK_Kb = LinearFitResult.Item2
+                '.FittingR_Stb = MathNet.Numerics.Statistics.Correlation.Pearson(DayLn, SubmitAdjustedTotal) ^ 2
+                Try
+                    Dim LinearFitReturn(1, 3) As Double
+                    Dim LinearFitter As New LinearFit.Class1
+                    Dim LinearFitX As New MWNumericArray(DayLn)
+                    Dim LinearFitY As New MWNumericArray(SubmitAdjustedTotal)
+                    LinearFitX = DayLn
+                    LinearFitY = SubmitAdjustedTotal
+                    LinearFitReturn = LinearFitter.LinearFit(LinearFitX, LinearFitY).ToArray()
+                    LinearFitReturn = LinearFitter.LinearFit(New MWNumericArray(DayLn), New MWNumericArray(SubmitAdjustedTotal)).ToArray()
+                    LinearFitter.Dispose()
+                    LinearFitX.Dispose()
+                    LinearFitY.Dispose()
+                    .FittingK_Kb = LinearFitReturn(0, 0)
+                    .FittingR_Stb = LinearFitReturn(0, 1)
+                    .FittingB = LinearFitReturn(0, 2)
+                Catch ex As Exception
+                    IsMCRFailedStageStudentTotalSubmitByDayLnFit = True
+                    .FittingB = 0
+                    .FittingK_Kb = 0
+                    .FittingR_Stb = 0
+                End Try
             End With
+            DoEvents()
         Next
         '题目拟合
+        '产生题目参与人数-作业次序序列
+        Dim ProblemCreateTimeList As New List(Of Date)
+        Dim FirstProblemCreateTime As New Date
+        Dim TaskSequence() As Integer
+        Dim ParticipantCount() As Integer
+        Dim ExponentialFittingA As Double = 0
+        Dim ExponentialFittingB As Double = 0
+        Dim ExponentialFittingC As Double = 0
+        Dim ExponentialFitReturn(1, 3) As Double
+        For i = 0 To ProblemList.Count - 1
+            ProblemCreateTimeList.Add(ProblemDictionary(ProblemList(i)).CreateTime)
+        Next
+        FirstProblemCreateTime = ProblemCreateTimeList.Min()
+        ReDim TaskSequence(ProblemList.Count - 1)
+        ReDim ParticipantCount(ProblemList.Count - 1)
         For i = 0 To ProblemList.Count - 1
             With ProblemDictionary(ProblemList(i))
-                .EffortValue_Jq = IIf(.ACCount > 0, .ParticipantCount / .ACCount, 0)
-
+                .ProblemTaskSequenceIndex = Math.Round((.CreateTime - FirstProblemCreateTime).Days / 7) + 1
+                TaskSequence(i) = .ProblemTaskSequenceIndex
+                ParticipantCount(i) = .ParticipantCount
             End With
         Next
-        OJLogFileReader.Close()
-        StudentList.Sort()
+        Try
+            Dim ExponentialFitter As New e_fit.Class1
+            Dim ExponentialFitX As New MWNumericArray()
+            Dim ExponentialFitY As New MWNumericArray()
+            ExponentialFitX = TaskSequence
+            ExponentialFitY = ParticipantCount
+            ExponentialFitReturn = ExponentialFitter.e_fit(ExponentialFitX, ExponentialFitY).ToArray()
+            ExponentialFitter.Dispose()
+            ExponentialFitX.Dispose()
+            ExponentialFitY.Dispose()
+            ExponentialFittingA = ExponentialFitReturn(0, 0)
+            ExponentialFittingB = ExponentialFitReturn(0, 1)
+            ExponentialFittingC = ExponentialFitReturn(0, 2)
+        Catch ex As Exception
+            IsMCRFailedStageProblemParticipantFit = True
+            ExponentialFittingA = 0
+            ExponentialFittingB = 0
+            ExponentialFittingC = 0
+        End Try
+        For i = 0 To ProblemList.Count - 1
+            With ProblemDictionary(ProblemList(i))
+                .EffortValue_Jq = IIf(.ACCount > 0, .SubmitCount / .ACCount, 0)
+                .ParticipateValuse_Eq = .ParticipantCount - ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, .ProblemTaskSequenceIndex)
+            End With
+            DoEvents()
+        Next
+        '呈现列表
         lstStudentList.ItemsSource = StudentList
-        ProblemList.Sort()
         lstProblemList.ItemsSource = ProblemList
         RefreshList()
         txtStartDate.Text = OJSysInfo.StartDate.ToLongDateString()
         txtEndDate.Text = OJSysInfo.EndDate.ToLongDateString()
         txtUserSpecifiedAnalyzeStartDate.Text = UserSpecifiedAnalyzeStartDate.ToLongDateString()
         txtUserSpecifiedAnalyzeEndDate.Text = UserSpecifiedAnalyzeEndDate.ToLongDateString()
+        '题目参与人数与拟合图表
+        Dim ProblemParticipantDataSource As New List(Of KeyValuePair(Of Integer, Integer))
+        Dim ProblemParticipantFitDataSource As New List(Of KeyValuePair(Of Integer, Double))
+        For i = 0 To ProblemList.Count - 1
+            ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
+            ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
+        Next
+        sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
+        linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
+        chartProblemParticipant.Visibility = Windows.Visibility.Visible
+        '分时段总提交数图表
         Dim SubmitCountByTimeDataSource As New List(Of KeyValuePair(Of String, Integer))
         For i = 0 To 23
             SubmitCountByTimeDataSource.Add(New KeyValuePair(Of String, Integer)(i.ToString("00") & ":00" & vbCrLf & "~" & vbCrLf & (i + 1).ToString("00") & ":00", OJSysInfo.SubmitCountByHour(i)))
         Next
         colSubmitCountByTime.ItemsSource = SubmitCountByTimeDataSource
+        chartSubmitCountByTime.Visibility = Windows.Visibility.Visible
+        '题目发布曲线图表
         Dim j As Date
         j = UserSpecifiedAnalyzeStartDate
         Dim NewProblemCountByDayDataSource As New List(Of KeyValuePair(Of Date, Integer))
@@ -300,7 +427,15 @@ Class MainWindow
             j = j.AddDays(1)
         End While
         linNewProblemCountByDay.ItemsSource = NewProblemCountByDayDataSource
+        chartNewProblemCountByDay.Visibility = Windows.Visibility.Visible
         Await AnalyzeProgress.CloseAsync()
+        If IsMCRFailedStageStudentTotalSubmitByDayLnFit Or IsMCRFailedStageProblemParticipantFit Or IsMCRFailedStageStudentClust Or IsMCRFailedStageProblemClust Then
+            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
+            IsMCRFailedStageStudentTotalSubmitByDayLnFit = False
+            IsMCRFailedStageProblemParticipantFit = False
+            IsMCRFailedStageStudentClust = False
+            IsMCRFailedStageProblemClust = False
+        End If
     End Sub
     Private Async Sub Updater_Exit(sender As Object, e As EventArgs)
         Await UpdateProgress.CloseAsync()
@@ -420,6 +555,7 @@ Class MainWindow
         OJLogFileReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
         Dim StudentTemp As OJStudentInfo
         Dim ProblemTemp As OJProblemInfo
+        Dim ProblemParticipantCheck As New Dictionary(Of String, Dictionary(Of String, Boolean))
         Dim DateList As New List(Of Date)
         StudentList.Clear()
         StudentDictionary.Clear()
@@ -494,16 +630,37 @@ Class MainWindow
                 End With
             End If
             '题目数据
+            If Not ProblemParticipantCheck.ContainsKey(OJLogTemp.ProblemID) Then
+                ProblemParticipantCheck.Add(OJLogTemp.ProblemID, New Dictionary(Of String, Boolean))
+            End If
             If ProblemDictionary.ContainsKey(OJLogTemp.ProblemID) Then
                 With ProblemDictionary(OJLogTemp.ProblemID)
-                    .ParticipantCount += 1
+                    .SubmitCount += 1
                     If OJLogTemp.IsPassed Then
                         .ACCount += 1
+                    End If
+                    If Not ProblemParticipantCheck(OJLogTemp.ProblemID).ContainsKey(OJLogTemp.StudentID) Then
+                        .ParticipantCount += 1
+                        ProblemParticipantCheck(OJLogTemp.ProblemID).Add(OJLogTemp.StudentID, True)
                     End If
                     If .SubmitCountByDay.ContainsKey(OJLogTemp.DateSubmit) Then
                         .SubmitCountByDay(OJLogTemp.DateSubmit) += 1
                     Else
                         .SubmitCountByDay(OJLogTemp.DateSubmit) = 1
+                    End If
+                    '提高鲁棒性：当一个题目出现更早的提交时更新数据
+                    If OJLogTemp.DateSubmit < .CreateTime Then
+                        If OJSysInfo.NewProblemCount.ContainsKey(.CreateTime) Then
+                            If OJSysInfo.NewProblemCount(.CreateTime) > 0 Then
+                                OJSysInfo.NewProblemCount(.CreateTime) -= 1
+                            End If
+                        End If
+                        .CreateTime = OJLogTemp.DateSubmit
+                        If OJSysInfo.NewProblemCount.ContainsKey(OJLogTemp.DateSubmit) Then
+                            OJSysInfo.NewProblemCount(OJLogTemp.DateSubmit) += 1
+                        Else
+                            OJSysInfo.NewProblemCount.Add(OJLogTemp.DateSubmit, 1)
+                        End If
                     End If
                 End With
             Else
@@ -511,9 +668,14 @@ Class MainWindow
                 ProblemDictionary(OJLogTemp.ProblemID) = ProblemTemp
                 ProblemList.Add(OJLogTemp.ProblemID)
                 With ProblemDictionary(OJLogTemp.ProblemID)
-                    .ParticipantCount += 1
+                    .SubmitCount += 1
+                    .CreateTime = OJLogTemp.DateSubmit
                     If OJLogTemp.IsPassed Then
                         .ACCount += 1
+                    End If
+                    If Not ProblemParticipantCheck(OJLogTemp.ProblemID).ContainsKey(OJLogTemp.StudentID) Then
+                        .ParticipantCount += 1
+                        ProblemParticipantCheck(OJLogTemp.ProblemID).Add(OJLogTemp.StudentID, True)
                     End If
                     If .SubmitCountByDay.ContainsKey(OJLogTemp.DateSubmit) Then
                         .SubmitCountByDay(OJLogTemp.DateSubmit) += 1
@@ -533,11 +695,15 @@ Class MainWindow
             OJSysInfo.SubmitCountByHour(OJLogTemp.LogTime.Hour) += 1
             DoEvents()
         End While
+        OJLogFileReader.Close()
+        ProblemParticipantCheck.Clear()
         OJSysInfo.EndDate = DateList.Max()
         OJSysInfo.StartDate = DateList.Min()
         '配置默认的分析起讫日期
         UserSpecifiedAnalyzeStartDate = OJSysInfo.StartDate
         UserSpecifiedAnalyzeEndDate = OJSysInfo.EndDate
+        StudentList.Sort()
+        ProblemList.Sort()
         '拟合计算
         '学生拟合
         For i = 0 To StudentList.Count - 1
@@ -547,8 +713,8 @@ Class MainWindow
                 DateLoop = UserSpecifiedAnalyzeStartDate
                 Dim DayLn() As Double
                 Dim SubmitAdjustedTotal() As Double
-                ReDim DayLn((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
-                ReDim SubmitAdjustedTotal((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days)
+                ReDim DayLn((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days - 1)
+                ReDim SubmitAdjustedTotal((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days - 1)
                 Dim StudentTotalSubmitSum As Integer = 0
                 Dim TotalProblems As Integer = 0
                 Dim Index = 0
@@ -564,34 +730,130 @@ Class MainWindow
                     DateLoop = DateLoop.AddDays(1)
                     Index += 1
                 End While
-                Dim LinearFitResult As New Tuple(Of Double, Double)(0, 0)
-                LinearFitResult = MathNet.Numerics.LinearRegression.SimpleRegression.Fit(DayLn, SubmitAdjustedTotal)
-                .FittingB = LinearFitResult.Item1
-                .FittingK_Kb = LinearFitResult.Item2
-                .FittingR_Stb = MathNet.Numerics.Statistics.Correlation.Pearson(DayLn, SubmitAdjustedTotal) ^ 2
+                'Dim LinearFitResult As New Tuple(Of Double, Double)(0, 0)
+                'LinearFitResult = MathNet.Numerics.LinearRegression.SimpleRegression.Fit(DayLn, SubmitAdjustedTotal)
+                '.FittingB = LinearFitResult.Item1
+                '.FittingK_Kb = LinearFitResult.Item2
+                '.FittingR_Stb = MathNet.Numerics.Statistics.Correlation.Pearson(DayLn, SubmitAdjustedTotal) ^ 2
+                Try
+                    Dim LinearFitReturn(2, 3) As Double
+                    Dim LinearFitter As New LinearFit.Class1
+                    Dim LinearFitX As New MWNumericArray(DayLn)
+                    Dim LinearFitY As New MWNumericArray(SubmitAdjustedTotal)
+                    LinearFitX = DayLn
+                    LinearFitY = SubmitAdjustedTotal
+                    LinearFitReturn = LinearFitter.LinearFit(LinearFitX, LinearFitY).ToArray()
+                    LinearFitter.Dispose()
+                    LinearFitX.Dispose()
+                    LinearFitY.Dispose()
+                    .FittingK_Kb = LinearFitReturn(0, 0)
+                    .FittingR_Stb = LinearFitReturn(0, 1)
+                    .FittingB = LinearFitReturn(0, 2)
+                Catch ex As Exception
+                    IsMCRFailedStageStudentTotalSubmitByDayLnFit = True
+                    .FittingB = 0
+                    .FittingK_Kb = 0
+                    .FittingR_Stb = 0
+                End Try
             End With
+            DoEvents()
         Next
         '题目拟合
+        '产生题目参与人数-作业次序序列
+        Dim ProblemCreateTimeList As New List(Of Date)
+        Dim FirstProblemCreateTime As New Date
+        Dim TaskSequence() As Integer
+        Dim ParticipantCount() As Integer
+        Dim ExponentialFittingA As Double = 0
+        Dim ExponentialFittingB As Double = 0
+        Dim ExponentialFittingC As Double = 0
+        Dim ExponentialFitReturn(1, 3) As Double
+        For i = 0 To ProblemList.Count - 1
+            ProblemCreateTimeList.Add(ProblemDictionary(ProblemList(i)).CreateTime)
+        Next
+        FirstProblemCreateTime = ProblemCreateTimeList.Min()
+        ReDim TaskSequence(ProblemList.Count - 1)
+        ReDim ParticipantCount(ProblemList.Count - 1)
         For i = 0 To ProblemList.Count - 1
             With ProblemDictionary(ProblemList(i))
-                .EffortValue_Jq = IIf(.ACCount > 0, .ParticipantCount / .ACCount, 0)
+                .ProblemTaskSequenceIndex = Math.Round((.CreateTime - FirstProblemCreateTime).Days / 7) + 1
+                TaskSequence(i) = .ProblemTaskSequenceIndex
+                ParticipantCount(i) = .ParticipantCount
             End With
         Next
-        OJLogFileReader.Close()
+        Try
+            Dim ExponentialFitter As New e_fit.Class1
+            Dim ExponentialFitX As New MWNumericArray()
+            Dim ExponentialFitY As New MWNumericArray()
+            ExponentialFitX = TaskSequence
+            ExponentialFitY = ParticipantCount
+            ExponentialFitReturn = ExponentialFitter.e_fit(ExponentialFitX, ExponentialFitY).ToArray()
+            ExponentialFitter.Dispose()
+            ExponentialFitX.Dispose()
+            ExponentialFitY.Dispose()
+            ExponentialFittingA = -ExponentialFitReturn(0, 0)
+            ExponentialFittingB = ExponentialFitReturn(0, 1)
+            ExponentialFittingC = ExponentialFitReturn(0, 2)
+        Catch ex As Exception
+            IsMCRFailedStageProblemParticipantFit = True
+            ExponentialFittingA = 0
+            ExponentialFittingB = 0
+            ExponentialFittingC = 0
+        End Try
+        For i = 0 To ProblemList.Count - 1
+            With ProblemDictionary(ProblemList(i))
+                .EffortValue_Jq = IIf(.ACCount > 0, .SubmitCount / .ACCount, 0)
+                .ParticipateValuse_Eq = .ParticipantCount - ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, .ProblemTaskSequenceIndex)
+            End With
+            DoEvents()
+        Next
+        '题目聚类分析
+        Dim ProblemJqEqMatrix(,) As Double
+        Dim ProblemClustResult() As Double
+        ReDim ProblemJqEqMatrix(ProblemList.Count - 1, 1)
+        ReDim ProblemClustResult(ProblemList.Count - 1)
+        For i = 0 To ProblemList.Count - 1
+            ProblemJqEqMatrix(i, 0) = ProblemDictionary(ProblemList(i)).EffortValue_Jq
+            ProblemJqEqMatrix(i, 1) = ProblemDictionary(ProblemList(i)).ParticipateValuse_Eq
+        Next
+        Try
+            Dim ClustExec As New cluster.Class1
+            ProblemClustResult = ClustExec.cluster(New MWNumericArray(ProblemJqEqMatrix), New MWNumericArray(CInt(4))).ToArray()
+            ClustExec.Dispose()
+            For i = 0 To ProblemList.Count - 1
+                ProblemDictionary(ProblemList(i)).ClustResult = ProblemClustResult(i)
+            Next
+        Catch ex As Exception
+            IsMCRFailedStageProblemClust = True
+            For i = 0 To ProblemList.Count - 1
+                ProblemDictionary(ProblemList(i)).ClustResult = 0
+            Next
+        End Try
         '呈现列表
-        StudentList.Sort()
         lstStudentList.ItemsSource = StudentList
-        ProblemList.Sort()
         lstProblemList.ItemsSource = ProblemList
         txtStartDate.Text = OJSysInfo.StartDate.ToLongDateString()
         txtEndDate.Text = OJSysInfo.EndDate.ToLongDateString()
         txtUserSpecifiedAnalyzeStartDate.Text = UserSpecifiedAnalyzeStartDate.ToLongDateString()
         txtUserSpecifiedAnalyzeEndDate.Text = UserSpecifiedAnalyzeEndDate.ToLongDateString()
+        '题目参与人数与拟合图表
+        Dim ProblemParticipantDataSource As New List(Of KeyValuePair(Of Integer, Integer))
+        Dim ProblemParticipantFitDataSource As New List(Of KeyValuePair(Of Integer, Double))
+        For i = 0 To ProblemList.Count - 1
+            ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
+            ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
+        Next
+        sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
+        linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
+        chartProblemParticipant.Visibility = Windows.Visibility.Visible
+        '分时段总提交数图表
         Dim SubmitCountByTimeDataSource As New List(Of KeyValuePair(Of String, Integer))
         For i = 0 To 23
             SubmitCountByTimeDataSource.Add(New KeyValuePair(Of String, Integer)(i.ToString("00") & ":00" & vbCrLf & "~" & vbCrLf & (i + 1).ToString("00") & ":00", OJSysInfo.SubmitCountByHour(i)))
         Next
         colSubmitCountByTime.ItemsSource = SubmitCountByTimeDataSource
+        chartSubmitCountByTime.Visibility = Windows.Visibility.Visible
+        '题目发布曲线图表
         Dim j As Date
         j = UserSpecifiedAnalyzeStartDate
         Dim NewProblemCountByDayDataSource As New List(Of KeyValuePair(Of Date, Integer))
@@ -604,7 +866,15 @@ Class MainWindow
             j = j.AddDays(1)
         End While
         linNewProblemCountByDay.ItemsSource = NewProblemCountByDayDataSource
+        chartNewProblemCountByDay.Visibility = Windows.Visibility.Visible
         Await AnalyzeProgress.CloseAsync()
+        If IsMCRFailedStageStudentTotalSubmitByDayLnFit Or IsMCRFailedStageProblemParticipantFit Or IsMCRFailedStageStudentClust Or IsMCRFailedStageProblemClust Then
+            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
+            IsMCRFailedStageStudentTotalSubmitByDayLnFit = False
+            IsMCRFailedStageProblemParticipantFit = False
+            IsMCRFailedStageStudentClust = False
+            IsMCRFailedStageProblemClust = False
+        End If
     End Sub
 
     Private Sub lstStudentList_GotFocus(sender As Object, e As RoutedEventArgs) Handles lstStudentList.GotFocus
@@ -787,9 +1057,11 @@ Class MainWindow
         If lstProblemList.SelectedIndex <> -1 Then
             txtProblemID.Text = lstProblemList.SelectedItem.ToString()
             With ProblemDictionary(txtProblemID.Text)
-                txtProblemSubmitCount.Text = .ParticipantCount
+                txtProblemSubmitCount.Text = .SubmitCount
+                txtProblemParticipantCount.Text = .ParticipantCount
+                txtProblemCreateTime.Text = .CreateTime.ToLongDateString()
                 txtProblemACCount.Text = .ACCount
-                txtProblemACRate.Text = (.ACCount / .ParticipantCount).ToString("P")
+                txtProblemACRate.Text = (.ACCount / .SubmitCount).ToString("P")
                 txtEffortValue_Jq.Text = .EffortValue_Jq.ToString("F5")
                 txtParticipateValuse_Eq.Text = .ParticipateValuse_Eq.ToString("F5")
                 Dim OriginalSelection As Integer
@@ -800,7 +1072,7 @@ Class MainWindow
                 DoEvents()
                 Dim ProblemACRateDataSource As New List(Of KeyValuePair(Of String, Integer))
                 ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("通过  ", .ACCount))
-                ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("未通过", .ParticipantCount - .ACCount))
+                ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("未通过", .SubmitCount - .ACCount))
                 pieProblemACRate.ItemsSource = ProblemACRateDataSource
                 chartProblemACRate.Visibility = Windows.Visibility.Visible
 

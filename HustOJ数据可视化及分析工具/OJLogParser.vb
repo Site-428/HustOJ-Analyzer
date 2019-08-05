@@ -152,6 +152,36 @@
             .LogTime.Hour = Int(LogLineArray(6))
             .LogTime.Minute = Int(LogLineArray(7))
             .LogTime.Second = Int(LogLineArray(8))
+            If .LogDate.Month > 12 Then
+                .LogDate.Month = 12
+            End If
+            If .LogDate.Month < 1 Then
+                .LogDate.Month = 1
+            End If
+            If .LogDate.Day > Date.DaysInMonth(.LogDate.Year, .LogDate.Month) Then
+                .LogDate.Day = Date.DaysInMonth(.LogDate.Year, .LogDate.Month)
+            End If
+            If .LogDate.Day < 0 Then
+                .LogDate.Day = 1
+            End If
+            If .LogTime.Hour >= 24 Then
+                .LogTime.Hour = 23
+            End If
+            If .LogTime.Hour < 0 Then
+                .LogTime.Hour = 0
+            End If
+            If .LogTime.Minute >= 60 Then
+                .LogTime.Minute = 59
+            End If
+            If .LogTime.Minute < 0 Then
+                .LogTime.Minute = 0
+            End If
+            If .LogTime.Second >= 60 Then
+                .LogTime.Second = 59
+            End If
+            If .LogTime.Second < 0 Then
+                .LogTime.Second = 0
+            End If
             .DateSubmit = New Date(.LogDate.Year, .LogDate.Month, .LogDate.Day)
             .TimeSubmit = New Date(.LogDate.Year, .LogDate.Month, .LogDate.Day, .LogTime.Hour, .LogTime.Minute, .LogTime.Second)
             .WeekdaySubmit = Weekday(.DateSubmit, FirstDayOfWeek.Sunday)

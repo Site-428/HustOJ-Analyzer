@@ -6,468 +6,387 @@ HustOJ数据可视化及分析工具
 </name>
 </assembly>
 <members>
-<member name="T:HustOJ数据可视化及分析工具.My.MyWpfExtension">
- <summary>
- 用來定義 WPF 的 My 命名空間中可用屬性的模組
- </summary>
- <remarks></remarks>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Application">
- <summary>
- 傳回執行中應用程式的應用程式物件
- </summary>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Computer">
- <summary>
- 傳回主機電腦的相關資訊。
- </summary>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.User">
- <summary>
- 傳回目前使用者的資訊。如果您希望用目前的 Windows 使用者認證執行此應用程式，
- 請呼叫 My.User.InitializeWithWindowsUser()。
- </summary>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Log">
- <summary>
- 傳回應用程式記錄檔。接聽程式可以使用應用程式的組態檔來設定。
- </summary>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Windows">
- <summary>
- 傳回此專案中定義的 Windows 集合。
- </summary>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.My.Resources.Resources">
-<summary>
-  用於查詢當地語系化字串等的強類型資源類別。
+<member name="M:HustOJ数据可视化及分析工具.MainWindow.InitializeComponent">
+	<summary>
+InitializeComponent
 </summary>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.Resources.Resources.ResourceManager">
-<summary>
+</member><member name="T:HustOJ数据可视化及分析工具.MainWindow">
+	<summary>
+MainWindow
+</summary>
+</member><member name="M:HustOJ数据可视化及分析工具.Application.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:HustOJ数据可视化及分析工具.Application.Main">
+	<summary>
+Application Entry Point.
+</summary>
+</member><member name="T:HustOJ数据可视化及分析工具.Application">
+	<summary>
+Application
+</summary>
+</member><member name="F:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.CurrentDirectory">
+	<summary>
+ 表示应用程序的当前工作路径。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.GenerateCurrentDirectory">
+	<summary>
+ 产生应用程序的当前工作路径。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.GetCurrentDirectory">
+	<summary>
+ 获取应用程序的当前工作路径。
+ </summary>
+	<returns>字符串值，表示应用程序的当前工作路径。</returns>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate.Year">
+	<summary>
+ 年。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate.Month">
+	<summary>
+ 月。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate.Day">
+	<summary>
+ 日。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate">
+	<summary>
+ OJ日志中的日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime.Hour">
+	<summary>
+ 时。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime.Minute">
+	<summary>
+ 分。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime.Second">
+	<summary>
+ 秒。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime">
+	<summary>
+ OJ日志中的时间
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.LogIndex">
+	<summary>
+ 日志序号。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.ProblemID">
+	<summary>
+ 题号。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.StudentID">
+	<summary>
+ 学生学号。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.LogDate">
+	<summary>
+ 提交日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.LogTime">
+	<summary>
+ 提交时间。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.DateSubmit">
+	<summary>
+ 转化为标准格式的提交日期(仅含提交日期)。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.TimeSubmit">
+	<summary>
+ 转化为标准格式的提交时间(含提交日期与提交时间)。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.WeekdaySubmit">
+	<summary>
+ 提交时处于星期几，1表示星期日。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.IsPassed">
+	<summary>
+ 评测是否通过(AC)。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.IsParseFailed">
+	<summary>
+ 解析日志时是否出错导致失败。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJLogParser.OJLog.ToString">
+	<summary>
+ 将已结构化的OJ日志转化为单行文本。
+ </summary>
+	<returns>转化为单行文本的OJ日志，格式应与标准格式相同。</returns>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.OJLogParser.OJLog">
+	<summary>
+ OJ日志数据结构。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogCount">
+	<summary>
+ OJ日志总数。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJLogParser.ParseLog(System.String)">
+	<summary>
+ 解析OJ日志并转化为结构化数据。
+ </summary>
+	<param name="LogLine">单行OJ日志。</param>
+	<returns>结构化的日志数据。</returns>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ProblemIDNumber">
+	<summary>
+ 题目编号。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipantCount">
+	<summary>
+ 总提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ACCount">
+	<summary>
+ 通过(AC)次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.EffortValue_Jq">
+	<summary>
+ 付出指数Jq。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipateValuse_Eq">
+	<summary>
+ 参与指数Eq。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.SubmitCountByDay">
+	<summary>
+ 按日记录的提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.#ctor">
+	<summary>
+ 默认的构造函数。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.#ctor(System.String)">
+	<summary>
+ 指定了题目编号的构造函数。
+ </summary>
+	<param name="ProblemID">题目的编号，为字符串值。</param>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.ProblemList">
+	<summary>
+ 题目编号列表。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.ProblemDictionary">
+	<summary>
+ 存放题目信息的字典。
+ </summary>
+	<remarks></remarks>
+</member><member name="P:HustOJ数据可视化及分析工具.My.Resources.Resources.ResourceManager">
+	<summary>
   傳回這個類別使用的快取的 ResourceManager 執行個體。
 </summary>
-</member>
-<member name="P:HustOJ数据可视化及分析工具.My.Resources.Resources.Culture">
-<summary>
+</member><member name="P:HustOJ数据可视化及分析工具.My.Resources.Resources.Culture">
+	<summary>
   覆寫目前執行緒的 CurrentUICulture 屬性，對象是所有
   使用這個強類型資源類別的資源查閱。
 </summary>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate">
- <summary>
- OJ日志中的日期。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate.Year">
- <summary>
- 年。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate.Month">
- <summary>
- 月。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogDate.Day">
- <summary>
- 日。
- </summary>
- <remarks></remarks>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime">
- <summary>
- OJ日志中的时间
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime.Hour">
- <summary>
- 时。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime.Minute">
- <summary>
- 分。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogTime.Second">
- <summary>
- 秒。
- </summary>
- <remarks></remarks>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.OJLogParser.OJLog">
- <summary>
- OJ日志数据结构。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.LogIndex">
- <summary>
- 日志序号。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.ProblemID">
- <summary>
- 题号。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.StudentID">
- <summary>
- 学生学号。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.LogDate">
- <summary>
- 提交日期。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.LogTime">
- <summary>
- 提交时间。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.DateSubmit">
- <summary>
- 转化为标准格式的提交日期(仅含提交日期)。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.TimeSubmit">
- <summary>
- 转化为标准格式的提交时间(含提交日期与提交时间)。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.WeekdaySubmit">
- <summary>
- 提交时处于星期几，1表示星期日。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.IsPassed">
- <summary>
- 评测是否通过(AC)。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLog.IsParseFailed">
- <summary>
- 解析日志时是否出错导致失败。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJLogParser.OJLog.ToString">
- <summary>
- 将已结构化的OJ日志转化为单行文本。
- </summary>
- <returns>转化为单行文本的OJ日志，格式应与标准格式相同。</returns>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJLogParser.OJLogCount">
- <summary>
- OJ日志总数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJLogParser.ParseLog(System.String)">
- <summary>
- 解析OJ日志并转化为结构化数据。
- </summary>
- <param name="LogLine">单行OJ日志。</param>
- <returns>结构化的日志数据。</returns>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ProblemIDNumber">
- <summary>
- 题目编号。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipantCount">
- <summary>
- 总提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ACCount">
- <summary>
- 通过(AC)次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.EffortValue_Jq">
- <summary>
- 付出指数Jq。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipateValuse_Eq">
- <summary>
- 参与指数Eq。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.SubmitCountByDay">
- <summary>
- 按日记录的提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.#ctor">
- <summary>
- 默认的构造函数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.#ctor(System.String)">
- <summary>
- 指定了题目编号的构造函数。
- </summary>
- <param name="ProblemID">题目的编号，为字符串值。</param>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.ProblemList">
- <summary>
- 题目编号列表。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.ProblemDictionary">
- <summary>
- 存放题目信息的字典。
- </summary>
- <remarks></remarks>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo">
- <summary>
- 参与OnlineJudge的学生的信息。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.StudentIDNumber">
- <summary>
- 学生的学号。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCount">
- <summary>
- 总提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.ACCount">
- <summary>
- 通过(AC)次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountByDay">
- <summary>
- 按日记录的提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnWorkdayAM">
- <summary>
- 工作日0:00至12:00提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnWorkdayPM">
- <summary>
- 工作日12:00至24:00提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnRestdayAM">
- <summary>
- 休息日0:00至12:00提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnRestdayPM">
- <summary>
- 休息日12:00至24:00提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountByHour">
- <summary>
- 按每日分时段时记录的提交次数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingAC">
- <summary>
- 完成指数Ac。
- </summary>
- <remarks>Ac = Pac+α，Pac为完成数CountAC，α为通过率SubmitCount。</remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingR_Stb">
- <summary>
- 稳定指数Stb。
- </summary>
- <remarks>拟合曲线的调整R平方值。</remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingK_Kb">
- <summary>
- 使用指数Kb。
- </summary>
- <remarks>拟合曲线的斜率。</remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingB">
- <summary>
- 拟合曲线的截距。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.#ctor">
- <summary>
- 默认的构造函数。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.#ctor(System.String)">
- <summary>
- 指定了学生学号的构造函数。
- </summary>
- <param name="StudentID">学生的学号，为字符串值。</param>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.GetSubmitCountByDayByDayCount(System.Int32,System.Boolean,System.DateTime)">
- <summary>
- 获取距离指定的起始日期某一日数的提交数。
- </summary>
- <param name="DayCount">距离起始日期的日数，可谓负数、正数或0。</param>
- <param name="UseCustomizedStartDate">可选，是否使用自订的起始日期，默认为False。若为True则需提供起始日期。</param>
- <param name="CustomizedStartDate">可选，自订的起始日期，默认为统计起始日期。</param>
- <returns>指定日期的提交数。</returns>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.StudentList">
- <summary>
- 学生学号列表。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.StudentDictionary">
- <summary>
- 存放学生信息的字典。
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.CurrentDirectory">
- <summary>
- 表示应用程序的当前工作路径。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.GenerateCurrentDirectory">
- <summary>
- 产生应用程序的当前工作路径。
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.GetCurrentDirectory">
- <summary>
- 获取应用程序的当前工作路径。
- </summary>
- <returns>字符串值，表示应用程序的当前工作路径。</returns>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.StartDate">
- <summary>
+</member><member name="T:HustOJ数据可视化及分析工具.My.Resources.Resources">
+	<summary>
+  用於查詢當地語系化字串等的強類型資源類別。
+</summary>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.StartDate">
+	<summary>
  统计起始日期。
  </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.EndDate">
- <summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.EndDate">
+	<summary>
  统计结束日期。
  </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.NewProblemCount">
- <summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.NewProblemCount">
+	<summary>
  按日记录的新题目数量。
  </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.SubmitCountByHour">
- <summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.SubmitCountByHour">
+	<summary>
  按每日分时段时记录的提交次数。
  </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.#ctor">
- <summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.#ctor">
+	<summary>
  默认构造函数
  </summary>
- <remarks></remarks>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.#ctor(System.DateTime,System.DateTime)">
- <summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.#ctor(System.DateTime,System.DateTime)">
+	<summary>
  指定了统计起讫日期的构造函数。
  </summary>
- <param name="DateStart">统计起始日期。</param>
- <param name="DateEnd">统计结束日期。</param>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSysInfo">
- <summary>
+	<param name="DateStart">统计起始日期。</param>
+	<param name="DateEnd">统计结束日期。</param>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSysInfo">
+	<summary>
  OnlineJudge系统整体资讯。
  </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.UserSpecifiedAnalyzeStartDate">
- <summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.UserSpecifiedAnalyzeStartDate">
+	<summary>
  用户选择的分析起始日期。
  </summary>
- <remarks></remarks>
-</member>
-<member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.UserSpecifiedAnalyzeEndDate">
- <summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.UserSpecifiedAnalyzeEndDate">
+	<summary>
  用户选择的分析结束日期。
  </summary>
- <remarks></remarks>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.Application">
-<summary>
-Application
-</summary>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.Application.InitializeComponent">
-<summary>
-InitializeComponent
-</summary>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.Application.Main">
-<summary>
-Application Entry Point.
-</summary>
-</member>
-<member name="T:HustOJ数据可视化及分析工具.MainWindow">
-<summary>
-MainWindow
-</summary>
-</member>
-<member name="M:HustOJ数据可视化及分析工具.MainWindow.InitializeComponent">
-<summary>
-InitializeComponent
-</summary>
+	<remarks></remarks>
+</member><member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Application">
+	<summary>
+ 傳回執行中應用程式的應用程式物件
+ </summary>
+</member><member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Computer">
+	<summary>
+ 傳回主機電腦的相關資訊。
+ </summary>
+</member><member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.User">
+	<summary>
+ 傳回目前使用者的資訊。如果您希望用目前的 Windows 使用者認證執行此應用程式，
+ 請呼叫 My.User.InitializeWithWindowsUser()。
+ </summary>
+</member><member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Log">
+	<summary>
+ 傳回應用程式記錄檔。接聽程式可以使用應用程式的組態檔來設定。
+ </summary>
+</member><member name="P:HustOJ数据可视化及分析工具.My.MyWpfExtension.Windows">
+	<summary>
+ 傳回此專案中定義的 Windows 集合。
+ </summary>
+</member><member name="T:HustOJ数据可视化及分析工具.My.MyWpfExtension">
+	<summary>
+ 用來定義 WPF 的 My 命名空間中可用屬性的模組
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.StudentIDNumber">
+	<summary>
+ 学生的学号。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCount">
+	<summary>
+ 总提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.ACCount">
+	<summary>
+ 通过(AC)次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountByDay">
+	<summary>
+ 按日记录的提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnWorkdayAM">
+	<summary>
+ 工作日0:00至12:00提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnWorkdayPM">
+	<summary>
+ 工作日12:00至24:00提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnRestdayAM">
+	<summary>
+ 休息日0:00至12:00提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnRestdayPM">
+	<summary>
+ 休息日12:00至24:00提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountByHour">
+	<summary>
+ 按每日分时段时记录的提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingAC">
+	<summary>
+ 完成指数Ac。
+ </summary>
+	<remarks>Ac = Pac+α，Pac为完成数CountAC，α为通过率SubmitCount。</remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingR_Stb">
+	<summary>
+ 稳定指数Stb。
+ </summary>
+	<remarks>拟合曲线的调整R平方值。</remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingK_Kb">
+	<summary>
+ 使用指数Kb。
+ </summary>
+	<remarks>拟合曲线的斜率。</remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.#ctor">
+	<summary>
+ 默认的构造函数。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.#ctor(System.String)">
+	<summary>
+ 指定了学生学号的构造函数。
+ </summary>
+	<param name="StudentID">学生的学号，为字符串值。</param>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.GetSubmitCountByDayByDayCount(System.Int32,System.Boolean,System.DateTime)">
+	<summary>
+ 获取距离指定的起始日期某一日数的提交数。
+ </summary>
+	<param name="DayCount">距离起始日期的日数，可谓负数、正数或0。</param>
+	<param name="UseCustomizedStartDate">可选，是否使用自订的起始日期，默认为False。若为True则需提供起始日期。</param>
+	<param name="CustomizedStartDate">可选，自订的起始日期，默认为统计起始日期。</param>
+	<returns>指定日期的提交数。</returns>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo">
+	<summary>
+ 参与OnlineJudge的学生的信息。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.StudentList">
+	<summary>
+ 学生学号列表。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.StudentDictionary">
+	<summary>
+ 存放学生信息的字典。
+ </summary>
+	<remarks></remarks>
 </member>
 </members>
 </doc>

@@ -7,7 +7,7 @@
     xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
     xmlns:Primitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MainWindow"
-    Title="HustOJ数据可视化与分析" Height="750" Width="1250" Icon="Assets/Icon/Icon.ico" MinWidth="1000" MinHeight="600" WindowStartupLocation="CenterScreen">
+    Title="HustOJ数据可视化与分析" Height="750" Width="1250" Icon="Assets/Icon/Icon.ico" MinWidth="1000" MinHeight="650" WindowStartupLocation="CenterScreen">
     <Controls:MetroWindow.Resources>
         <!-- 没有标题和图例的Chart样式 -->
         <Style x:Key="ChartStyleMetroNoTitleAndLegend" TargetType="{x:Type chartingToolkit:Chart}">
@@ -404,8 +404,8 @@
                                     </StackPanel>
                                 </Path.ToolTip>
                             </Path>
-                            <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                            <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                            <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Transparent" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                            <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="Transparent" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -438,8 +438,8 @@
                                             </StackPanel>
                                         </Path.ToolTip>
                                     </Path>
-                                    <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                                    <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                    <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Transparent" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                    <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="Transparent" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
@@ -472,8 +472,8 @@
                                             </StackPanel>
                                         </Path.ToolTip>
                                     </Path>
-                                    <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                                    <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                    <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Transparent" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                    <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="Transparent" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
@@ -529,8 +529,8 @@
                             </Grid.ToolTip>
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
                             <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF00AFF5"/>
-                            <Ellipse x:Name="SelectionHighlight" Fill="#FF00F5F5" Opacity="0"/>
-                            <Ellipse x:Name="MouseOverHighlight" Fill="#FF00E1F5" Opacity="0"/>
+                            <Ellipse x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
+                            <Ellipse x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -580,15 +580,15 @@
                                 </StackPanel>
                             </Grid.ToolTip>
                             <Path Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" StrokeLineJoin="Round"/>
-                            <Path x:Name="MouseOverHighlight" Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="White" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
-                            <Path x:Name="SelectionHighlight" Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="#FF959595" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Path x:Name="MouseOverHighlight" Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Path x:Name="SelectionHighlight" Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- 题目发布数按日拟合图表样式 -->
+        <!-- 学生总提交数按日拟合图表样式 -->
         <Style x:Key="LineStudentTotalSubmitByDayLnFitStyle" TargetType="{x:Type chartingToolkit:LineSeries}">
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="PolylineStyle">
@@ -625,8 +625,8 @@
                             </Grid.ToolTip>
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
                             <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF00A596"/>
-                            <Ellipse x:Name="SelectionHighlight" Fill="#FF00F5F5" Opacity="0"/>
-                            <Ellipse x:Name="MouseOverHighlight" Fill="#FF00E1F5" Opacity="0"/>
+                            <Ellipse x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
+                            <Ellipse x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -701,14 +701,14 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type chartingToolkit:LineSeries}">
                         <Canvas x:Name="PlotArea">
-                            <Polyline Points="{TemplateBinding Points}" Style="{TemplateBinding PolylineStyle}" Stroke="#FF00A596"/>
+                            <Polyline Points="{TemplateBinding Points}" Style="{TemplateBinding PolylineStyle}" Stroke="#FF007DC8"/>
                         </Canvas>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="LineProblemSubmitByDayDataPointStyle" TargetType="{x:Type chartingToolkit:LineDataPoint}">
-            <Setter Property="Background" Value="#FF00A596"/>
+            <Setter Property="Background" Value="#FF007DC8"/>
             <Setter Property="BorderBrush" Value="transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsTabStop" Value="False"/>
@@ -733,8 +733,8 @@
                             </Grid.ToolTip>
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
                             <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF00A596"/>
-                            <Ellipse x:Name="SelectionHighlight" Fill="#FF00F5F5" Opacity="0"/>
-                            <Ellipse x:Name="MouseOverHighlight" Fill="#FF00E1F5" Opacity="0"/>
+                            <Ellipse x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
+                            <Ellipse x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -754,6 +754,84 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type chartingToolkit:DateTimeAxisLabel}">
                         <TextBlock Text="{TemplateBinding FormattedContent}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 题目参与人数图表样式 -->
+        <Style x:Key="ScatterProblemParticipantDataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+            <Setter Property="Background" Value="#FF7D46AF"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="5"/>
+            <Setter Property="Height" Value="5"/>
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+                        <Grid x:Name="Root">
+                            <Grid.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="题目发布周次: " />
+                                        <TextBlock Text="{TemplateBinding FormattedIndependentValue}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="参与人数: " />
+                                        <TextBlock Text="{TemplateBinding FormattedDependentValue}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid.ToolTip>
+                            <Path Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" StrokeLineJoin="Round"/>
+                            <Path x:Name="MouseOverHighlight" Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Path x:Name="SelectionHighlight" Data="F1M0,50L50,0 100,50 50,100 0,50z" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 题目参与人数拟合图表样式 -->
+        <Style x:Key="LineProblemParticipantFitStyle" TargetType="{x:Type chartingToolkit:LineSeries}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="PolylineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Polyline}">
+                        <Setter Property="StrokeThickness" Value="2"/>
+                        <Setter Property="StrokeMiterLimit" Value="1"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:LineSeries}">
+                        <Canvas x:Name="PlotArea">
+                            <Polyline Points="{TemplateBinding Points}" Style="{TemplateBinding PolylineStyle}" Stroke="#FF00A596"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LineProblemParticipantFitDataPointStyle" TargetType="{x:Type chartingToolkit:LineDataPoint}">
+            <Setter Property="Background" Value="#FF00A596"/>
+            <Setter Property="BorderBrush" Value="transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:LineDataPoint}">
+                        <Grid x:Name="Root" Opacity="0">
+                            <Grid.ToolTip>
+                                <TextBlock Text="拟合"/>
+                            </Grid.ToolTip>
+                            <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
+                            <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF00A596"/>
+                            <Ellipse x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
+                            <Ellipse x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
+                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -806,8 +884,8 @@
                             </Grid.ToolTip>
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
                             <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF7D46AF"/>
-                            <Ellipse x:Name="SelectionHighlight" Fill="#FF00F5F5" Opacity="0"/>
-                            <Ellipse x:Name="MouseOverHighlight" Fill="#FF00E1F5" Opacity="0"/>
+                            <Ellipse x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
+                            <Ellipse x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -865,8 +943,8 @@
                                 </StackPanel>
                             </Border.ToolTip>
                             <Grid Background="{TemplateBinding Background}">
-                                <Rectangle x:Name="SelectionHighlight" Fill="Red" Opacity="0"/>
-                                <Rectangle x:Name="MouseOverHighlight" Fill="White" Opacity="0"/>
+                                <Rectangle x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
+                                <Rectangle x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -908,21 +986,34 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="5*" MinWidth="800" />
                 </Grid.ColumnDefinitions>
-                <DockPanel x:Name="dockStudentList" Grid.Column="0" LastChildFill="True">
+                <DockPanel x:Name="dockStudentList" Grid.Row="0" Grid.Column="0" LastChildFill="True">
                     <TextBlock Text="学生学号列表" Margin="10,5,10,0" DockPanel.Dock="Top" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                     <TextBox x:Name="txtStudentSearch" Margin="10,5,10,0" DockPanel.Dock="Top" Text="搜索学生学号" UndoLimit="106" Foreground="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
                     <ListBox x:Name="lstStudentList" Margin="10,10,10,0" BorderThickness="1" Foreground="Black" BorderBrush="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
                 </DockPanel>
-                <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="1.25,0" />
-                <DockPanel x:Name="dockStudentAnalyze" Grid.Column="2" LastChildFill="True">
+                <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="0" />
+                <DockPanel x:Name="dockStudentAnalyze" Grid.Row="0" Grid.Column="2" LastChildFill="True">
                     <StackPanel x:Name="stackStudentData" Orientation="Vertical" DockPanel.Dock="Top" Margin="10,5,10,0">
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="学号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                            <Grid x:Name="btnStudentLink" Margin="5,0,0,0" IsEnabled="False">
-                                <iconPacks:PackIconModern x:Name="icoStudentLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看学生信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"  />
-                            </Grid>
-                        </StackPanel>
-                        <TextBlock x:Name="txtStudentID" Text="" FontSize="25" Margin="0,5,0,10" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="学号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <Grid x:Name="btnStudentLink" Margin="5,0,0,0" IsEnabled="False">
+                                        <iconPacks:PackIconModern x:Name="icoStudentLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看学生信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"  />
+                                    </Grid>
+                                </StackPanel>
+                                <TextBlock x:Name="txtStudentID" Text="" FontSize="20" Margin="0,5,0,10" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="2">
+                                <TextBlock Text="聚类分析结果" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                <TextBlock x:Name="txtStudentClustResult" Text="" FontSize="20" Margin="0,5,0,10" />
+                            </StackPanel>
+                        </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -987,7 +1078,7 @@
                         </Grid>
                     </StackPanel>
                     <Grid>
-                        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabStudentCharts">
+                        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabStudentCharts" Margin="2.5,0,0,0">
                             <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
                                 <Grid>
                                     <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
@@ -1040,48 +1131,87 @@
                         </Controls:MetroAnimatedSingleRowTabControl>
                     </Grid>
                 </DockPanel>
+                <!--<GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
+                <Controls:MetroAnimatedSingleRowTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
+                    <Controls:MetroTabItem Header="学生聚类" Controls:ControlsHelper.HeaderFontSize="15">
+                        <Grid>
+                            <chartingToolkit:Chart x:Name="chartStudentCluster" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                <chartingToolkit:Chart.Axes>
+                                    <chartingToolkit:LinearAxis Orientation="X" Title="" ShowGridLines="False" />
+                                    <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                </chartingToolkit:Chart.Axes>
+                                <chartingToolkit:Chart.Series>
+                                    <chartingToolkit:ScatterSeries x:Name="sctStudentCluster1" IndependentValuePath="Key" DependentValuePath="Value" />
+                                    <chartingToolkit:ScatterSeries x:Name="sctStudentCluster2" IndependentValuePath="Key" DependentValuePath="Value" />
+                                    <chartingToolkit:ScatterSeries x:Name="sctStudentCluster3" IndependentValuePath="Key" DependentValuePath="Value" />
+                                    <chartingToolkit:ScatterSeries x:Name="sctStudentCluster4" IndependentValuePath="Key" DependentValuePath="Value" />
+                                </chartingToolkit:Chart.Series>
+                            </chartingToolkit:Chart>
+                        </Grid>
+                    </Controls:MetroTabItem>
+                </Controls:MetroAnimatedSingleRowTabControl>-->
             </Grid>
         </Controls:MetroTabItem>
         <Controls:MetroTabItem Header="题目总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
             <Grid x:Name="gridProblemMain">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" MinHeight="350" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" MinHeight="200"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" MinWidth="150" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="5*" MinWidth="800" />
                 </Grid.ColumnDefinitions>
-                <DockPanel x:Name="dockProblemList" Grid.Column="0" LastChildFill="True">
+                <DockPanel x:Name="dockProblemList" Grid.Row="0" Grid.Column="0" LastChildFill="True">
                     <TextBlock Text="题目编号列表" Margin="10,5,10,0" DockPanel.Dock="Top" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                     <TextBox x:Name="txtProblemSearch" Margin="10,5,10,0" DockPanel.Dock="Top" Text="搜索题目编号" UndoLimit="106" Foreground="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
                     <ListBox x:Name="lstProblemList" Margin="10,10,10,0" BorderThickness="1" Foreground="Black" BorderBrush="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
                 </DockPanel>
-                <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="1.25,0" />
-                <DockPanel x:Name="gridProblemAnalyze" Grid.Column="2" LastChildFill="True">
+                <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="0" />
+                <DockPanel x:Name="gridProblemAnalyze" Grid.Row="0" Grid.Column="2" LastChildFill="True">
                     <StackPanel x:Name="stackProblemData" Orientation="Vertical" DockPanel.Dock="Top" Margin="10,5,10,0">
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="题号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                            <Grid x:Name="btnProblemLink" Margin="5,0,0,0" IsEnabled="False">
-                                <iconPacks:PackIconModern x:Name="icoProblemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看题目信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                            </Grid>
-                        </StackPanel>
-                        <TextBlock x:Name="txtProblemID" Text="" FontSize="25" Margin="0,5,0,10" />
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="题号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <Grid x:Name="btnProblemLink" Margin="5,0,0,0" IsEnabled="False">
+                                        <iconPacks:PackIconModern x:Name="icoProblemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看题目信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                    </Grid>
+                                </StackPanel>
+                                <TextBlock x:Name="txtProblemID" Text="" FontSize="20" Margin="0,5,0,10" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="2">
+                                <TextBlock Text="发布日期" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                <TextBlock x:Name="txtProblemCreateTime" Text="" FontSize="20" Margin="0,5,0,10" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical" Grid.Column="0">
+                                <TextBlock Text="参与人数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                <TextBlock x:Name="txtProblemParticipantCount" Text="" FontSize="20" Margin="0,5,0,10" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="1">
                                 <TextBlock Text="提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
                                 <TextBlock x:Name="txtProblemSubmitCount" Text="" FontSize="20" Margin="0,5,0,10" />
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1">
+                            <StackPanel Orientation="Vertical" Grid.Column="2">
                                 <TextBlock Text="通过数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
                                 <TextBlock x:Name="txtProblemACCount" Text="" FontSize="20" Margin="0,5,0,10" />
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
+                            <StackPanel Orientation="Vertical" Grid.Column="3">
                                 <TextBlock Text="正确率" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
                                 <TextBlock x:Name="txtProblemACRate" Text="" FontSize="20" Margin="0,5,0,10" />
                             </StackPanel>
@@ -1102,7 +1232,7 @@
                         </Grid>
                     </StackPanel>
                     <Grid>
-                        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemCharts">
+                        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemCharts" Margin="2.5,0,0,0">
                             <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
                                 <Grid>
                                     <chartingToolkit:Chart x:Name="chartProblemACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
@@ -1128,6 +1258,39 @@
                         </Controls:MetroAnimatedSingleRowTabControl>
                     </Grid>
                 </DockPanel>
+                <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
+                <Controls:MetroAnimatedSingleRowTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
+                    <Controls:MetroTabItem Header="题目参与性" Controls:ControlsHelper.HeaderFontSize="15">
+                            <Grid>
+                                <chartingToolkit:Chart x:Name="chartProblemParticipant" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                    <chartingToolkit:Chart.Axes>
+                                        <chartingToolkit:LinearAxis Orientation="X" Title="" ShowGridLines="False" />
+                                        <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                    </chartingToolkit:Chart.Axes>
+                                    <chartingToolkit:Chart.Series>
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemParticipant" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" DataPointStyle="{DynamicResource ScatterProblemParticipantDataPointStyle}" />
+                                    <chartingToolkit:LineSeries x:Name="linProblemParticipantFit" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineProblemParticipantFitStyle}" DataPointStyle="{DynamicResource LineStudentTotalSubmitByDayLnFitDataPointStyle}"/>
+                                    </chartingToolkit:Chart.Series>
+                                </chartingToolkit:Chart>
+                            </Grid>
+                    </Controls:MetroTabItem>
+                    <Controls:MetroTabItem Header="题目聚类" Controls:ControlsHelper.HeaderFontSize="15">
+                        <Grid>
+                            <chartingToolkit:Chart x:Name="chartProblemCluster" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                <chartingToolkit:Chart.Axes>
+                                    <chartingToolkit:LinearAxis Orientation="X" Title="参与指数(Eq)" ShowGridLines="False" />
+                                    <chartingToolkit:LinearAxis Orientation="Y" Title="付出指数(Jq)" ShowGridLines="False" />
+                                </chartingToolkit:Chart.Axes>
+                                <chartingToolkit:Chart.Series>
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster1" IndependentValuePath="Key" DependentValuePath="Value" />
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster2" IndependentValuePath="Key" DependentValuePath="Value" />
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster3" IndependentValuePath="Key" DependentValuePath="Value" />
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster4" IndependentValuePath="Key" DependentValuePath="Value" />
+                                </chartingToolkit:Chart.Series>
+                            </chartingToolkit:Chart>
+                        </Grid>
+                    </Controls:MetroTabItem>
+                </Controls:MetroAnimatedSingleRowTabControl>
             </Grid>
         </Controls:MetroTabItem>
         <Controls:MetroTabItem Header="OnlineJudge系统总览" Controls:ControlsHelper.HeaderFontSize="25">
@@ -1150,7 +1313,7 @@
                                 <iconPacks:PackIconModern x:Name="icoSystemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="访问OJ系统。"/>
                             </Grid>
                         </StackPanel>
-                        <TextBlock x:Name="txtOJLink" Text="http://oj.bmeonline.cn/" FontSize="25" Margin="0,5,0,10" />
+                        <TextBlock x:Name="txtOJLink" Text="http://oj.bmeonline.cn/" FontSize="20" Margin="0,5,0,10" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
                         <TextBlock Text="日志开始时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
@@ -1173,21 +1336,20 @@
                     <Controls:MetroAnimatedSingleRowTabControl>
                         <Controls:MetroTabItem Header="题目发布曲线" Controls:ControlsHelper.HeaderFontSize="15">
                             <Grid>
-                                <chartingToolkit:Chart Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}">
+                                <chartingToolkit:Chart x:Name="chartNewProblemCountByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
                                     <chartingToolkit:Chart.Axes>
                                         <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineNewProblemCountByDayXAxisLabelStyle}"/>
                                         <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
                                     </chartingToolkit:Chart.Axes>
                                     <chartingToolkit:Chart.Series>
-                                        <chartingToolkit:LineSeries x:Name="linNewProblemCountByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineNewProblemCountByDayStyle}" DataPointStyle="{DynamicResource LineNewProblemCountByDayDataPointStyle}">
-                                        </chartingToolkit:LineSeries>
+                                        <chartingToolkit:LineSeries x:Name="linNewProblemCountByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineNewProblemCountByDayStyle}" DataPointStyle="{DynamicResource LineNewProblemCountByDayDataPointStyle}" />
                                     </chartingToolkit:Chart.Series>
                                 </chartingToolkit:Chart>
                             </Grid>
                         </Controls:MetroTabItem>
                         <Controls:MetroTabItem Header="分时段总提交数" Controls:ControlsHelper.HeaderFontSize="15">
                             <Grid>
-                                <chartingToolkit:Chart Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}">
+                                <chartingToolkit:Chart x:Name="chartSubmitCountByTime" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
                                     <chartingToolkit:Chart.Axes>
                                         <chartingToolkit:CategoryAxis Orientation="X" ShowGridLines="False" AxisLabelStyle="{DynamicResource ColumnSubmitCountByTimeXAxisLabelStyle}"  />
                                         <chartingToolkit:LinearAxis Orientation="Y" ShowGridLines="False" />

@@ -6,7 +6,22 @@
         ''' <remarks></remarks>
         Public ProblemIDNumber As String
         ''' <summary>
+        ''' 作业次序。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public ProblemTaskSequenceIndex
+        ''' <summary>
+        ''' 题目被创建的时间。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public CreateTime As Date
+        ''' <summary>
         ''' 总提交次数。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public SubmitCount As Integer
+        ''' <summary>
+        ''' 参与人数。
         ''' </summary>
         ''' <remarks></remarks>
         Public ParticipantCount As Integer
@@ -31,15 +46,23 @@
         ''' <remarks></remarks>
         Public SubmitCountByDay As Dictionary(Of Date, Integer)
         ''' <summary>
+        ''' 聚类分析结果。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public ClustResult As Double
+        ''' <summary>
         ''' 默认的构造函数。
         ''' </summary>
         ''' <remarks></remarks>
         Public Sub New()
             ProblemIDNumber = ""
+            CreateTime = New Date(1000, 1, 1)
+            SubmitCount = 0
             ParticipantCount = 0
             ACCount = 0
             EffortValue_Jq = 0
             ParticipateValuse_Eq = 0
+            ClustResult = 0
             SubmitCountByDay = New Dictionary(Of Date, Integer)
         End Sub
         ''' <summary>
@@ -49,10 +72,13 @@
         ''' <remarks></remarks>
         Public Sub New(ProblemID As String)
             ProblemIDNumber = ProblemID
+            CreateTime = New Date(1000, 1, 1)
+            SubmitCount = 0
             ParticipantCount = 0
             ACCount = 0
             EffortValue_Jq = 0
             ParticipateValuse_Eq = 0
+            ClustResult = 0
             SubmitCountByDay = New Dictionary(Of Date, Integer)
         End Sub
     End Class

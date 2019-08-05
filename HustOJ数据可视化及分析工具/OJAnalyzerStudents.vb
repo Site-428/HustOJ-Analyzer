@@ -70,6 +70,11 @@
         ''' <remarks></remarks>
         Public FittingB As Double
         ''' <summary>
+        ''' 聚类分析结果。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public ClustResult As Double
+        ''' <summary>
         ''' 默认的构造函数。
         ''' </summary>
         ''' <remarks></remarks>
@@ -90,6 +95,7 @@
             FittingAC = 0
             FittingK_Kb = 0
             FittingR_Stb = 0
+            ClustResult = 0
         End Sub
         ''' <summary>
         ''' 指定了学生学号的构造函数。
@@ -113,6 +119,7 @@
             FittingAC = 0
             FittingK_Kb = 0
             FittingR_Stb = 0
+            ClustResult = 0
         End Sub
         ''' <summary>
         ''' 获取距离指定的起始日期某一日数的提交数。

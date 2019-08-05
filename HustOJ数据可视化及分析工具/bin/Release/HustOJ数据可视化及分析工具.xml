@@ -160,9 +160,24 @@ MainWindow
  题目编号。
  </summary>
 	<remarks></remarks>
-</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipantCount">
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ProblemTaskSequenceIndex">
+	<summary>
+ 作业次序。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.CreateTime">
+	<summary>
+ 题目被创建的时间。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.SubmitCount">
 	<summary>
  总提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipantCount">
+	<summary>
+ 参与人数。
  </summary>
 	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ACCount">
@@ -183,6 +198,11 @@ MainWindow
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.SubmitCountByDay">
 	<summary>
  按日记录的提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ClustResult">
+	<summary>
+ 聚类分析结果。
  </summary>
 	<remarks></remarks>
 </member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.#ctor">
@@ -355,6 +375,11 @@ MainWindow
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingB">
 	<summary>
  拟合曲线的截距。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.ClustResult">
+	<summary>
+ 聚类分析结果。
  </summary>
 	<remarks></remarks>
 </member><member name="M:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.#ctor">
