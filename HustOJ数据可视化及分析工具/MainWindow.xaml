@@ -837,6 +837,140 @@
             </Setter>
         </Style>
 
+        <!-- 题目聚类图表样式 -->
+        <Style x:Key="ScatterProblemCluster1DataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+            <Setter Property="Background" Value="#FF00A5F0"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="7.5"/>
+            <Setter Property="Height" Value="7.5"/>
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="DependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+                        <Grid x:Name="Root">
+                            <Grid.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <!--<TextBlock Text="II类题目 - 低Jq、低Eq"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="付出指数(Jq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedIndependentValue}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="参与指数(Eq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedDependentValue}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid.ToolTip>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="MouseOverHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="SelectionHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScatterProblemCluster2DataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+            <Setter Property="Background" Value="#FF82B900"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="7.5"/>
+            <Setter Property="Height" Value="7.5"/>
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="DependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+                        <Grid x:Name="Root">
+                            <Grid.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <!--<TextBlock Text="I类题目 - 低Jq、高Eq"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="付出指数(Jq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedIndependentValue}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="参与指数(Eq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedDependentValue}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid.ToolTip>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="MouseOverHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="SelectionHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScatterProblemCluster3DataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+            <Setter Property="Background" Value="#FFFFB900"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="7.5"/>
+            <Setter Property="Height" Value="7.5"/>
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="DependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+                        <Grid x:Name="Root">
+                            <Grid.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <!--<TextBlock Text="III类题目 - 高Jq、低Eq"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="付出指数(Jq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedIndependentValue}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="参与指数(Eq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedDependentValue}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid.ToolTip>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="MouseOverHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="SelectionHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScatterProblemCluster4DataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+            <Setter Property="Background" Value="#FFF55023"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="7.5"/>
+            <Setter Property="Height" Value="7.5"/>
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="DependentValueStringFormat" Value="{}{0:F5}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
+                        <Grid x:Name="Root">
+                            <Grid.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <!--<TextBlock Text="IV类题目 - 高Jq、高Eq"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="付出指数(Jq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedIndependentValue}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="参与指数(Eq): " />
+                                        <TextBlock Text="{TemplateBinding FormattedDependentValue}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid.ToolTip>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="MouseOverHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                            <Ellipse x:Name="SelectionHighlight" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="Transparent" Opacity="0" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" StrokeLineJoin="Round"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- 题目发布数按日图表样式 -->
         <Style x:Key="LineNewProblemCountByDayStyle" TargetType="{x:Type chartingToolkit:LineSeries}">
             <Setter Property="IsTabStop" Value="False"/>
@@ -975,163 +1109,178 @@
             </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
-    <Controls:MetroAnimatedSingleRowTabControl Margin="0,5,0,10">
-        <Controls:MetroTabItem Header="学生总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
-            <Grid x:Name="gridStudentMain" UseLayoutRounding="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" MinWidth="150" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="5*" MinWidth="800" />
-                </Grid.ColumnDefinitions>
-                <DockPanel x:Name="dockStudentList" Grid.Row="0" Grid.Column="0" LastChildFill="True">
-                    <TextBlock Text="学生学号列表" Margin="10,5,10,0" DockPanel.Dock="Top" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                    <TextBox x:Name="txtStudentSearch" Margin="10,5,10,0" DockPanel.Dock="Top" Text="搜索学生学号" UndoLimit="106" Foreground="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
-                    <ListBox x:Name="lstStudentList" Margin="10,10,10,0" BorderThickness="1" Foreground="Black" BorderBrush="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
-                </DockPanel>
-                <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="0" />
-                <DockPanel x:Name="dockStudentAnalyze" Grid.Row="0" Grid.Column="2" LastChildFill="True">
-                    <StackPanel x:Name="stackStudentData" Orientation="Vertical" DockPanel.Dock="Top" Margin="10,5,10,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="学号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                    <Grid x:Name="btnStudentLink" Margin="5,0,0,0" IsEnabled="False">
-                                        <iconPacks:PackIconModern x:Name="icoStudentLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看学生信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"  />
-                                    </Grid>
+    <DockPanel LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,5,0,0">
+            <CheckBox x:Name="chkCustomAnalyzeStartDate" Content="自定义分析起始时间" IsChecked="False" Margin="10,0,0,0"/>
+            <DatePicker x:Name="dtpUserSpecifiedAnalyzeStartDate" IsEnabled="False" Margin="5,0,0,0" Width="125" IsTodayHighlighted="False"/>
+            <CheckBox x:Name="chkCustomAnalyzeEndDate" Content="自定义分析结束时间" IsChecked="False" Margin="10,0,0,0"/>
+            <DatePicker x:Name="dtpUserSpecifiedAnalyzeEndDate" IsEnabled="False" Margin="5,0,0,0" Width="125" IsTodayHighlighted="False"/>
+            <Button x:Name="btnUpdate" Margin="10,0,0,0" FontWeight="Normal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <iconPacks:PackIconModern Width="10" Height="10" Kind="Refresh" VerticalAlignment="Center" />
+                    <TextBlock Margin="1,0,0,0" VerticalAlignment="Center" Text="更新数据" />
+                </StackPanel>
+            </Button>
+            <Separator />
+            <Button x:Name="btnCustomStudentClust" Content="自定义学生聚类结果映射" Margin="15,0,0,0" FontWeight="Normal"/>
+        </StackPanel>
+        <Controls:MetroAnimatedSingleRowTabControl Margin="0,5,0,10">
+            <Controls:MetroTabItem Header="学生总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
+                <Grid x:Name="gridStudentMain" UseLayoutRounding="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" MinWidth="150" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5*" MinWidth="800" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel x:Name="dockStudentList" Grid.Row="0" Grid.Column="0" LastChildFill="True">
+                        <TextBlock Text="学生学号列表" Margin="10,5,10,0" DockPanel.Dock="Top" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        <TextBox x:Name="txtStudentSearch" Margin="10,5,10,0" DockPanel.Dock="Top" Text="搜索学生学号" UndoLimit="106" Foreground="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
+                        <ListBox x:Name="lstStudentList" Margin="10,10,10,0" BorderThickness="1" Foreground="Black" BorderBrush="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
+                    </DockPanel>
+                    <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="0" />
+                    <DockPanel x:Name="dockStudentAnalyze" Grid.Row="0" Grid.Column="2" LastChildFill="True">
+                        <StackPanel x:Name="stackStudentData" Orientation="Vertical" DockPanel.Dock="Top" Margin="10,5,10,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="学号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                        <Grid x:Name="btnStudentLink" Margin="5,0,0,0" IsEnabled="False">
+                                            <iconPacks:PackIconModern x:Name="icoStudentLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看学生信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"  />
+                                        </Grid>
+                                    </StackPanel>
+                                    <TextBlock x:Name="txtStudentID" Text="" FontSize="20" Margin="0,5,0,10" />
                                 </StackPanel>
-                                <TextBlock x:Name="txtStudentID" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
-                                <TextBlock Text="聚类分析结果" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentClustResult" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                        </Grid>
+                                <StackPanel Orientation="Vertical" Grid.Column="2">
+                                    <TextBlock Text="聚类分析结果" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentClustResult" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0">
+                                    <TextBlock Text="提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentSubmitCount" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock Text="通过数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentACCount" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="2">
+                                    <TextBlock Text="正确率" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentACRate" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0">
+                                    <TextBlock Text="工作日前半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentSubmitCountOnWorkdayAM" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock Text="工作日后半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentSubmitCountOnWorkdayPM" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="2">
+                                    <TextBlock Text="休息日前半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentSubmitCountOnRestdayAM" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="3">
+                                    <TextBlock Text="休息日后半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtStudentSubmitCountOnRestdayPM" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0">
+                                    <TextBlock Text="完成指数(Ac)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtFittingAC" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock Text="稳定指数(Stb)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtFittingR_Stb" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="2">
+                                    <TextBlock Text="使用指数(Kb)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtFittingK_Kb" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0">
-                                <TextBlock Text="提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentSubmitCount" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1">
-                                <TextBlock Text="通过数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentACCount" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
-                                <TextBlock Text="正确率" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentACRate" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
+                            <Controls:MetroAnimatedSingleRowTabControl x:Name="tabStudentCharts" Margin="2.5,0,0,0">
+                                <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
+                                    <Grid>
+                                        <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
+                                            <chartingToolkit:Chart.Series>
+                                                <chartingToolkit:PieSeries x:Name="pieStudentACRate"  DependentValuePath="Value" IndependentValuePath="Key"  Margin="0" Palette="{StaticResource PieACPalette}" />
+                                            </chartingToolkit:Chart.Series>
+                                        </chartingToolkit:Chart>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                                <Controls:MetroTabItem Header="日提交曲线" Controls:ControlsHelper.HeaderFontSize="15">
+                                    <Grid>
+                                        <chartingToolkit:Chart x:Name="chartStudentSubmitByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                            <chartingToolkit:Chart.Axes>
+                                                <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineStudentSubmitByDayXAxisLabelStyle}"/>
+                                                <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                            </chartingToolkit:Chart.Axes>
+                                            <chartingToolkit:Chart.Series>
+                                                <chartingToolkit:LineSeries x:Name="linStudentSubmitByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineStudentSubmitByDayStyle}" DataPointStyle="{DynamicResource LineStudentSubmitByDayDataPointStyle}"/>
+                                            </chartingToolkit:Chart.Series>
+                                        </chartingToolkit:Chart>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                                <Controls:MetroTabItem Header="对数日总提交曲线" Controls:ControlsHelper.HeaderFontSize="15">
+                                    <Grid>
+                                        <chartingToolkit:Chart x:Name="chartStudentTotalSubmitByDayLn" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                            <chartingToolkit:Chart.Axes>
+                                                <chartingToolkit:LinearAxis Orientation="X" Title="" ShowGridLines="False" />
+                                                <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                            </chartingToolkit:Chart.Axes>
+                                            <chartingToolkit:Chart.Series>
+                                                <chartingToolkit:ScatterSeries x:Name="sctStudentTotalSubmitByDayLn" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" DataPointStyle="{DynamicResource ScatterStudentTotalSubmitByDayLnDataPointStyle}" />
+                                                <chartingToolkit:LineSeries x:Name="linStudentTotalSubmitByDayLnFit" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineStudentTotalSubmitByDayLnFitStyle}" DataPointStyle="{DynamicResource LineStudentTotalSubmitByDayLnFitDataPointStyle}"/>
+                                            </chartingToolkit:Chart.Series>
+                                        </chartingToolkit:Chart>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                                <Controls:MetroTabItem Header="分时段总提交数" Controls:ControlsHelper.HeaderFontSize="15">
+                                    <Grid>
+                                        <chartingToolkit:Chart x:Name="chartStudentTotalSubmitByTime" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                            <chartingToolkit:Chart.Axes>
+                                                <chartingToolkit:CategoryAxis Orientation="X" ShowGridLines="False" AxisLabelStyle="{DynamicResource ColumnStudentTotalSubmitByTimeXAxisLabelStyle}" />
+                                                <chartingToolkit:LinearAxis Orientation="Y" ShowGridLines="False" />
+                                            </chartingToolkit:Chart.Axes>
+                                            <chartingToolkit:Chart.Series>
+                                                <chartingToolkit:ColumnSeries x:Name="colStudentTotalSubmitByTime" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource ColumnStudentTotalSubmitByTimeStyle}" DataPointStyle="{DynamicResource ColumnStudentTotalSubmitByTimeDataPointStyle}"/>
+                                            </chartingToolkit:Chart.Series>
+                                        </chartingToolkit:Chart>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                            </Controls:MetroAnimatedSingleRowTabControl>
                         </Grid>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0">
-                                <TextBlock Text="工作日前半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentSubmitCountOnWorkdayAM" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1">
-                                <TextBlock Text="工作日后半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentSubmitCountOnWorkdayPM" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
-                                <TextBlock Text="休息日前半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentSubmitCountOnRestdayAM" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="3">
-                                <TextBlock Text="休息日后半日提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtStudentSubmitCountOnRestdayPM" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                        </Grid>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0">
-                                <TextBlock Text="完成指数(Ac)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtFittingAC" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1">
-                                <TextBlock Text="稳定指数(Stb)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtFittingR_Stb" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
-                                <TextBlock Text="使用指数(Kb)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtFittingK_Kb" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                    <Grid>
-                        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabStudentCharts" Margin="2.5,0,0,0">
-                            <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
-                                <Grid>
-                                    <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
-                                        <chartingToolkit:Chart.Series>
-                                            <chartingToolkit:PieSeries x:Name="pieStudentACRate"  DependentValuePath="Value" IndependentValuePath="Key"  Margin="0" Palette="{StaticResource PieACPalette}" />
-                                        </chartingToolkit:Chart.Series>
-                                    </chartingToolkit:Chart>
-                                </Grid>
-                            </Controls:MetroTabItem>
-                            <Controls:MetroTabItem Header="日提交曲线" Controls:ControlsHelper.HeaderFontSize="15">
-                                <Grid>
-                                    <chartingToolkit:Chart x:Name="chartStudentSubmitByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
-                                        <chartingToolkit:Chart.Axes>
-                                            <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineStudentSubmitByDayXAxisLabelStyle}"/>
-                                            <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
-                                        </chartingToolkit:Chart.Axes>
-                                        <chartingToolkit:Chart.Series>
-                                            <chartingToolkit:LineSeries x:Name="linStudentSubmitByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineStudentSubmitByDayStyle}" DataPointStyle="{DynamicResource LineStudentSubmitByDayDataPointStyle}"/>
-                                        </chartingToolkit:Chart.Series>
-                                    </chartingToolkit:Chart>
-                                </Grid>
-                            </Controls:MetroTabItem>
-                            <Controls:MetroTabItem Header="对数日总提交曲线" Controls:ControlsHelper.HeaderFontSize="15">
-                                <Grid>
-                                    <chartingToolkit:Chart x:Name="chartStudentTotalSubmitByDayLn" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
-                                        <chartingToolkit:Chart.Axes>
-                                            <chartingToolkit:LinearAxis Orientation="X" Title="" ShowGridLines="False" />
-                                            <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
-                                        </chartingToolkit:Chart.Axes>
-                                        <chartingToolkit:Chart.Series>
-                                            <chartingToolkit:ScatterSeries x:Name="sctStudentTotalSubmitByDayLn" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" DataPointStyle="{DynamicResource ScatterStudentTotalSubmitByDayLnDataPointStyle}" />
-                                            <chartingToolkit:LineSeries x:Name="linStudentTotalSubmitByDayLnFit" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineStudentTotalSubmitByDayLnFitStyle}" DataPointStyle="{DynamicResource LineStudentTotalSubmitByDayLnFitDataPointStyle}"/>
-                                        </chartingToolkit:Chart.Series>
-                                    </chartingToolkit:Chart>
-                                </Grid>
-                            </Controls:MetroTabItem>
-                            <Controls:MetroTabItem Header="分时段总提交数" Controls:ControlsHelper.HeaderFontSize="15">
-                                <Grid>
-                                    <chartingToolkit:Chart x:Name="chartStudentTotalSubmitByTime" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
-                                        <chartingToolkit:Chart.Axes>
-                                            <chartingToolkit:CategoryAxis Orientation="X" ShowGridLines="False" AxisLabelStyle="{DynamicResource ColumnStudentTotalSubmitByTimeXAxisLabelStyle}" />
-                                            <chartingToolkit:LinearAxis Orientation="Y" ShowGridLines="False" />
-                                        </chartingToolkit:Chart.Axes>
-                                        <chartingToolkit:Chart.Series>
-                                            <chartingToolkit:ColumnSeries x:Name="colStudentTotalSubmitByTime" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource ColumnStudentTotalSubmitByTimeStyle}" DataPointStyle="{DynamicResource ColumnStudentTotalSubmitByTimeDataPointStyle}"/>
-                                        </chartingToolkit:Chart.Series>
-                                    </chartingToolkit:Chart>
-                                </Grid>
-                            </Controls:MetroTabItem>
-                        </Controls:MetroAnimatedSingleRowTabControl>
-                    </Grid>
-                </DockPanel>
-                <!--<GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
+                    </DockPanel>
+                    <!--<GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
                 <Controls:MetroAnimatedSingleRowTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
                     <Controls:MetroTabItem Header="学生聚类" Controls:ControlsHelper.HeaderFontSize="15">
                         <Grid>
@@ -1150,117 +1299,117 @@
                         </Grid>
                     </Controls:MetroTabItem>
                 </Controls:MetroAnimatedSingleRowTabControl>-->
-            </Grid>
-        </Controls:MetroTabItem>
-        <Controls:MetroTabItem Header="题目总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
-            <Grid x:Name="gridProblemMain">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" MinHeight="350" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="1*" MinHeight="200"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" MinWidth="150" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="5*" MinWidth="800" />
-                </Grid.ColumnDefinitions>
-                <DockPanel x:Name="dockProblemList" Grid.Row="0" Grid.Column="0" LastChildFill="True">
-                    <TextBlock Text="题目编号列表" Margin="10,5,10,0" DockPanel.Dock="Top" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                    <TextBox x:Name="txtProblemSearch" Margin="10,5,10,0" DockPanel.Dock="Top" Text="搜索题目编号" UndoLimit="106" Foreground="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
-                    <ListBox x:Name="lstProblemList" Margin="10,10,10,0" BorderThickness="1" Foreground="Black" BorderBrush="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
-                </DockPanel>
-                <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="0" />
-                <DockPanel x:Name="gridProblemAnalyze" Grid.Row="0" Grid.Column="2" LastChildFill="True">
-                    <StackPanel x:Name="stackProblemData" Orientation="Vertical" DockPanel.Dock="Top" Margin="10,5,10,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Text="题号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                    <Grid x:Name="btnProblemLink" Margin="5,0,0,0" IsEnabled="False">
-                                        <iconPacks:PackIconModern x:Name="icoProblemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看题目信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                    </Grid>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="题目总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
+                <Grid x:Name="gridProblemMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" MinHeight="350" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" MinHeight="200"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" MinWidth="150" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5*" MinWidth="800" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel x:Name="dockProblemList" Grid.Row="0" Grid.Column="0" LastChildFill="True">
+                        <TextBlock Text="题目编号列表" Margin="10,5,10,0" DockPanel.Dock="Top" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        <TextBox x:Name="txtProblemSearch" Margin="10,5,10,0" DockPanel.Dock="Top" Text="搜索题目编号" UndoLimit="106" Foreground="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
+                        <ListBox x:Name="lstProblemList" Margin="10,10,10,0" BorderThickness="1" Foreground="Black" BorderBrush="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" />
+                    </DockPanel>
+                    <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="0" />
+                    <DockPanel x:Name="gridProblemAnalyze" Grid.Row="0" Grid.Column="2" LastChildFill="True">
+                        <StackPanel x:Name="stackProblemData" Orientation="Vertical" DockPanel.Dock="Top" Margin="10,5,10,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Text="题号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                        <Grid x:Name="btnProblemLink" Margin="5,0,0,0" IsEnabled="False">
+                                            <iconPacks:PackIconModern x:Name="icoProblemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看题目信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Grid>
+                                    </StackPanel>
+                                    <TextBlock x:Name="txtProblemID" Text="" FontSize="20" Margin="0,5,0,10" />
                                 </StackPanel>
-                                <TextBlock x:Name="txtProblemID" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
-                                <TextBlock Text="发布日期" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtProblemCreateTime" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                        </Grid>
+                                <StackPanel Orientation="Vertical" Grid.Column="2">
+                                    <TextBlock Text="发布日期" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtProblemCreateTime" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0">
+                                    <TextBlock Text="参与人数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtProblemParticipantCount" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock Text="提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtProblemSubmitCount" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="2">
+                                    <TextBlock Text="通过数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtProblemACCount" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="3">
+                                    <TextBlock Text="正确率" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtProblemACRate" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" Grid.Column="0">
+                                    <TextBlock Text="付出指数(Jq)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtEffortValue_Jq" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock Text="参与指数(Eq)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock x:Name="txtParticipateValue_Eq" Text="" FontSize="20" Margin="0,5,0,10" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0">
-                                <TextBlock Text="参与人数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtProblemParticipantCount" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1">
-                                <TextBlock Text="提交数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtProblemSubmitCount" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="2">
-                                <TextBlock Text="通过数" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtProblemACCount" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="3">
-                                <TextBlock Text="正确率" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtProblemACRate" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
+                            <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemCharts" Margin="2.5,0,0,0">
+                                <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
+                                    <Grid>
+                                        <chartingToolkit:Chart x:Name="chartProblemACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
+                                            <chartingToolkit:Chart.Series>
+                                                <chartingToolkit:PieSeries x:Name="pieProblemACRate"  DependentValuePath="Value" IndependentValuePath="Key"  Margin="0" Palette="{StaticResource PieACPalette}"/>
+                                            </chartingToolkit:Chart.Series>
+                                        </chartingToolkit:Chart>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                                <Controls:MetroTabItem Header="日提交曲线" Controls:ControlsHelper.HeaderFontSize="15">
+                                    <Grid>
+                                        <chartingToolkit:Chart x:Name="chartProblemSubmitByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                            <chartingToolkit:Chart.Axes>
+                                                <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineProblemSubmitByDayXAxisLabelStyle}"/>
+                                                <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                            </chartingToolkit:Chart.Axes>
+                                            <chartingToolkit:Chart.Series>
+                                                <chartingToolkit:LineSeries x:Name="linProblemSubmitByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineProblemSubmitByDayStyle}" DataPointStyle="{DynamicResource LineProblemSubmitByDayDataPointStyle}"/>
+                                            </chartingToolkit:Chart.Series>
+                                        </chartingToolkit:Chart>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                            </Controls:MetroAnimatedSingleRowTabControl>
                         </Grid>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0">
-                                <TextBlock Text="付出指数(Jq)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtEffortValue_Jq" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1">
-                                <TextBlock Text="参与指数(Eq)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <TextBlock x:Name="txtParticipateValuse_Eq" Text="" FontSize="20" Margin="0,5,0,10" />
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                    <Grid>
-                        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemCharts" Margin="2.5,0,0,0">
-                            <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
-                                <Grid>
-                                    <chartingToolkit:Chart x:Name="chartProblemACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
-                                        <chartingToolkit:Chart.Series>
-                                            <chartingToolkit:PieSeries x:Name="pieProblemACRate"  DependentValuePath="Value" IndependentValuePath="Key"  Margin="0" Palette="{StaticResource PieACPalette}"/>
-                                        </chartingToolkit:Chart.Series>
-                                    </chartingToolkit:Chart>
-                                </Grid>
-                            </Controls:MetroTabItem>
-                            <Controls:MetroTabItem Header="日提交曲线" Controls:ControlsHelper.HeaderFontSize="15">
-                                <Grid>
-                                    <chartingToolkit:Chart x:Name="chartProblemSubmitByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
-                                        <chartingToolkit:Chart.Axes>
-                                            <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineProblemSubmitByDayXAxisLabelStyle}"/>
-                                            <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
-                                        </chartingToolkit:Chart.Axes>
-                                        <chartingToolkit:Chart.Series>
-                                            <chartingToolkit:LineSeries x:Name="linProblemSubmitByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineProblemSubmitByDayStyle}" DataPointStyle="{DynamicResource LineProblemSubmitByDayDataPointStyle}"/>
-                                        </chartingToolkit:Chart.Series>
-                                    </chartingToolkit:Chart>
-                                </Grid>
-                            </Controls:MetroTabItem>
-                        </Controls:MetroAnimatedSingleRowTabControl>
-                    </Grid>
-                </DockPanel>
-                <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
-                <Controls:MetroAnimatedSingleRowTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
-                    <Controls:MetroTabItem Header="题目参与性" Controls:ControlsHelper.HeaderFontSize="15">
+                    </DockPanel>
+                    <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
+                    <Controls:MetroAnimatedSingleRowTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
+                        <Controls:MetroTabItem Header="题目参与性" Controls:ControlsHelper.HeaderFontSize="15">
                             <Grid>
                                 <chartingToolkit:Chart x:Name="chartProblemParticipant" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
                                     <chartingToolkit:Chart.Axes>
@@ -1268,101 +1417,131 @@
                                         <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
                                     </chartingToolkit:Chart.Axes>
                                     <chartingToolkit:Chart.Series>
-                                    <chartingToolkit:ScatterSeries x:Name="sctProblemParticipant" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" DataPointStyle="{DynamicResource ScatterProblemParticipantDataPointStyle}" />
-                                    <chartingToolkit:LineSeries x:Name="linProblemParticipantFit" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineProblemParticipantFitStyle}" DataPointStyle="{DynamicResource LineStudentTotalSubmitByDayLnFitDataPointStyle}"/>
-                                    </chartingToolkit:Chart.Series>
-                                </chartingToolkit:Chart>
-                            </Grid>
-                    </Controls:MetroTabItem>
-                    <Controls:MetroTabItem Header="题目聚类" Controls:ControlsHelper.HeaderFontSize="15">
-                        <Grid>
-                            <chartingToolkit:Chart x:Name="chartProblemCluster" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
-                                <chartingToolkit:Chart.Axes>
-                                    <chartingToolkit:LinearAxis Orientation="X" Title="参与指数(Eq)" ShowGridLines="False" />
-                                    <chartingToolkit:LinearAxis Orientation="Y" Title="付出指数(Jq)" ShowGridLines="False" />
-                                </chartingToolkit:Chart.Axes>
-                                <chartingToolkit:Chart.Series>
-                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster1" IndependentValuePath="Key" DependentValuePath="Value" />
-                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster2" IndependentValuePath="Key" DependentValuePath="Value" />
-                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster3" IndependentValuePath="Key" DependentValuePath="Value" />
-                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster4" IndependentValuePath="Key" DependentValuePath="Value" />
-                                </chartingToolkit:Chart.Series>
-                            </chartingToolkit:Chart>
-                        </Grid>
-                    </Controls:MetroTabItem>
-                </Controls:MetroAnimatedSingleRowTabControl>
-            </Grid>
-        </Controls:MetroTabItem>
-        <Controls:MetroTabItem Header="OnlineJudge系统总览" Controls:ControlsHelper.HeaderFontSize="25">
-            <DockPanel LastChildFill="True">
-                <Grid DockPanel.Dock="Top" Margin="10,5,10,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="4">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="OJ系统地址" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                            <Grid x:Name="btnSystemLink" Margin="5,0,0,0" Cursor="Hand">
-                                <iconPacks:PackIconModern x:Name="icoSystemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="访问OJ系统。"/>
-                            </Grid>
-                        </StackPanel>
-                        <TextBlock x:Name="txtOJLink" Text="http://oj.bmeonline.cn/" FontSize="20" Margin="0,5,0,10" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
-                        <TextBlock Text="日志开始时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                        <TextBlock x:Name="txtStartDate" Text="" FontSize="20" Margin="0,5,0,10" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-                        <TextBlock Text="日志结束时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                        <TextBlock x:Name="txtEndDate" Text="" FontSize="20" Margin="0,5,0,10" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
-                        <TextBlock Text="分析起始时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                        <TextBlock x:Name="txtUserSpecifiedAnalyzeStartDate" Text="" FontSize="20" Margin="0,5,0,10" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="3">
-                        <TextBlock Text="分析结束时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                        <TextBlock x:Name="txtUserSpecifiedAnalyzeEndDate" Text="" FontSize="20" Margin="0,5,0,10" />
-                    </StackPanel>
-                </Grid>
-                <Grid>
-                    <Controls:MetroAnimatedSingleRowTabControl>
-                        <Controls:MetroTabItem Header="题目发布曲线" Controls:ControlsHelper.HeaderFontSize="15">
-                            <Grid>
-                                <chartingToolkit:Chart x:Name="chartNewProblemCountByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
-                                    <chartingToolkit:Chart.Axes>
-                                        <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineNewProblemCountByDayXAxisLabelStyle}"/>
-                                        <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
-                                    </chartingToolkit:Chart.Axes>
-                                    <chartingToolkit:Chart.Series>
-                                        <chartingToolkit:LineSeries x:Name="linNewProblemCountByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineNewProblemCountByDayStyle}" DataPointStyle="{DynamicResource LineNewProblemCountByDayDataPointStyle}" />
+                                        <chartingToolkit:ScatterSeries x:Name="sctProblemParticipant" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" DataPointStyle="{DynamicResource ScatterProblemParticipantDataPointStyle}" />
+                                        <chartingToolkit:LineSeries x:Name="linProblemParticipantFit" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineProblemParticipantFitStyle}" DataPointStyle="{DynamicResource LineStudentTotalSubmitByDayLnFitDataPointStyle}"/>
                                     </chartingToolkit:Chart.Series>
                                 </chartingToolkit:Chart>
                             </Grid>
                         </Controls:MetroTabItem>
-                        <Controls:MetroTabItem Header="分时段总提交数" Controls:ControlsHelper.HeaderFontSize="15">
+                        <Controls:MetroTabItem Header="题目聚类" Controls:ControlsHelper.HeaderFontSize="15">
                             <Grid>
-                                <chartingToolkit:Chart x:Name="chartSubmitCountByTime" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                <chartingToolkit:Chart x:Name="chartProblemCluster" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
                                     <chartingToolkit:Chart.Axes>
-                                        <chartingToolkit:CategoryAxis Orientation="X" ShowGridLines="False" AxisLabelStyle="{DynamicResource ColumnSubmitCountByTimeXAxisLabelStyle}"  />
-                                        <chartingToolkit:LinearAxis Orientation="Y" ShowGridLines="False" />
+                                        <chartingToolkit:LinearAxis Orientation="X" Title="付出指数(Jq)" ShowGridLines="False" />
+                                        <chartingToolkit:LinearAxis Orientation="Y" Title="参与指数(Eq)" ShowGridLines="False" />
                                     </chartingToolkit:Chart.Axes>
                                     <chartingToolkit:Chart.Series>
-                                        <chartingToolkit:ColumnSeries x:Name="colSubmitCountByTime" DependentValuePath="Value" IndependentValuePath="Key"  Margin="0" Style="{DynamicResource ColumnSubmitCountByTimeStyle}" DataPointStyle="{DynamicResource ColumnSubmitCountByTimeDataPointStyle}" />
+                                        <chartingToolkit:ScatterSeries x:Name="sctProblemCluster1" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster1DataPointStyle}"/>
+                                        <chartingToolkit:ScatterSeries x:Name="sctProblemCluster2" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster2DataPointStyle}"/>
+                                        <chartingToolkit:ScatterSeries x:Name="sctProblemCluster3" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster3DataPointStyle}"/>
+                                        <chartingToolkit:ScatterSeries x:Name="sctProblemCluster4" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster4DataPointStyle}"/>
                                     </chartingToolkit:Chart.Series>
                                 </chartingToolkit:Chart>
                             </Grid>
                         </Controls:MetroTabItem>
                     </Controls:MetroAnimatedSingleRowTabControl>
+                    <!--<DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" LastChildFill="True" >
+                    <TextBlock Text="题目聚类分析" DockPanel.Dock="Top" Margin="10,0" />
+                    <chartingToolkit:Chart x:Name="chartProblemCluster" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:LinearAxis Orientation="X" Title="付出指数(Jq)" ShowGridLines="False" />
+                            <chartingToolkit:LinearAxis Orientation="Y" Title="参与指数(Eq)" ShowGridLines="False" />
+                        </chartingToolkit:Chart.Axes>
+                        <chartingToolkit:Chart.Series>
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster1" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster1DataPointStyle}"/>
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster2" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster2DataPointStyle}"/>
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster3" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster3DataPointStyle}"/>
+                                    <chartingToolkit:ScatterSeries x:Name="sctProblemCluster4" IndependentValuePath="Key" DependentValuePath="Value" DataPointStyle="{DynamicResource ScatterProblemCluster4DataPointStyle}"/>
+                        </chartingToolkit:Chart.Series>
+                    </chartingToolkit:Chart>
+                </DockPanel>-->
                 </Grid>
-            </DockPanel>
-        </Controls:MetroTabItem>
-    </Controls:MetroAnimatedSingleRowTabControl>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="OnlineJudge系统总览" Controls:ControlsHelper.HeaderFontSize="25">
+                <DockPanel LastChildFill="True">
+                    <Grid DockPanel.Dock="Top" Margin="10,5,10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="4">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="OJ系统地址" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                <Grid x:Name="btnSystemLink" Margin="5,0,0,0" Cursor="Hand">
+                                    <iconPacks:PackIconModern x:Name="icoSystemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="访问OJ系统。"/>
+                                </Grid>
+                            </StackPanel>
+                            <TextBlock x:Name="txtOJLink" Text="http://oj.bmeonline.cn/" FontSize="20" Margin="0,5,0,10" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                            <TextBlock Text="日志开始时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                            <TextBlock x:Name="txtStartDate" Text="" FontSize="20" Margin="0,5,0,10" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                            <TextBlock Text="日志结束时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                            <TextBlock x:Name="txtEndDate" Text="" FontSize="20" Margin="0,5,0,10" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
+                            <TextBlock Text="分析起始时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                            <TextBlock x:Name="txtUserSpecifiedAnalyzeStartDate" Text="" FontSize="20" Margin="0,5,0,10" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="3">
+                            <TextBlock Text="分析结束时间" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                            <TextBlock x:Name="txtUserSpecifiedAnalyzeEndDate" Text="" FontSize="20" Margin="0,5,0,10" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Controls:MetroAnimatedSingleRowTabControl>
+                            <Controls:MetroTabItem Header="题目发布曲线" Controls:ControlsHelper.HeaderFontSize="15">
+                                <Grid>
+                                    <chartingToolkit:Chart x:Name="chartNewProblemCountByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                        <chartingToolkit:Chart.Axes>
+                                            <chartingToolkit:DateTimeAxis Orientation="X" Title="" ShowGridLines="False" IntervalType="Months" Interval="4" AxisLabelStyle="{DynamicResource LineNewProblemCountByDayXAxisLabelStyle}"/>
+                                            <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                        </chartingToolkit:Chart.Axes>
+                                        <chartingToolkit:Chart.Series>
+                                            <chartingToolkit:LineSeries x:Name="linNewProblemCountByDay" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineNewProblemCountByDayStyle}" DataPointStyle="{DynamicResource LineNewProblemCountByDayDataPointStyle}" />
+                                        </chartingToolkit:Chart.Series>
+                                    </chartingToolkit:Chart>
+                                </Grid>
+                            </Controls:MetroTabItem>
+                            <Controls:MetroTabItem Header="分时段总提交数" Controls:ControlsHelper.HeaderFontSize="15">
+                                <Grid>
+                                    <chartingToolkit:Chart x:Name="chartSubmitCountByTime" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                        <chartingToolkit:Chart.Axes>
+                                            <chartingToolkit:CategoryAxis Orientation="X" ShowGridLines="False" AxisLabelStyle="{DynamicResource ColumnSubmitCountByTimeXAxisLabelStyle}"  />
+                                            <chartingToolkit:LinearAxis Orientation="Y" ShowGridLines="False" />
+                                        </chartingToolkit:Chart.Axes>
+                                        <chartingToolkit:Chart.Series>
+                                            <chartingToolkit:ColumnSeries x:Name="colSubmitCountByTime" DependentValuePath="Value" IndependentValuePath="Key"  Margin="0" Style="{DynamicResource ColumnSubmitCountByTimeStyle}" DataPointStyle="{DynamicResource ColumnSubmitCountByTimeDataPointStyle}" />
+                                        </chartingToolkit:Chart.Series>
+                                    </chartingToolkit:Chart>
+                                </Grid>
+                            </Controls:MetroTabItem>
+                            <!--<Controls:MetroTabItem Header="题目参与性曲线" Controls:ControlsHelper.HeaderFontSize="15">
+                            <Grid>
+                                <chartingToolkit:Chart x:Name="chartProblemParticipant" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
+                                    <chartingToolkit:Chart.Axes>
+                                        <chartingToolkit:LinearAxis Orientation="X" Title="" ShowGridLines="False" />
+                                        <chartingToolkit:LinearAxis Orientation="Y" Title="" ShowGridLines="False" />
+                                    </chartingToolkit:Chart.Axes>
+                                    <chartingToolkit:Chart.Series>
+                                        <chartingToolkit:ScatterSeries x:Name="sctProblemParticipant" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" DataPointStyle="{DynamicResource ScatterProblemParticipantDataPointStyle}" />
+                                        <chartingToolkit:LineSeries x:Name="linProblemParticipantFit" DependentValuePath="Value" IndependentValuePath="Key" Margin="0" Style="{DynamicResource LineProblemParticipantFitStyle}" DataPointStyle="{DynamicResource LineStudentTotalSubmitByDayLnFitDataPointStyle}"/>
+                                    </chartingToolkit:Chart.Series>
+                                </chartingToolkit:Chart>
+                            </Grid>
+                        </Controls:MetroTabItem>-->
+                        </Controls:MetroAnimatedSingleRowTabControl>
+                    </Grid>
+                </DockPanel>
+            </Controls:MetroTabItem>
+        </Controls:MetroAnimatedSingleRowTabControl>
+    </DockPanel>
 </Controls:MetroWindow>

@@ -190,7 +190,7 @@ MainWindow
  付出指数Jq。
  </summary>
 	<remarks></remarks>
-</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipateValuse_Eq">
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerProblems.OJProblemInfo.ParticipateValue_Eq">
 	<summary>
  参与指数Eq。
  </summary>
@@ -415,6 +415,11 @@ MainWindow
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.StudentDictionary">
 	<summary>
  存放学生信息的字典。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.StudentClustResultMapping">
+	<summary>
+ 处理学生聚类结果到评等结果的映射字典。
  </summary>
 	<remarks></remarks>
 </member>

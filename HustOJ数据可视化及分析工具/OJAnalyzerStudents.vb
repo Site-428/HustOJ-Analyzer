@@ -158,4 +158,9 @@
     ''' </summary>
     ''' <remarks></remarks>
     Public StudentDictionary As New Dictionary(Of String, OJStudentInfo)
+    ''' <summary>
+    ''' 处理学生聚类结果到评等结果的映射字典。
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public StudentClustResultMapping As New Dictionary(Of Integer, String)
 End Module

@@ -39,7 +39,7 @@
         ''' 参与指数Eq。
         ''' </summary>
         ''' <remarks></remarks>
-        Public ParticipateValuse_Eq As Double
+        Public ParticipateValue_Eq As Double
         ''' <summary>
         ''' 按日记录的提交次数。
         ''' </summary>
@@ -61,7 +61,7 @@
             ParticipantCount = 0
             ACCount = 0
             EffortValue_Jq = 0
-            ParticipateValuse_Eq = 0
+            ParticipateValue_Eq = 0
             ClustResult = 0
             SubmitCountByDay = New Dictionary(Of Date, Integer)
         End Sub
@@ -77,7 +77,7 @@
             ParticipantCount = 0
             ACCount = 0
             EffortValue_Jq = 0
-            ParticipateValuse_Eq = 0
+            ParticipateValue_Eq = 0
             ClustResult = 0
             SubmitCountByDay = New Dictionary(Of Date, Integer)
         End Sub
