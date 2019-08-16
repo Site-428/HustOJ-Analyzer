@@ -122,6 +122,8 @@ Class MainWindow
         linNewProblemCountByDay.ItemsSource = Nothing
         colSubmitCountByTime.ItemsSource = Nothing
 
+        DoEvents()
+
         '重新执行数据分析
         Dim OJLogFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
         Dim OJLogCountFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\DATA.txt")
@@ -390,7 +392,7 @@ Class MainWindow
                 ExponentialFitter.Dispose()
                 ExponentialFitX.Dispose()
                 ExponentialFitY.Dispose()
-                ExponentialFittingA = ExponentialFitReturn(0, 0)
+                ExponentialFittingA = -ExponentialFitReturn(0, 0)
                 ExponentialFittingB = ExponentialFitReturn(0, 1)
                 ExponentialFittingC = ExponentialFitReturn(0, 2)
             Catch ex As Exception
@@ -411,6 +413,13 @@ Class MainWindow
             ExponentialFittingA = 0
             ExponentialFittingB = 0
             ExponentialFittingC = 0
+            For i = 0 To ProblemList.Count - 1
+                With ProblemDictionary(ProblemList(i))
+                    .EffortValue_Jq = IIf(.ACCount > 0, .SubmitCount / .ACCount, 0)
+                    .ParticipateValue_Eq = .ParticipantCount - ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, .ProblemTaskSequenceIndex)
+                End With
+                DoEvents()
+            Next
         End If
         '学生聚类分析
         If StudentList.Count >= 4 Then
@@ -648,7 +657,7 @@ Class MainWindow
         End If
         Await AnalyzeProgress.CloseAsync()
         If IsMCRFailedStageStudentTotalSubmitByDayLnFit Or IsMCRFailedStageProblemParticipantFit Or IsMCRFailedStageStudentClust Or IsMCRFailedStageProblemClust Then
-            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
+            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。存在边缘情况的数据集也可能引发此错误。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
             IsMCRFailedStageStudentTotalSubmitByDayLnFit = False
             IsMCRFailedStageProblemParticipantFit = False
             IsMCRFailedStageStudentClust = False
@@ -1046,6 +1055,13 @@ Class MainWindow
             ExponentialFittingA = 0
             ExponentialFittingB = 0
             ExponentialFittingC = 0
+            For i = 0 To ProblemList.Count - 1
+                With ProblemDictionary(ProblemList(i))
+                    .EffortValue_Jq = IIf(.ACCount > 0, .SubmitCount / .ACCount, 0)
+                    .ParticipateValue_Eq = .ParticipantCount - ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, .ProblemTaskSequenceIndex)
+                End With
+                DoEvents()
+            Next
         End If
         '学生聚类分析
         If StudentList.Count >= 4 Then
@@ -1282,7 +1298,7 @@ Class MainWindow
         End If
         Await AnalyzeProgress.CloseAsync()
         If IsMCRFailedStageStudentTotalSubmitByDayLnFit Or IsMCRFailedStageProblemParticipantFit Or IsMCRFailedStageStudentClust Or IsMCRFailedStageProblemClust Then
-            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
+            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。存在边缘情况的数据集也可能引发此错误。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
             IsMCRFailedStageStudentTotalSubmitByDayLnFit = False
             IsMCRFailedStageProblemParticipantFit = False
             IsMCRFailedStageStudentClust = False
@@ -1672,6 +1688,8 @@ Class MainWindow
         linNewProblemCountByDay.ItemsSource = Nothing
         colSubmitCountByTime.ItemsSource = Nothing
 
+        DoEvents()
+
         '重新执行数据分析
         Dim OJLogFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
         Dim OJLogCountFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\DATA.txt")
@@ -1940,7 +1958,7 @@ Class MainWindow
                 ExponentialFitter.Dispose()
                 ExponentialFitX.Dispose()
                 ExponentialFitY.Dispose()
-                ExponentialFittingA = ExponentialFitReturn(0, 0)
+                ExponentialFittingA = -ExponentialFitReturn(0, 0)
                 ExponentialFittingB = ExponentialFitReturn(0, 1)
                 ExponentialFittingC = ExponentialFitReturn(0, 2)
             Catch ex As Exception
@@ -1961,6 +1979,13 @@ Class MainWindow
             ExponentialFittingA = 0
             ExponentialFittingB = 0
             ExponentialFittingC = 0
+            For i = 0 To ProblemList.Count - 1
+                With ProblemDictionary(ProblemList(i))
+                    .EffortValue_Jq = IIf(.ACCount > 0, .SubmitCount / .ACCount, 0)
+                    .ParticipateValue_Eq = .ParticipantCount - ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, .ProblemTaskSequenceIndex)
+                End With
+                DoEvents()
+            Next
         End If
         '学生聚类分析
         If StudentList.Count >= 4 Then
@@ -2134,13 +2159,29 @@ Class MainWindow
             If Not IsMCRFailedStageProblemParticipantFit Then
                 Dim ProblemParticipantDataSource As New List(Of KeyValuePair(Of Integer, Integer))
                 Dim ProblemParticipantFitDataSource As New List(Of KeyValuePair(Of Integer, Double))
-                For i = 0 To ProblemList.Count - 1
-                    ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
-                    ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
+                If tabMain.SelectedIndex = 1 Then
+                    tabMain.SelectedIndex = 0
                     DoEvents()
-                Next
-                sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
-                linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
+                    For i = 0 To ProblemList.Count - 1
+                        ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
+                        ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
+                        DoEvents()
+                    Next
+                    sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
+                    linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
+                    DoEvents()
+                    tabMain.SelectedIndex = 1
+                Else
+                    For i = 0 To ProblemList.Count - 1
+                        ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
+                        ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
+                        DoEvents()
+                    Next
+                    sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
+                    linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
+                End If
+                sctProblemParticipant.Refresh()
+                linProblemParticipantFit.Refresh()
                 chartProblemParticipant.Visibility = Windows.Visibility.Visible
             End If
         End If
@@ -2198,7 +2239,7 @@ Class MainWindow
         End If
         Await AnalyzeProgress.CloseAsync()
         If IsMCRFailedStageStudentTotalSubmitByDayLnFit Or IsMCRFailedStageProblemParticipantFit Or IsMCRFailedStageStudentClust Or IsMCRFailedStageProblemClust Then
-            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
+            Await Me.ShowMessageAsync("MATLAB Runtime发生问题", "本程序的运行依赖MathWorks MATLAB Runtime R2018b，但是该组件可能发生问题或无法被调用。请前往https://ww2.mathworks.cn/products/compiler/matlab-runtime.html下载并安装适用于您的操作系统的MathWorks MATLAB Runtime R2018b。如果您已经安装了MathWorks MATLAB Runtime R2018b，您可能需要将其重新安装。存在边缘情况的数据集也可能引发此错误。" & vbCrLf & vbCrLf & "程序仍可继续运行，但部分功能可能发生异常。" & vbCrLf & vbCrLf & "以下功能依赖MathWorks MATLAB Runtime R2018b: " & vbCrLf & "学生对数日总提交曲线拟合: " & IIf(IsMCRFailedStageStudentTotalSubmitByDayLnFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目参与性拟合: " & IIf(IsMCRFailedStageProblemParticipantFit, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "学生聚类分析: " & IIf(IsMCRFailedStageStudentClust, "执行时失败或发生错误。", "执行成功。") & vbCrLf & "题目聚类分析: " & IIf(IsMCRFailedStageProblemClust, "执行时失败或发生错误。", "执行成功。"))
             IsMCRFailedStageStudentTotalSubmitByDayLnFit = False
             IsMCRFailedStageProblemParticipantFit = False
             IsMCRFailedStageStudentClust = False
@@ -2210,6 +2251,28 @@ Class MainWindow
             IsSkippedStageProblemParticipantFit = False
             IsSkippedStageStudentClust = False
             IsSkippedStageProblemClust = False
+        End If
+    End Sub
+
+    Private Async Sub txtStudentClustResult_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles txtStudentClustResult.MouseUp
+        If lstStudentList.SelectedIndex > -1 Then
+            Dim MappingSettingValue As String
+            Dim MappingKey As Integer = StudentDictionary(StudentList(lstStudentList.SelectedIndex)).ClustResult
+            MappingSettingValue = Await ShowInputAsync("设置聚类数值结果" & Chr(34) & MappingKey.ToString() & Chr(34) & "的映射", "您可以在此设置聚类分析的数值结果" & Chr(34) & MappingKey.ToString() & Chr(34) & "的映射目标。所有聚类分析的数值结果" & Chr(34) & MappingKey.ToString() & Chr(34) & "在呈现时都会被映射到您设置的映射目标上。" & vbCrLf & vbCrLf & "推荐将映射目标设为有助于您分析相关学生的学习情况的字符串。")
+            If MappingSettingValue = "" Then
+                Exit Sub
+            End If
+            If StudentClustResultMapping.ContainsKey(MappingKey) Then
+                StudentClustResultMapping(MappingKey) = MappingSettingValue
+                With StudentDictionary(StudentList(lstStudentList.SelectedIndex))
+                    txtStudentClustResult.Text = IIf(StudentClustResultMapping.ContainsKey(.ClustResult), StudentClustResultMapping(.ClustResult), .ClustResult)
+                End With
+            Else
+                StudentClustResultMapping.Add(MappingKey, MappingSettingValue)
+                With StudentDictionary(StudentList(lstStudentList.SelectedIndex))
+                    txtStudentClustResult.Text = IIf(StudentClustResultMapping.ContainsKey(.ClustResult), StudentClustResultMapping(.ClustResult), .ClustResult)
+                End With
+            End If
         End If
     End Sub
 End Class

@@ -1121,10 +1121,10 @@
                     <TextBlock Margin="1,0,0,0" VerticalAlignment="Center" Text="更新数据" />
                 </StackPanel>
             </Button>
-            <Separator />
-            <Button x:Name="btnCustomStudentClust" Content="自定义学生聚类结果映射" Margin="15,0,0,0" FontWeight="Normal"/>
+            <!--<Separator />
+            <Button x:Name="btnCustomStudentClust" Content="自定义学生聚类结果映射" Margin="15,0,0,0" FontWeight="Normal"/>-->
         </StackPanel>
-        <Controls:MetroAnimatedSingleRowTabControl Margin="0,5,0,10">
+        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabMain" Margin="0,5,0,10">
             <Controls:MetroTabItem Header="学生总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
                 <Grid x:Name="gridStudentMain" UseLayoutRounding="False">
                     <Grid.RowDefinitions>
@@ -1159,7 +1159,7 @@
                                     <TextBlock x:Name="txtStudentID" Text="" FontSize="20" Margin="0,5,0,10" />
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Grid.Column="2">
-                                    <TextBlock Text="聚类分析结果" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
+                                    <TextBlock Text="聚类分析结果(点击下方以自定义映射)" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
                                     <TextBlock x:Name="txtStudentClustResult" Text="" FontSize="20" Margin="0,5,0,10" />
                                 </StackPanel>
                             </Grid>
@@ -1408,7 +1408,7 @@
                         </Grid>
                     </DockPanel>
                     <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
-                    <Controls:MetroAnimatedSingleRowTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
+                    <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemOverviewCharts" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
                         <Controls:MetroTabItem Header="题目参与性" Controls:ControlsHelper.HeaderFontSize="15">
                             <Grid>
                                 <chartingToolkit:Chart x:Name="chartProblemParticipant" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
