@@ -26,7 +26,7 @@
         Public SubmitCountByDay As Dictionary(Of Date, Integer)
         ''' <summary>
         ''' 工作日0:00至12:00提交次数。
-        ''' </summary>
+        ''' </summary>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         ''' <remarks></remarks>
         Public SubmitCountOnWorkdayAM As Integer
         ''' <summary>
@@ -52,7 +52,7 @@
         ''' <summary>
         ''' 完成指数Ac。
         ''' </summary>
-        ''' <remarks>Ac = Pac+α，Pac为完成数CountAC，α为通过率SubmitCount。</remarks>
+        ''' <remarks>Ac = Pac+α，Pac为通过数ACCount，α为通过率ACCount/SubmitCount。</remarks>
         Public FittingAC As Double
         ''' <summary>
         ''' 稳定指数Stb。

@@ -9,7 +9,7 @@
         ''' 作业次序。
         ''' </summary>
         ''' <remarks></remarks>
-        Public ProblemTaskSequenceIndex
+        Public ProblemTaskSequenceIndex As Integer
         ''' <summary>
         ''' 题目被创建的时间。
         ''' </summary>

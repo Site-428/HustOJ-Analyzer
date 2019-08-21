@@ -307,7 +307,7 @@ HustOJ数据可视化及分析工具
 <member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnWorkdayAM">
  <summary>
  工作日0:00至12:00提交次数。
- </summary>
+ </summary>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
  <remarks></remarks>
 </member>
 <member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.SubmitCountOnWorkdayPM">
@@ -338,7 +338,7 @@ HustOJ数据可视化及分析工具
  <summary>
  完成指数Ac。
  </summary>
- <remarks>Ac = Pac+α，Pac为完成数CountAC，α为通过率SubmitCount。</remarks>
+ <remarks>Ac = Pac+α，Pac为通过数ACCount，α为通过率ACCount/SubmitCount。</remarks>
 </member>
 <member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingR_Stb">
  <summary>

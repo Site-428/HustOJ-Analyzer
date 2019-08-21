@@ -1124,7 +1124,7 @@
             <!--<Separator />
             <Button x:Name="btnCustomStudentClust" Content="自定义学生聚类结果映射" Margin="15,0,0,0" FontWeight="Normal"/>-->
         </StackPanel>
-        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabMain" Margin="0,5,0,10">
+        <Controls:MetroAnimatedSingleRowTabControl x:Name="tabMain" Margin="0,5,0,10" IsSynchronizedWithCurrentItem="True">
             <Controls:MetroTabItem Header="学生总览与分析" Controls:ControlsHelper.HeaderFontSize="25">
                 <Grid x:Name="gridStudentMain" UseLayoutRounding="False">
                     <Grid.RowDefinitions>
@@ -1227,7 +1227,7 @@
                             </Grid>
                         </StackPanel>
                         <Grid>
-                            <Controls:MetroAnimatedSingleRowTabControl x:Name="tabStudentCharts" Margin="2.5,0,0,0">
+                            <Controls:MetroAnimatedSingleRowTabControl x:Name="tabStudentCharts" Margin="2.5,0,0,0" IsSynchronizedWithCurrentItem="True">
                                 <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
                                     <Grid>
                                         <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
@@ -1381,7 +1381,7 @@
                             </Grid>
                         </StackPanel>
                         <Grid>
-                            <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemCharts" Margin="2.5,0,0,0">
+                            <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemCharts" Margin="2.5,0,0,0" IsSynchronizedWithCurrentItem="True">
                                 <Controls:MetroTabItem Header="正确率" Controls:ControlsHelper.HeaderFontSize="15">
                                     <Grid>
                                         <chartingToolkit:Chart x:Name="chartProblemACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
@@ -1408,7 +1408,7 @@
                         </Grid>
                     </DockPanel>
                     <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height ="2.5" Margin="10" />
-                    <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemOverviewCharts" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0">
+                    <Controls:MetroAnimatedSingleRowTabControl x:Name="tabProblemOverviewCharts" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="2.5,0,0,0" IsSynchronizedWithCurrentItem="True">
                         <Controls:MetroTabItem Header="题目参与性" Controls:ControlsHelper.HeaderFontSize="15">
                             <Grid>
                                 <chartingToolkit:Chart x:Name="chartProblemParticipant" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">
@@ -1497,7 +1497,7 @@
                         </StackPanel>
                     </Grid>
                     <Grid>
-                        <Controls:MetroAnimatedSingleRowTabControl>
+                        <Controls:MetroAnimatedSingleRowTabControl IsSynchronizedWithCurrentItem="True">
                             <Controls:MetroTabItem Header="题目发布曲线" Controls:ControlsHelper.HeaderFontSize="15">
                                 <Grid>
                                     <chartingToolkit:Chart x:Name="chartNewProblemCountByDay" Style="{DynamicResource ChartStyleMetroNoTitleAndLegend}" Visibility="Hidden">

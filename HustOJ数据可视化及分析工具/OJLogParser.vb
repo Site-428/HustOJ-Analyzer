@@ -137,61 +137,80 @@
             .WeekdaySubmit = Weekday(.DateSubmit, FirstDayOfWeek.Sunday)
             .IsParseFailed = True
         End With
-        LogLineArray = Split(LogLine, " ")
-        If LogLineArray.Length <> 10 Then
-            Return Temp
-        End If
-        Temp.IsParseFailed = False
-        With Temp
-            .LogIndex = Int(LogLineArray(0))
-            .ProblemID = LogLineArray(1)
-            .StudentID = LogLineArray(2)
-            .LogDate.Year = Int(LogLineArray(3))
-            .LogDate.Month = Int(LogLineArray(4))
-            .LogDate.Day = Int(LogLineArray(5))
-            .LogTime.Hour = Int(LogLineArray(6))
-            .LogTime.Minute = Int(LogLineArray(7))
-            .LogTime.Second = Int(LogLineArray(8))
-            If .LogDate.Month > 12 Then
-                .LogDate.Month = 12
+        Try
+            LogLineArray = Split(LogLine, " ")
+            If LogLineArray.Length <> 10 Then
+                Return Temp
             End If
-            If .LogDate.Month < 1 Then
-                .LogDate.Month = 1
-            End If
-            If .LogDate.Day > Date.DaysInMonth(.LogDate.Year, .LogDate.Month) Then
-                .LogDate.Day = Date.DaysInMonth(.LogDate.Year, .LogDate.Month)
-            End If
-            If .LogDate.Day < 0 Then
-                .LogDate.Day = 1
-            End If
-            If .LogTime.Hour >= 24 Then
-                .LogTime.Hour = 23
-            End If
-            If .LogTime.Hour < 0 Then
-                .LogTime.Hour = 0
-            End If
-            If .LogTime.Minute >= 60 Then
-                .LogTime.Minute = 59
-            End If
-            If .LogTime.Minute < 0 Then
-                .LogTime.Minute = 0
-            End If
-            If .LogTime.Second >= 60 Then
-                .LogTime.Second = 59
-            End If
-            If .LogTime.Second < 0 Then
-                .LogTime.Second = 0
-            End If
-            .DateSubmit = New Date(.LogDate.Year, .LogDate.Month, .LogDate.Day)
-            .TimeSubmit = New Date(.LogDate.Year, .LogDate.Month, .LogDate.Day, .LogTime.Hour, .LogTime.Minute, .LogTime.Second)
-            .WeekdaySubmit = Weekday(.DateSubmit, FirstDayOfWeek.Sunday)
-            If LogLineArray(9).ToUpper = "TRUE" Then
-                .IsPassed = True
-            Else
+            Temp.IsParseFailed = False
+            With Temp
+                .LogIndex = Int(LogLineArray(0))
+                .ProblemID = LogLineArray(1)
+                .StudentID = LogLineArray(2)
+                .LogDate.Year = Int(LogLineArray(3))
+                .LogDate.Month = Int(LogLineArray(4))
+                .LogDate.Day = Int(LogLineArray(5))
+                .LogTime.Hour = Int(LogLineArray(6))
+                .LogTime.Minute = Int(LogLineArray(7))
+                .LogTime.Second = Int(LogLineArray(8))
+                If .LogDate.Month > 12 Then
+                    .LogDate.Month = 12
+                End If
+                If .LogDate.Month < 1 Then
+                    .LogDate.Month = 1
+                End If
+                If .LogDate.Day > Date.DaysInMonth(.LogDate.Year, .LogDate.Month) Then
+                    .LogDate.Day = Date.DaysInMonth(.LogDate.Year, .LogDate.Month)
+                End If
+                If .LogDate.Day < 0 Then
+                    .LogDate.Day = 1
+                End If
+                If .LogTime.Hour >= 24 Then
+                    .LogTime.Hour = 23
+                End If
+                If .LogTime.Hour < 0 Then
+                    .LogTime.Hour = 0
+                End If
+                If .LogTime.Minute >= 60 Then
+                    .LogTime.Minute = 59
+                End If
+                If .LogTime.Minute < 0 Then
+                    .LogTime.Minute = 0
+                End If
+                If .LogTime.Second >= 60 Then
+                    .LogTime.Second = 59
+                End If
+                If .LogTime.Second < 0 Then
+                    .LogTime.Second = 0
+                End If
+                .DateSubmit = New Date(.LogDate.Year, .LogDate.Month, .LogDate.Day)
+                .TimeSubmit = New Date(.LogDate.Year, .LogDate.Month, .LogDate.Day, .LogTime.Hour, .LogTime.Minute, .LogTime.Second)
+                .WeekdaySubmit = Weekday(.DateSubmit, FirstDayOfWeek.Sunday)
+                If LogLineArray(9).ToUpper = "TRUE" Then
+                    .IsPassed = True
+                Else
+                    .IsPassed = False
+                End If
+                .IsParseFailed = False
+            End With
+        Catch ex As Exception
+            With Temp
+                .LogIndex = 0
                 .IsPassed = False
-            End If
-            .IsParseFailed = False
-        End With
+                .StudentID = ""
+                .ProblemID = ""
+                .LogDate.Day = 1
+                .LogDate.Month = 1
+                .LogDate.Year = 1000
+                .LogTime.Hour = 0
+                .LogTime.Minute = 0
+                .LogTime.Second = 0
+                .DateSubmit = New Date(1000, 1, 1)
+                .TimeSubmit = New Date(1000, 1, 1, 0, 0, 0)
+                .WeekdaySubmit = Weekday(.DateSubmit, FirstDayOfWeek.Sunday)
+                .IsParseFailed = True
+            End With
+        End Try
         Return Temp
     End Function
 End Module

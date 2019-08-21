@@ -111,17 +111,48 @@ Class MainWindow
         chartSubmitCountByTime.Visibility = Windows.Visibility.Hidden
         chartNewProblemCountByDay.Visibility = Windows.Visibility.Hidden
         pieStudentACRate.ItemsSource = Nothing
+        DoEvents()
+        pieStudentACRate.Refresh()
+        DoEvents()
         linStudentSubmitByDay.ItemsSource = Nothing
+        DoEvents()
+        linStudentSubmitByDay.Refresh()
+        DoEvents()
         sctStudentTotalSubmitByDayLn.ItemsSource = Nothing
+        DoEvents()
+        sctStudentTotalSubmitByDayLn.Refresh()
+        DoEvents()
         linStudentTotalSubmitByDayLnFit.ItemsSource = Nothing
+        DoEvents()
+        linStudentTotalSubmitByDayLnFit.Refresh()
+        DoEvents()
         colStudentTotalSubmitByTime.ItemsSource = Nothing
+        DoEvents()
+        colStudentTotalSubmitByTime.Refresh()
+        DoEvents()
         pieProblemACRate.ItemsSource = Nothing
+        DoEvents()
+        pieProblemACRate.Refresh()
+        DoEvents()
         linProblemSubmitByDay.ItemsSource = Nothing
+        DoEvents()
+        linProblemSubmitByDay.Refresh()
+        DoEvents()
         sctProblemParticipant.ItemsSource = Nothing
+        DoEvents()
+        sctProblemParticipant.Refresh()
+        DoEvents()
         linProblemParticipantFit.ItemsSource = Nothing
+        DoEvents()
+        linProblemParticipantFit.Refresh()
+        DoEvents()
         linNewProblemCountByDay.ItemsSource = Nothing
+        DoEvents()
+        linNewProblemCountByDay.Refresh()
+        DoEvents()
         colSubmitCountByTime.ItemsSource = Nothing
-
+        DoEvents()
+        colSubmitCountByTime.Refresh()
         DoEvents()
 
         '重新执行数据分析
@@ -478,10 +509,10 @@ Class MainWindow
                 Next
                 StudentClustResultMapping.Clear()
                 StudentClustResultMapping.Add(0, "出错或被跳过")
-                StudentClustResultMapping.Add(1, "1")
-                StudentClustResultMapping.Add(2, "2")
-                StudentClustResultMapping.Add(3, "3")
-                StudentClustResultMapping.Add(4, "4")
+                StudentClustResultMapping.Add(1, "未分级，点击以分级")
+                StudentClustResultMapping.Add(2, "未分级，点击以分级")
+                StudentClustResultMapping.Add(3, "未分级，点击以分级")
+                StudentClustResultMapping.Add(4, "未分级，点击以分级")
             Catch ex As Exception
                 IsMCRFailedStageStudentClust = True
                 For i = 0 To StudentList.Count - 1
@@ -492,10 +523,10 @@ Class MainWindow
                 Next
                 StudentClustResultMapping.Clear()
                 StudentClustResultMapping.Add(0, "出错或被跳过")
-                StudentClustResultMapping.Add(1, "1")
-                StudentClustResultMapping.Add(2, "2")
-                StudentClustResultMapping.Add(3, "3")
-                StudentClustResultMapping.Add(4, "4")
+                StudentClustResultMapping.Add(1, "未分级，点击以分级")
+                StudentClustResultMapping.Add(2, "未分级，点击以分级")
+                StudentClustResultMapping.Add(3, "未分级，点击以分级")
+                StudentClustResultMapping.Add(4, "未分级，点击以分级")
             End Try
         Else
             IsSkippedStageStudentClust = True
@@ -507,10 +538,10 @@ Class MainWindow
             Next
             StudentClustResultMapping.Clear()
             StudentClustResultMapping.Add(0, "出错或被跳过")
-            StudentClustResultMapping.Add(1, "1")
-            StudentClustResultMapping.Add(2, "2")
-            StudentClustResultMapping.Add(3, "3")
-            StudentClustResultMapping.Add(4, "4")
+            StudentClustResultMapping.Add(1, "未分级，点击以分级")
+            StudentClustResultMapping.Add(2, "未分级，点击以分级")
+            StudentClustResultMapping.Add(3, "未分级，点击以分级")
+            StudentClustResultMapping.Add(4, "未分级，点击以分级")
         End If
         '题目聚类分析
         '横轴为付出指数(Jq)，纵轴为参与指数(Eq)
@@ -1120,10 +1151,10 @@ Class MainWindow
                 Next
                 StudentClustResultMapping.Clear()
                 StudentClustResultMapping.Add(0, "出错或被跳过")
-                StudentClustResultMapping.Add(1, "1")
-                StudentClustResultMapping.Add(2, "2")
-                StudentClustResultMapping.Add(3, "3")
-                StudentClustResultMapping.Add(4, "4")
+                StudentClustResultMapping.Add(1, "未分级，点击以分级")
+                StudentClustResultMapping.Add(2, "未分级，点击以分级")
+                StudentClustResultMapping.Add(3, "未分级，点击以分级")
+                StudentClustResultMapping.Add(4, "未分级，点击以分级")
             Catch ex As Exception
                 IsMCRFailedStageStudentClust = True
                 For i = 0 To StudentList.Count - 1
@@ -1134,10 +1165,10 @@ Class MainWindow
                 Next
                 StudentClustResultMapping.Clear()
                 StudentClustResultMapping.Add(0, "出错或被跳过")
-                StudentClustResultMapping.Add(1, "1")
-                StudentClustResultMapping.Add(2, "2")
-                StudentClustResultMapping.Add(3, "3")
-                StudentClustResultMapping.Add(4, "4")
+                StudentClustResultMapping.Add(1, "未分级，点击以分级")
+                StudentClustResultMapping.Add(2, "未分级，点击以分级")
+                StudentClustResultMapping.Add(3, "未分级，点击以分级")
+                StudentClustResultMapping.Add(4, "未分级，点击以分级")
             End Try
         Else
             IsSkippedStageStudentClust = True
@@ -1149,10 +1180,10 @@ Class MainWindow
             Next
             StudentClustResultMapping.Clear()
             StudentClustResultMapping.Add(0, "出错或被跳过")
-            StudentClustResultMapping.Add(1, "1")
-            StudentClustResultMapping.Add(2, "2")
-            StudentClustResultMapping.Add(3, "3")
-            StudentClustResultMapping.Add(4, "4")
+            StudentClustResultMapping.Add(1, "未分级，点击以分级")
+            StudentClustResultMapping.Add(2, "未分级，点击以分级")
+            StudentClustResultMapping.Add(3, "未分级，点击以分级")
+            StudentClustResultMapping.Add(4, "未分级，点击以分级")
         End If
         '题目聚类分析
         '横轴为付出指数(Jq)，纵轴为参与指数(Eq)
@@ -1677,17 +1708,48 @@ Class MainWindow
         chartSubmitCountByTime.Visibility = Windows.Visibility.Hidden
         chartNewProblemCountByDay.Visibility = Windows.Visibility.Hidden
         pieStudentACRate.ItemsSource = Nothing
+        DoEvents()
+        pieStudentACRate.Refresh()
+        DoEvents()
         linStudentSubmitByDay.ItemsSource = Nothing
+        DoEvents()
+        linStudentSubmitByDay.Refresh()
+        DoEvents()
         sctStudentTotalSubmitByDayLn.ItemsSource = Nothing
+        DoEvents()
+        sctStudentTotalSubmitByDayLn.Refresh()
+        DoEvents()
         linStudentTotalSubmitByDayLnFit.ItemsSource = Nothing
+        DoEvents()
+        linStudentTotalSubmitByDayLnFit.Refresh()
+        DoEvents()
         colStudentTotalSubmitByTime.ItemsSource = Nothing
+        DoEvents()
+        colStudentTotalSubmitByTime.Refresh()
+        DoEvents()
         pieProblemACRate.ItemsSource = Nothing
+        DoEvents()
+        pieProblemACRate.Refresh()
+        DoEvents()
         linProblemSubmitByDay.ItemsSource = Nothing
+        DoEvents()
+        linProblemSubmitByDay.Refresh()
+        DoEvents()
         sctProblemParticipant.ItemsSource = Nothing
+        DoEvents()
+        sctProblemParticipant.Refresh()
+        DoEvents()
         linProblemParticipantFit.ItemsSource = Nothing
+        DoEvents()
+        linProblemParticipantFit.Refresh()
+        DoEvents()
         linNewProblemCountByDay.ItemsSource = Nothing
+        DoEvents()
+        linNewProblemCountByDay.Refresh()
+        DoEvents()
         colSubmitCountByTime.ItemsSource = Nothing
-
+        DoEvents()
+        colSubmitCountByTime.Refresh()
         DoEvents()
 
         '重新执行数据分析
@@ -2044,10 +2106,10 @@ Class MainWindow
                 Next
                 StudentClustResultMapping.Clear()
                 StudentClustResultMapping.Add(0, "出错或被跳过")
-                StudentClustResultMapping.Add(1, "1")
-                StudentClustResultMapping.Add(2, "2")
-                StudentClustResultMapping.Add(3, "3")
-                StudentClustResultMapping.Add(4, "4")
+                StudentClustResultMapping.Add(1, "未分级，点击以分级")
+                StudentClustResultMapping.Add(2, "未分级，点击以分级")
+                StudentClustResultMapping.Add(3, "未分级，点击以分级")
+                StudentClustResultMapping.Add(4, "未分级，点击以分级")
             Catch ex As Exception
                 IsMCRFailedStageStudentClust = True
                 For i = 0 To StudentList.Count - 1
@@ -2058,10 +2120,10 @@ Class MainWindow
                 Next
                 StudentClustResultMapping.Clear()
                 StudentClustResultMapping.Add(0, "出错或被跳过")
-                StudentClustResultMapping.Add(1, "1")
-                StudentClustResultMapping.Add(2, "2")
-                StudentClustResultMapping.Add(3, "3")
-                StudentClustResultMapping.Add(4, "4")
+                StudentClustResultMapping.Add(1, "未分级，点击以分级")
+                StudentClustResultMapping.Add(2, "未分级，点击以分级")
+                StudentClustResultMapping.Add(3, "未分级，点击以分级")
+                StudentClustResultMapping.Add(4, "未分级，点击以分级")
             End Try
         Else
             IsSkippedStageStudentClust = True
@@ -2073,10 +2135,10 @@ Class MainWindow
             Next
             StudentClustResultMapping.Clear()
             StudentClustResultMapping.Add(0, "出错或被跳过")
-            StudentClustResultMapping.Add(1, "1")
-            StudentClustResultMapping.Add(2, "2")
-            StudentClustResultMapping.Add(3, "3")
-            StudentClustResultMapping.Add(4, "4")
+            StudentClustResultMapping.Add(1, "未分级，点击以分级")
+            StudentClustResultMapping.Add(2, "未分级，点击以分级")
+            StudentClustResultMapping.Add(3, "未分级，点击以分级")
+            StudentClustResultMapping.Add(4, "未分级，点击以分级")
         End If
         '题目聚类分析
         '横轴为付出指数(Jq)，纵轴为参与指数(Eq)
@@ -2159,29 +2221,13 @@ Class MainWindow
             If Not IsMCRFailedStageProblemParticipantFit Then
                 Dim ProblemParticipantDataSource As New List(Of KeyValuePair(Of Integer, Integer))
                 Dim ProblemParticipantFitDataSource As New List(Of KeyValuePair(Of Integer, Double))
-                If tabMain.SelectedIndex = 1 Then
-                    tabMain.SelectedIndex = 0
+                For i = 0 To ProblemList.Count - 1
+                    ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
+                    ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
                     DoEvents()
-                    For i = 0 To ProblemList.Count - 1
-                        ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
-                        ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
-                        DoEvents()
-                    Next
-                    sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
-                    linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
-                    DoEvents()
-                    tabMain.SelectedIndex = 1
-                Else
-                    For i = 0 To ProblemList.Count - 1
-                        ProblemParticipantDataSource.Add(New KeyValuePair(Of Integer, Integer)(TaskSequence(i), ParticipantCount(i)))
-                        ProblemParticipantFitDataSource.Add(New KeyValuePair(Of Integer, Double)(TaskSequence(i), ExponentialCalculate(ExponentialFittingA, ExponentialFittingB, ExponentialFittingC, TaskSequence(i))))
-                        DoEvents()
-                    Next
-                    sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
-                    linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
-                End If
-                sctProblemParticipant.Refresh()
-                linProblemParticipantFit.Refresh()
+                Next
+                sctProblemParticipant.ItemsSource = ProblemParticipantDataSource
+                linProblemParticipantFit.ItemsSource = ProblemParticipantFitDataSource
                 chartProblemParticipant.Visibility = Windows.Visibility.Visible
             End If
         End If

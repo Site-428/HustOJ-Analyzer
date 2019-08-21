@@ -361,7 +361,7 @@ MainWindow
 	<summary>
  完成指数Ac。
  </summary>
-	<remarks>Ac = Pac+α，Pac为完成数CountAC，α为通过率SubmitCount。</remarks>
+	<remarks>Ac = Pac+α，Pac为通过数ACCount，α为通过率ACCount/SubmitCount。</remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.FittingR_Stb">
 	<summary>
  稳定指数Stb。
