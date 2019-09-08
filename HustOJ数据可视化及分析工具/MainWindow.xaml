@@ -7,7 +7,7 @@
     xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
     xmlns:Primitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MainWindow"
-    Title="HustOJ数据可视化与分析" Height="750" Width="1250" Icon="Assets/Icon/Icon.ico" MinWidth="1000" MinHeight="650" WindowStartupLocation="CenterScreen">
+    Title="HustOJ数据可视化与分析" Height="750" Width="1250" Icon="Assets/Icon/Icon.ico" MinWidth="1000" MinHeight="650" WindowStartupLocation="CenterScreen" WindowState="Maximized" IsCloseButtonEnabled="False" IsMaxRestoreButtonEnabled="False" IsMinButtonEnabled="False" IsWindowDraggable="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" ShowSystemMenuOnRightClick="False" IgnoreTaskbarOnMaximize="True">
     <Controls:MetroWindow.Resources>
         <!-- 没有标题和图例的Chart样式 -->
         <Style x:Key="ChartStyleMetroNoTitleAndLegend" TargetType="{x:Type chartingToolkit:Chart}">
@@ -1101,12 +1101,21 @@
     
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button x:Name="mnuUpdate">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="24" Height="24" Kind="Refresh" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="从云端更新元数据" />
-                </StackPanel>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="mnuUpdate">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconModern Width="24" Height="24" Kind="Refresh" />
+                        <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="从云端更新元数据" />
+                    </StackPanel>
+                </Button>
+                <Separator />
+                <Button x:Name="mnuExit">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconModern Width="24" Height="24" Kind="Close" />
+                        <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="退出" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <DockPanel LastChildFill="True">

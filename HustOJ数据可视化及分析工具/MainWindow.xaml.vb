@@ -708,6 +708,13 @@ Class MainWindow
     End Sub
 
     Private Async Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        '全荧幕
+        Me.Topmost = True
+        Me.IgnoreTaskbarOnMaximize = True
+        Me.ShowMaxRestoreButton = False
+        Me.ShowMinButton = False
+        Me.ShowCloseButton = False
+
         '检查所需文件是否存在，执行灾难恢复。
         GenerateCurrentDirectory()
         Dim CurrentPath As String = GetCurrentDirectory()
@@ -2319,6 +2326,19 @@ Class MainWindow
                     txtStudentClustResult.Text = IIf(StudentClustResultMapping.ContainsKey(.ClustResult), StudentClustResultMapping(.ClustResult), .ClustResult)
                 End With
             End If
+        End If
+    End Sub
+
+    Private Async Sub mnuExit_Click(sender As Object, e As RoutedEventArgs) Handles mnuExit.Click
+        Dim ExitPasscodeUserInput As String
+        ExitPasscodeUserInput = Await ShowInputAsync("退出应用程序", "请输入工程师识别码或维护人员识别码以退出应用程序。")
+        If ExitPasscodeUserInput = "" Then
+            Exit Sub
+        End If
+        If ExitPasscodeUserInput <> "0031285973" Then
+            Await ShowMessageAsync("未被授权的识别码", "您输入的识别码不在允许的范围内。请检查您持有的识别码或与系统管理员联系。")
+        Else
+            Close()
         End If
     End Sub
 End Class

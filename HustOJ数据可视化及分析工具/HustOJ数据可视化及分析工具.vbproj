@@ -53,6 +53,9 @@
   <PropertyGroup>
     <ApplicationIcon>Assets\Icon\Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>HustOJ数据可视化及分析工具.exe.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cluster, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -138,6 +141,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BlockTaskmanager.vb" />
+    <Compile Include="KeyBlcoker.vb" />
     <Compile Include="OJLogParser.vb" />
     <Compile Include="OJAnalyzerProblems.vb" />
     <Compile Include="OJAnalyzerStudents.vb" />
@@ -207,6 +212,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <None Include="HustOJ数据可视化及分析工具.exe.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\ghostdriver.log">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -230,7 +238,11 @@
   <ItemGroup>
     <Resource Include="Assets\Icon\Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LockKey.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Data\DATA.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
