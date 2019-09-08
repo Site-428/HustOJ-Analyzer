@@ -557,7 +557,7 @@
 
         <!-- 学生对数日总提交图表样式 -->
         <Style x:Key="ScatterStudentTotalSubmitByDayLnDataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
-            <Setter Property="Background" Value="#FF7D46AF"/>
+            <Setter Property="Background" Value="#FF4B007D"/>
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Width" Value="5"/>
@@ -761,7 +761,7 @@
 
         <!-- 题目参与人数图表样式 -->
         <Style x:Key="ScatterProblemParticipantDataPointStyle" TargetType="{x:Type chartingToolkit:ScatterDataPoint}">
-            <Setter Property="Background" Value="#FF7D46AF"/>
+            <Setter Property="Background" Value="#FF4B007D"/>
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Width" Value="5"/>
@@ -986,14 +986,14 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type chartingToolkit:LineSeries}">
                         <Canvas x:Name="PlotArea">
-                            <Polyline Points="{TemplateBinding Points}" Style="{TemplateBinding PolylineStyle}" Stroke="#FF7D46AF"/>
+                            <Polyline Points="{TemplateBinding Points}" Style="{TemplateBinding PolylineStyle}" Stroke="#FF4B007D"/>
                         </Canvas>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="LineNewProblemCountByDayDataPointStyle" TargetType="{x:Type chartingToolkit:LineDataPoint}">
-            <Setter Property="Background" Value="#FF7D46AF"/>
+            <Setter Property="Background" Value="#FF4B007D"/>
             <Setter Property="BorderBrush" Value="transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsTabStop" Value="False"/>
@@ -1017,7 +1017,7 @@
                                 </StackPanel>
                             </Grid.ToolTip>
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"/>
-                            <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF7D46AF"/>
+                            <Ellipse RenderTransformOrigin="0.661,0.321" Fill="#FF4B007D"/>
                             <Ellipse x:Name="SelectionHighlight" Fill="Transparent" Opacity="0"/>
                             <Ellipse x:Name="MouseOverHighlight" Fill="Transparent" Opacity="0"/>
                         </Grid>
