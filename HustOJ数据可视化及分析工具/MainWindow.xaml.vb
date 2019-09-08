@@ -2330,15 +2330,15 @@ Class MainWindow
     End Sub
 
     Private Async Sub mnuExit_Click(sender As Object, e As RoutedEventArgs) Handles mnuExit.Click
-        Dim ExitPasscodeUserInput As String
-        ExitPasscodeUserInput = Await ShowInputAsync("退出应用程序", "请输入工程师识别码或维护人员识别码以退出应用程序。")
-        If ExitPasscodeUserInput = "" Then
+        Dim ExitPasscodeUserInput As LoginDialogData
+        ExitPasscodeUserInput = Await ShowLoginAsync("退出应用程序", "请输入工程师或维护人员识别凭据以退出应用程序。")
+        If ExitPasscodeUserInput.Password = "" And ExitPasscodeUserInput.Username = "" Then
             Exit Sub
         End If
-        If ExitPasscodeUserInput <> "0031285973" Then
-            Await ShowMessageAsync("未被授权的识别码", "您输入的识别码不在允许的范围内。请检查您持有的识别码或与系统管理员联系。")
-        Else
+        If ExitPasscodeUserInput.Password = "SEU-BME-OJAnalyzer-0031285973" And ExitPasscodeUserInput.Username = "SEU-BME-OJAnalyzer" Then
             Close()
+        Else
+            Await ShowMessageAsync("未被授权的凭据", "您输入的凭据无效。请检查您持有的识别码或与系统管理员联系。")
         End If
     End Sub
 End Class
