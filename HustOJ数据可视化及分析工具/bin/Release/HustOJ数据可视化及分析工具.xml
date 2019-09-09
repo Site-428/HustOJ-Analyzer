@@ -275,6 +275,18 @@ Application
  处理学生聚类结果到评等结果的映射字典。
  </summary>
 	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.MainWindow.WindowAutoActivator">
+	<summary>
+ 自动将窗口带到前景。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.MainWindow.ActivateThisWindow(System.Object,System.EventArgs)">
+	<summary>
+ 负责将窗口带到前景的定时器事件处理函数。
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerSystem.OJSystemInfo.StartDate">
 	<summary>
  统计起始日期。

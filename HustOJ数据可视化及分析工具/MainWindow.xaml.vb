@@ -4,6 +4,7 @@ Imports System.Windows.Controls
 Imports Microsoft.VisualBasic.FileIO.FileSystem
 Imports MathWorks.MATLAB.NET.Arrays
 Imports MathWorks.MATLAB.NET.Utility
+Imports System.Windows.Threading
 
 Class MainWindow
     Dim UpdateProgress As Dialogs.ProgressDialogController
@@ -20,6 +21,20 @@ Class MainWindow
     Dim IsSkippedStageProblemParticipantFit As Boolean = False
     Dim IsSkippedStageProblemClust As Boolean = False
     Dim IsSkippedStageStudentClust As Boolean = False
+    ''' <summary>
+    ''' 自动将窗口带到前景。
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim WindowAutoActivator As New DispatcherTimer
+    ''' <summary>
+    ''' 负责将窗口带到前景的定时器事件处理函数。
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Sub ActivateThisWindow(sender As Object, e As EventArgs)
+        Me.Activate()
+    End Sub
 
     Private Sub RefreshList()
         lstProblemList.ItemsSource = EmptyList
@@ -714,6 +729,19 @@ Class MainWindow
         Me.ShowMaxRestoreButton = False
         Me.ShowMinButton = False
         Me.ShowCloseButton = False
+        Me.ShowSystemMenuOnRightClick = False
+        Me.IsCloseButtonEnabled = False
+        Me.IsMinButtonEnabled = False
+        Me.IsMaxRestoreButtonEnabled = False
+        Me.ShowIconOnTitleBar = False
+        WindowSystemMenuManager.SystemMenuManager.RemoveWindowSystemMenu(Me).ToString()
+
+        '启动定时器
+        With WindowAutoActivator
+            .Interval = TimeSpan.FromMilliseconds(500)
+            AddHandler .Tick, AddressOf ActivateThisWindow
+            .Start()
+        End With
 
         '检查所需文件是否存在，执行灾难恢复。
         GenerateCurrentDirectory()

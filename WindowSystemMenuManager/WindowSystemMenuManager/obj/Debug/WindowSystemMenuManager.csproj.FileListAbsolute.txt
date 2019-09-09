@@ -1,0 +1,5 @@
+D:\HustOJ数据可视化及分析工具-FullScreen\WindowSystemMenuManager\WindowSystemMenuManager\obj\Debug\WindowSystemMenuManager.csprojResolveAssemblyReference.cache
+D:\HustOJ数据可视化及分析工具-FullScreen\WindowSystemMenuManager\WindowSystemMenuManager\bin\Debug\WindowSystemMenuManager.dll
+D:\HustOJ数据可视化及分析工具-FullScreen\WindowSystemMenuManager\WindowSystemMenuManager\bin\Debug\WindowSystemMenuManager.pdb
+D:\HustOJ数据可视化及分析工具-FullScreen\WindowSystemMenuManager\WindowSystemMenuManager\obj\Debug\WindowSystemMenuManager.dll
+D:\HustOJ数据可视化及分析工具-FullScreen\WindowSystemMenuManager\WindowSystemMenuManager\obj\Debug\WindowSystemMenuManager.pdb
