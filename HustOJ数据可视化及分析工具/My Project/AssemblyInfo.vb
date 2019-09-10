@@ -12,10 +12,10 @@ Imports System.Windows
 ' 檢閱組件屬性的值
 
 <Assembly: AssemblyTitle("HustOJ数据可视化及分析工具")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyDescription("东南大学生物科学与医学工程学院HustOJ数据可视化及分析工具")> 
+<Assembly: AssemblyCompany("东南大学生物科学与医学工程学院")> 
 <Assembly: AssemblyProduct("HustOJ数据可视化及分析工具")> 
-<Assembly: AssemblyCopyright("Copyright ©  2019")> 
+<Assembly: AssemblyCopyright("©2019 东南大学生物科学与医学工程学院")> 
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(false)>
 
@@ -55,5 +55,5 @@ Imports System.Windows
 ' 指定為預設值: 
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("1.0.1.0")> 
+<Assembly: AssemblyFileVersion("1.0.1.0")> 
