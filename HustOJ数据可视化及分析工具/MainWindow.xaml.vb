@@ -1489,14 +1489,21 @@ Class MainWindow
                 chartStudentACRate.Visibility = Windows.Visibility.Collapsed
                 tabStudentCharts.SelectedIndex = 0
                 DoEvents()
+                pieStudentACRate.ItemsSource = Nothing
+                pieStudentACRate.Refresh()
+                DoEvents()
                 Dim StudentACRateDataSource As New List(Of KeyValuePair(Of String, Integer))
                 StudentACRateDataSource.Add(New KeyValuePair(Of String, Integer)("通过  ", .ACCount))
                 StudentACRateDataSource.Add(New KeyValuePair(Of String, Integer)("未通过", .SubmitCount - .ACCount))
                 pieStudentACRate.ItemsSource = StudentACRateDataSource
+                DoEvents()
                 chartStudentACRate.Visibility = Windows.Visibility.Visible
 
                 chartStudentSubmitByDay.Visibility = Windows.Visibility.Collapsed
                 tabStudentCharts.SelectedIndex = 1
+                DoEvents()
+                linStudentSubmitByDay.ItemsSource = Nothing
+                linStudentSubmitByDay.Refresh()
                 DoEvents()
                 Dim StudentSubmitByDayDataSource As New List(Of KeyValuePair(Of Date, Integer))
                 Dim i As Date
@@ -1511,10 +1518,17 @@ Class MainWindow
                     i = i.AddDays(1)
                 End While
                 linStudentSubmitByDay.ItemsSource = StudentSubmitByDayDataSource
+                DoEvents()
                 chartStudentSubmitByDay.Visibility = Windows.Visibility.Visible
 
                 chartStudentTotalSubmitByDayLn.Visibility = Windows.Visibility.Collapsed
                 tabStudentCharts.SelectedIndex = 2
+                DoEvents()
+                linStudentTotalSubmitByDayLnFit.ItemsSource = Nothing
+                linStudentTotalSubmitByDayLnFit.Refresh()
+                DoEvents()
+                sctStudentTotalSubmitByDayLn.ItemsSource = Nothing
+                sctStudentTotalSubmitByDayLn.Refresh()
                 DoEvents()
                 Dim StudentTotalSubmitByDayLnDataSource As New List(Of KeyValuePair(Of Double, Integer))
                 Dim StudentTotalSubmitByDayLnFitDataSource As New List(Of KeyValuePair(Of Double, Integer))
@@ -1536,17 +1550,23 @@ Class MainWindow
                 StudentTotalSubmitByDayLnFitDataSource.Add(New KeyValuePair(Of Double, Integer)(0, .FittingB))
                 StudentTotalSubmitByDayLnFitDataSource.Add(New KeyValuePair(Of Double, Integer)(Math.Log((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days + 1), (Math.Log((UserSpecifiedAnalyzeEndDate - UserSpecifiedAnalyzeStartDate).Days + 1)) * .FittingK_Kb + .FittingB))
                 linStudentTotalSubmitByDayLnFit.ItemsSource = StudentTotalSubmitByDayLnFitDataSource
+                DoEvents()
                 sctStudentTotalSubmitByDayLn.ItemsSource = StudentTotalSubmitByDayLnDataSource
+                DoEvents()
                 chartStudentTotalSubmitByDayLn.Visibility = Windows.Visibility.Visible
 
                 chartStudentTotalSubmitByTime.Visibility = Windows.Visibility.Collapsed
                 tabStudentCharts.SelectedIndex = 3
+                DoEvents()
+                colStudentTotalSubmitByTime.ItemsSource = Nothing
+                colStudentTotalSubmitByTime.Refresh()
                 DoEvents()
                 Dim StudentTotalSubmitByTimeDataSource As New List(Of KeyValuePair(Of String, Integer))
                 For j = 0 To 23
                     StudentTotalSubmitByTimeDataSource.Add(New KeyValuePair(Of String, Integer)(j.ToString("00") & ":00" & vbCrLf & "~" & vbCrLf & (j + 1).ToString("00") & ":00", .SubmitCountByHour(j)))
                 Next
                 colStudentTotalSubmitByTime.ItemsSource = StudentTotalSubmitByTimeDataSource
+                DoEvents()
                 chartStudentTotalSubmitByTime.Visibility = Windows.Visibility.Visible
                 tabStudentCharts.SelectedIndex = OriginalSelection
             End With
@@ -1573,6 +1593,9 @@ Class MainWindow
                 chartProblemACRate.Visibility = Windows.Visibility.Collapsed
                 tabProblemCharts.SelectedIndex = 0
                 DoEvents()
+                pieProblemACRate.ItemsSource = Nothing
+                pieProblemACRate.Refresh()
+                DoEvents()
                 Dim ProblemACRateDataSource As New List(Of KeyValuePair(Of String, Integer))
                 ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("通过  ", .ACCount))
                 ProblemACRateDataSource.Add(New KeyValuePair(Of String, Integer)("未通过", .SubmitCount - .ACCount))
@@ -1581,6 +1604,9 @@ Class MainWindow
 
                 chartProblemSubmitByDay.Visibility = Windows.Visibility.Collapsed
                 tabProblemCharts.SelectedIndex = 1
+                DoEvents()
+                linProblemSubmitByDay.ItemsSource = Nothing
+                linProblemSubmitByDay.Refresh()
                 DoEvents()
                 Dim ProblemSubmitByDayDataSource As New List(Of KeyValuePair(Of Date, Integer))
                 Dim i As Date

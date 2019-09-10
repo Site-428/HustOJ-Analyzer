@@ -1161,7 +1161,7 @@
                                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="学号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                        <Grid x:Name="btnStudentLink" Margin="5,0,0,0" IsEnabled="False">
+                                        <Grid x:Name="btnStudentLink" Margin="5,0,0,0" IsEnabled="False" Visibility="Collapsed">
                                             <iconPacks:PackIconModern x:Name="icoStudentLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看学生信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"  />
                                         </Grid>
                                     </StackPanel>
@@ -1339,7 +1339,7 @@
                                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
                                     <StackPanel Orientation="Horizontal" >
                                         <TextBlock Text="题号" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                        <Grid x:Name="btnProblemLink" Margin="5,0,0,0" IsEnabled="False">
+                                        <Grid x:Name="btnProblemLink" Margin="5,0,0,0" IsEnabled="False" Visibility="Collapsed">
                                             <iconPacks:PackIconModern x:Name="icoProblemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="在网页上查看题目信息。" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                                         </Grid>
                                     </StackPanel>
@@ -1482,7 +1482,7 @@
                         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="4">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="OJ系统地址" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Margin="0" />
-                                <Grid x:Name="btnSystemLink" Margin="5,0,0,0" Cursor="Hand">
+                                <Grid x:Name="btnSystemLink" Margin="5,0,0,0" Cursor="Hand" Visibility="Collapsed">
                                     <iconPacks:PackIconModern x:Name="icoSystemLink" Width="10" Height="10" Kind="Fullscreen" VerticalAlignment="Center" Padding="0" ToolTip="访问OJ系统。"/>
                                 </Grid>
                             </StackPanel>
