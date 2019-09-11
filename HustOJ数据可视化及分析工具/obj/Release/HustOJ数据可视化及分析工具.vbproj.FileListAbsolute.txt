@@ -50,3 +50,5 @@ D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\Cluster.dll
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\LinearFit.dll
 D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\e_fit.dll
+D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\bin\Release\MWArray.dll
+D:\HustOJ数据可视化及分析工具\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.vbprojResolveAssemblyReference.cache
