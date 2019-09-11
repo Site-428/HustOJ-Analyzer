@@ -107,3 +107,5 @@ D:\HustOJ数据可视化及分析工具-FullScreen\HustOJ数据可视化及分�
 D:\HustOJ数据可视化及分析工具-FullScreen\HustOJ数据可视化及分析工具\bin\Release\LockKey.exe
 D:\HustOJ数据可视化及分析工具-FullScreen\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具_Content.g.vb
 D:\HustOJ数据可视化及分析工具-FullScreen\HustOJ数据可视化及分析工具\bin\Release\WindowSystemMenuManager.dll
+D:\HustOJ数据可视化及分析工具-FullScreen\HustOJ数据可视化及分析工具\bin\Release\MWArray.dll
+D:\HustOJ数据可视化及分析工具-FullScreen\HustOJ数据可视化及分析工具\obj\Release\HustOJ数据可视化及分析工具.vbprojResolveAssemblyReference.cache
