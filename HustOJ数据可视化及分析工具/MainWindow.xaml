@@ -1101,6 +1101,18 @@
     
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            <Button x:Name="mnuExportCSV">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Width="24" Height="24" Kind="Download" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="导出原始数据" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="mnuExportAnalyzedData">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Width="24" Height="24" Kind="Download" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="导出分析数据" />
+                </StackPanel>
+            </Button>
             <Button x:Name="mnuUpdate">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Width="24" Height="24" Kind="Refresh" />

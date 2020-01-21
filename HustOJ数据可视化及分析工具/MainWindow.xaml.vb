@@ -2,8 +2,13 @@
 Imports MahApps.Metro.Controls.Dialogs
 Imports System.Windows.Controls
 Imports Microsoft.VisualBasic.FileIO.FileSystem
+Imports System.Windows.Forms
+Imports System.Windows.Window
+Imports System.IO
 Imports MathWorks.MATLAB.NET.Arrays
 Imports MathWorks.MATLAB.NET.Utility
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Class MainWindow
     Dim UpdateProgress As Dialogs.ProgressDialogController
@@ -73,10 +78,10 @@ Class MainWindow
         txtProblemSearch.Foreground = SystemColors.ScrollBarBrush
         icoStudentLink.Foreground = SystemColors.GrayTextBrush
         btnStudentLink.IsEnabled = False
-        btnStudentLink.Cursor = Cursors.Arrow
+        btnStudentLink.Cursor = System.Windows.Input.Cursors.Arrow
         icoProblemLink.Foreground = SystemColors.GrayTextBrush
         btnProblemLink.IsEnabled = False
-        btnProblemLink.Cursor = Cursors.Arrow
+        btnProblemLink.Cursor = System.Windows.Input.Cursors.Arrow
         txtStudentID.Text = ""
         txtStudentClustResult.Text = ""
         txtStudentSubmitCount.Text = ""
@@ -1537,7 +1542,7 @@ Class MainWindow
             End With
             icoStudentLink.Foreground = SystemColors.WindowTextBrush
             btnStudentLink.IsEnabled = True
-            btnStudentLink.Cursor = Cursors.Hand
+            btnStudentLink.Cursor = System.Windows.Input.Cursors.Hand
         End If
     End Sub
 
@@ -1590,7 +1595,7 @@ Class MainWindow
             End With
             icoProblemLink.Foreground = SystemColors.WindowTextBrush
             btnProblemLink.IsEnabled = True
-            btnProblemLink.Cursor = Cursors.Hand
+            btnProblemLink.Cursor = System.Windows.Input.Cursors.Hand
         End If
     End Sub
 
@@ -1696,10 +1701,10 @@ Class MainWindow
         txtProblemSearch.Foreground = SystemColors.ScrollBarBrush
         icoStudentLink.Foreground = SystemColors.GrayTextBrush
         btnStudentLink.IsEnabled = False
-        btnStudentLink.Cursor = Cursors.Arrow
+        btnStudentLink.Cursor = System.Windows.Input.Cursors.Arrow
         icoProblemLink.Foreground = SystemColors.GrayTextBrush
         btnProblemLink.IsEnabled = False
-        btnProblemLink.Cursor = Cursors.Arrow
+        btnProblemLink.Cursor = System.Windows.Input.Cursors.Arrow
         txtStudentID.Text = ""
         txtStudentClustResult.Text = ""
         txtStudentSubmitCount.Text = ""
@@ -2345,6 +2350,113 @@ Class MainWindow
                     txtStudentClustResult.Text = IIf(StudentClustResultMapping.ContainsKey(.ClustResult), StudentClustResultMapping(.ClustResult), .ClustResult)
                 End With
             End If
+        End If
+    End Sub
+
+    Private Async Sub mnuExportCSV_Click(sender As Object, e As RoutedEventArgs) Handles mnuExportCSV.Click
+        Dim FolderBrowser As New FolderBrowserDialog
+        Dim CSVExportPath As New String("")
+        Dim OutputFileStream As IO.StreamWriter
+        Dim TaskDictionary As New Dictionary(Of Integer, Integer)
+        Dim TaskEndDateDictionary As New Dictionary(Of Integer, Date)
+        Dim TaskBeginDateDictionary As New Dictionary(Of Integer, Date)
+        GenerateCurrentDirectory()
+        Dim CurrentPath As String = GetCurrentDirectory()
+        With FolderBrowser
+            .Description = "请指定文件的导出位置。"
+        End With
+        If FolderBrowser.ShowDialog() = Forms.DialogResult.OK Then
+            CSVExportPath = FolderBrowser.SelectedPath
+            If CSVExportPath(CSVExportPath.Length - 1) <> "\" Then
+                CSVExportPath = CSVExportPath & "\"
+            End If
+            If Not DirectoryExists(CSVExportPath) Then
+                Directory.CreateDirectory(CSVExportPath)
+            End If
+            Dim ExportProgress As Dialogs.ProgressDialogController
+            ExportProgress = Await Dialogs.DialogManager.ShowProgressAsync(Me, "正在导出原始日志数据", "正在导出原始日志数据到" & CSVExportPath & "，这可能需要几分钟的时间。" & vbCrLf & vbCrLf & "请勿关闭应用程序。", False)
+            DoEvents()
+            OutputFileStream = New IO.StreamWriter(CSVExportPath & "Log.csv", False)
+            OutputFileStream.WriteLine("DATE_TIME,USER_ID,TEST_ID,PROBLEM_ID,RESULT")
+            Dim OJLogFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\OJLOG.txt")
+            Dim OJLogCountFileReader As System.IO.StreamReader = New IO.StreamReader(CurrentPath & "Data\DATA.txt")
+            Dim OJLogLine As String
+            Dim OJLogTemp As New OJLog
+            Dim OJLogCountReal As Integer = 0
+            OJLogCount = Int(OJLogCountFileReader.ReadLine())
+            OJLogCountFileReader.Close()
+            While Not OJLogFileReader.EndOfStream
+                OJLogLine = OJLogFileReader.ReadLine()
+                OJLogTemp = ParseLog(OJLogLine)
+                If OJLogTemp.IsParseFailed Then
+                    Continue While
+                End If
+                '确定是否在用户指定的分析范围内
+                If OJLogTemp.DateSubmit < UserSpecifiedAnalyzeStartDate Or OJLogTemp.DateSubmit > UserSpecifiedAnalyzeEndDate Then
+                    Continue While
+                End If
+                With OJLogTemp
+                    OutputFileStream.Write(.LogDate.Year.ToString & "-" & .LogDate.Month.ToString & "-" & .LogDate.Day.ToString & "-" & " " & .LogTime.Hour.ToString & ":" & .LogTime.Minute.ToString & ":" & .LogTime.Second.ToString)
+                    OutputFileStream.Write(",")
+                    OutputFileStream.WriteLine(.StudentID & "," & ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex.ToString() & "," & .ProblemID & "," & IIf(.IsPassed, "1", "0"))
+                End With
+                '存练习序号数据
+                With OJLogTemp
+                    If Not TaskDictionary.ContainsKey(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) Then
+                        TaskDictionary.Add(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex, ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex)
+                    End If
+                    If Not TaskBeginDateDictionary.ContainsKey(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) Then
+                        TaskBeginDateDictionary.Add(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex, .TimeSubmit)
+                    Else
+                        If .TimeSubmit < TaskBeginDateDictionary(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) Then
+                            TaskBeginDateDictionary(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) = .TimeSubmit
+                        End If
+                    End If
+                    If Not TaskEndDateDictionary.ContainsKey(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) Then
+                        TaskEndDateDictionary.Add(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex, .TimeSubmit)
+                    Else
+                        If .TimeSubmit > TaskEndDateDictionary(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) Then
+                            TaskEndDateDictionary(ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex) = .TimeSubmit
+                        End If
+                    End If
+                End With
+            End While
+            OutputFileStream.Close()
+            'Await ExportProgress.CloseAsync()
+            System.Threading.Thread.Sleep(500)
+
+            'ExportProgress = Await Dialogs.DialogManager.ShowProgressAsync(Me, "正在导出用户数据", "正在导出用户数据到" & CSVExportPath & "User.csv，这可能需要几分钟的时间。" & vbCrLf & vbCrLf & "请勿关闭应用程序。", False)
+            OutputFileStream = New IO.StreamWriter(CSVExportPath & "User.csv", False)
+            OutputFileStream.WriteLine("USER_ID")
+            For Each UserData In StudentList
+                OutputFileStream.WriteLine(UserData)
+            Next
+            OutputFileStream.Close()
+            'Await ExportProgress.CloseAsync()
+            System.Threading.Thread.Sleep(500)
+
+            'ExportProgress = Await Dialogs.DialogManager.ShowProgressAsync(Me, "正在导出题目数据", "正在导出日志数据到" & CSVExportPath & "Problem.csv，这可能需要几分钟的时间。" & vbCrLf & vbCrLf & "请勿关闭应用程序。", False)
+            OutputFileStream = New IO.StreamWriter(CSVExportPath & "Problem.csv", False)
+            OutputFileStream.WriteLine("PROBLEM_ID,TEST_ID")
+            For Each ProblemID In ProblemList
+                OutputFileStream.WriteLine(ProblemID & "," & ProblemDictionary(ProblemID).ProblemTaskSequenceIndex.ToString())
+            Next
+            OutputFileStream.Close()
+            'Await ExportProgress.CloseAsync()
+            System.Threading.Thread.Sleep(500)
+
+            'ExportProgress = Await Dialogs.DialogManager.ShowProgressAsync(Me, "正在导出练习数据", "正在导出练习数据到" & CSVExportPath & "Test.csv，这可能需要几分钟的时间。" & vbCrLf & vbCrLf & "请勿关闭应用程序。", False)
+            OutputFileStream = New IO.StreamWriter(CSVExportPath & "Test.csv", False)
+            OutputFileStream.WriteLine("TEST_ID,BEGIN_DATE,END_DATE")
+            For Each TaskData In TaskDictionary
+                OutputFileStream.Write(TaskData.Value.ToString() & ",")
+                OutputFileStream.Write(TaskBeginDateDictionary(TaskData.Value).Date.Year & "-" & TaskBeginDateDictionary(TaskData.Value).Date.Month & "-" & TaskBeginDateDictionary(TaskData.Value).Date.Day & ",")
+                OutputFileStream.WriteLine(TaskEndDateDictionary(TaskData.Value).Date.Year & "-" & TaskEndDateDictionary(TaskData.Value).Date.Month & "-" & TaskEndDateDictionary(TaskData.Value).Date.Day)
+            Next
+            OutputFileStream.Close()
+            Await ExportProgress.CloseAsync()
+            System.Threading.Thread.Sleep(500)
+            Await Me.ShowMessageAsync("原始日志数据导出成功", "原始日志数据已成功导出到" & CSVExportPath & "。")
         End If
     End Sub
 End Class
