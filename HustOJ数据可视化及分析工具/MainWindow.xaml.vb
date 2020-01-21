@@ -2396,7 +2396,7 @@ Class MainWindow
                     Continue While
                 End If
                 With OJLogTemp
-                    OutputFileStream.Write(.LogDate.Year.ToString & "-" & .LogDate.Month.ToString & "-" & .LogDate.Day.ToString & "-" & " " & .LogTime.Hour.ToString & ":" & .LogTime.Minute.ToString & ":" & .LogTime.Second.ToString)
+                    OutputFileStream.Write(.LogDate.Year.ToString & "-" & .LogDate.Month.ToString & "-" & .LogDate.Day.ToString & " " & .LogTime.Hour.ToString & ":" & .LogTime.Minute.ToString & ":" & .LogTime.Second.ToString)
                     OutputFileStream.Write(",")
                     OutputFileStream.WriteLine(.StudentID & "," & ProblemDictionary(.ProblemID).ProblemTaskSequenceIndex.ToString() & "," & .ProblemID & "," & IIf(.IsPassed, "1", "0"))
                 End With
