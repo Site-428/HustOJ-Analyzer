@@ -6,7 +6,15 @@ HustOJ数据可视化及分析工具
 </name>
 </assembly>
 <members>
-<member name="M:HustOJ数据可视化及分析工具.Application.InitializeComponent">
+<member name="M:HustOJ数据可视化及分析工具.StudentDataExport.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="T:HustOJ数据可视化及分析工具.StudentDataExport">
+	<summary>
+StudentDataExport
+</summary>
+</member><member name="M:HustOJ数据可视化及分析工具.Application.InitializeComponent">
 	<summary>
 InitializeComponent
 </summary>
@@ -25,6 +33,14 @@ InitializeComponent
 </member><member name="T:HustOJ数据可视化及分析工具.MainWindow">
 	<summary>
 MainWindow
+</summary>
+</member><member name="M:HustOJ数据可视化及分析工具.ProblemDataExport.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="T:HustOJ数据可视化及分析工具.ProblemDataExport">
+	<summary>
+ProblemDataExport
 </summary>
 </member><member name="F:HustOJ数据可视化及分析工具.ApplicationFileSystemInfo.CurrentDirectory">
 	<summary>
@@ -311,6 +327,162 @@ MainWindow
 	<summary>
  用來定義 WPF 的 My 命名空間中可用屬性的模組
  </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.DataExportParametersManager.AnalyzedDataExportFormat">
+	<summary>
+ 导出的数据的文件格式。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.AnalyzedDataExportParamers.OutputDirectory">
+	<summary>
+ 导出的数据存放的目录。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.AnalyzedDataExportParamers.OutputFileFormat">
+	<summary>
+ 导出的数据的文件格式。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.AnalyzedDataExportParamers.IsOutputFileMerged">
+	<summary>
+ 取得或设定是否合并导出的数据到同一个文件中。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.AnalyzedDataExportParamers.DataToExport">
+	<summary>
+ 取得或设定需要导出的数据的索引。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.DataExportParametersManager.AnalyzedDataExportParamers">
+	<summary>
+ 导出数据所用的参数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedStudentDataExportFormat.AnalyzeStartDate">
+	<summary>
+ 分析起始日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedStudentDataExportFormat.AnalyzeEndDate">
+	<summary>
+ 分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedStudentDataExportFormat.StudentDataSet">
+	<summary>
+ 合并的学生数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedStudentDataExportFormat">
+	<summary>
+ 合并的导出的学生数据的数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat.AnalyzeStartDate">
+	<summary>
+ 分析起始日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat.AnalyzeEndDate">
+	<summary>
+ 分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat.StudentDataSet">
+	<summary>
+ 单一学生数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat">
+	<summary>
+ 未合并的导出的学生数据的数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedProblemDataExportFormat.AnalyzeStartDate">
+	<summary>
+ 分析起始日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedProblemDataExportFormat.AnalyzeEndDate">
+	<summary>
+ 分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedProblemDataExportFormat.ProblemDataSet">
+	<summary>
+ 合并的题目数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedProblemDataExportFormat">
+	<summary>
+ 合并的导出的题目数据的数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat.AnalyzeStartDate">
+	<summary>
+ 分析起始日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat.AnalyzeEndDate">
+	<summary>
+ 分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat.ProblemDataSet">
+	<summary>
+ 单一题目数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="T:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat">
+	<summary>
+ 未合并的导出的题目数据的数据集。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.OJSystemDataExportFormat.LogStartDate">
+	<summary>
+ 统计起始日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.OJSystemDataExportFormat.LogEndDate">
+	<summary>
+ 统计结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.OJSystemDataExportFormat.AnalyzeStartDate">
+	<summary>
+ 用户选择的分析起始日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.OJSystemDataExportFormat.AnalyzeEndDate">
+	<summary>
+ 用户选择的分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.OJSystemDataExportFormat.NewProblemCount">
+	<summary>
+ 按日记录的新题目数量。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.OJSystemDataExportFormat.SubmitCountByHour">
+	<summary>
+ 按每日分时段时记录的提交次数。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.StudentDataOutputParameters">
+	<summary>
+ 学生数据的导出参数组。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.ProblemDataOutputParameters">
+	<summary>
+ 题目数据的导出参数组。
+ </summary>
+	<remarks></remarks>
+</member><member name="M:HustOJ数据可视化及分析工具.DataExportParametersManager.BuildTimeStamp">
+	<summary>
+ 生成YYYYMMMDD-HHMM格式的时间戳。
+ </summary>
+	<returns></returns>
 	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.OJAnalyzerStudents.OJStudentInfo.StudentIDNumber">
 	<summary>

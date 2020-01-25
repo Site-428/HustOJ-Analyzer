@@ -55,5 +55,7 @@ Imports System.Windows
 ' 指定為預設值: 
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.1.0")> 
-<Assembly: AssemblyFileVersion("1.0.1.0")> 
+<Assembly: AssemblyVersion("1.2.4.5")> 
+<Assembly: AssemblyFileVersion("1.2.4.5")> 
+
+<Assembly: NeutralResourcesLanguageAttribute("zh-CN")> 

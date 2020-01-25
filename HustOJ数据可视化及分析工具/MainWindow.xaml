@@ -1101,17 +1101,26 @@
     
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button x:Name="mnuExportCSV">
+            <Button x:Name="mnuExportCSV" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Width="24" Height="24" Kind="Download" />
                     <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="导出原始数据" />
                 </StackPanel>
             </Button>
-            <Button x:Name="mnuExportAnalyzedData">
+            <Button x:Name="mnuExportAnalyzedData" ContextMenuService.Placement="Bottom">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Width="24" Height="24" Kind="Download" />
                     <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="导出分析数据" />
                 </StackPanel>
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="mnuExportAnalyzedDataStudents" Header="导出学生数据" Click="mnuExportAnalyzedDataStudents_Click"/>
+                        <MenuItem Name="mnuExportAnalyzedDataProblems" Header="导出题目数据" Click="mnuExportAnalyzedDataProblems_Click"/>
+                        <MenuItem Name="mnuExportAnalyzedDataSystem" Header="导出系统数据" Click="mnuExportAnalyzedDataSystem_Click"/>
+                        <Separator />
+                        <MenuItem Name="mnuExportOriginalData" Header="导出原始数据" Click="mnuExportOriginalData_Click"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
             </Button>
             <Button x:Name="mnuUpdate">
                 <StackPanel Orientation="Horizontal">
