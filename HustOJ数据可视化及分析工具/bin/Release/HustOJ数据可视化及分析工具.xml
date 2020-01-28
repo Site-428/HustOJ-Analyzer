@@ -368,6 +368,11 @@ ProblemDataExport
  分析结束日期。
  </summary>
 	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedStudentDataExportFormat.IsDataMerged">
+	<summary>
+ 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
+ </summary>
+	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedStudentDataExportFormat.StudentDataSet">
 	<summary>
  合并的学生数据集。
@@ -386,6 +391,11 @@ ProblemDataExport
 </member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat.AnalyzeEndDate">
 	<summary>
  分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat.IsDataMerged">
+	<summary>
+ 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
  </summary>
 	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleStudentDataExportFormat.StudentDataSet">
@@ -408,6 +418,11 @@ ProblemDataExport
  分析结束日期。
  </summary>
 	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedProblemDataExportFormat.IsDataMerged">
+	<summary>
+ 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
+ </summary>
+	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.MergedProblemDataExportFormat.ProblemDataSet">
 	<summary>
  合并的题目数据集。
@@ -426,6 +441,11 @@ ProblemDataExport
 </member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat.AnalyzeEndDate">
 	<summary>
  分析结束日期。
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat.IsDataMerged">
+	<summary>
+ 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
  </summary>
 	<remarks></remarks>
 </member><member name="F:HustOJ数据可视化及分析工具.DataExportParametersManager.SingleProblemDataExportFormat.ProblemDataSet">

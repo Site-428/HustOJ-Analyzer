@@ -2619,12 +2619,16 @@ Class MainWindow
             Try
                 Select Case StudentDataOutputParameters.OutputFileFormat
                     Case AnalyzedDataExportFormat.JSONFile
+                        If Not DirectoryExists(StudentDataOutputParameters.OutputDirectory) Then
+                            Directory.CreateDirectory(StudentDataOutputParameters.OutputDirectory)
+                        End If
                         If StudentDataOutputParameters.IsOutputFileMerged Then
                             Dim StreamFileWriter As New StreamWriter(StudentDataOutputParameters.OutputDirectory & "StudentDataAnalyzed_" & BuildTimeStamp() & ".json", False)
                             Dim StudentOutputData As New MergedStudentDataExportFormat
                             With StudentOutputData
                                 .AnalyzeStartDate = UserSpecifiedAnalyzeStartDate
                                 .AnalyzeEndDate = UserSpecifiedAnalyzeEndDate
+                                .IsDataMerged = True
                                 For Each StudentID In StudentDataOutputParameters.DataToExport
                                     .StudentDataSet.Add(StudentDictionary(StudentID))
                                 Next
@@ -2642,6 +2646,7 @@ Class MainWindow
                                 With StudentOutputData
                                     .AnalyzeStartDate = UserSpecifiedAnalyzeStartDate
                                     .AnalyzeEndDate = UserSpecifiedAnalyzeEndDate
+                                    .IsDataMerged = False
                                     .StudentDataSet = StudentDictionary(StudentID)
                                 End With
                                 Dim JSONContent As String
@@ -2685,12 +2690,16 @@ Class MainWindow
             Try
                 Select Case ProblemDataOutputParameters.OutputFileFormat
                     Case AnalyzedDataExportFormat.JSONFile
+                        If Not DirectoryExists(ProblemDataOutputParameters.OutputDirectory) Then
+                            Directory.CreateDirectory(ProblemDataOutputParameters.OutputDirectory)
+                        End If
                         If ProblemDataOutputParameters.IsOutputFileMerged Then
                             Dim StreamFileWriter As New StreamWriter(ProblemDataOutputParameters.OutputDirectory & "ProblemDataAnalyzed_" & BuildTimeStamp() & ".json", False)
                             Dim ProblemOutputData As New MergedProblemDataExportFormat
                             With ProblemOutputData
                                 .AnalyzeStartDate = UserSpecifiedAnalyzeStartDate
                                 .AnalyzeEndDate = UserSpecifiedAnalyzeEndDate
+                                .IsDataMerged = True
                                 For Each ProblemID In ProblemDataOutputParameters.DataToExport
                                     .ProblemDataSet.Add(ProblemDictionary(ProblemID))
                                 Next
@@ -2708,6 +2717,7 @@ Class MainWindow
                                 With ProblemOutputData
                                     .AnalyzeStartDate = UserSpecifiedAnalyzeStartDate
                                     .AnalyzeEndDate = UserSpecifiedAnalyzeEndDate
+                                    .IsDataMerged = False
                                     .ProblemDataSet = ProblemDictionary(ProblemID)
                                 End With
                                 Dim JSONContent As String

@@ -49,6 +49,11 @@
         ''' <remarks></remarks>
         Public AnalyzeEndDate As Date
         ''' <summary>
+        ''' 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public IsDataMerged As Boolean
+        ''' <summary>
         ''' 合并的学生数据集。
         ''' </summary>
         ''' <remarks></remarks>
@@ -69,6 +74,11 @@
         ''' </summary>
         ''' <remarks></remarks>
         Public AnalyzeEndDate As Date
+        ''' <summary>
+        ''' 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public IsDataMerged As Boolean
         ''' <summary>
         ''' 单一学生数据集。
         ''' </summary>
@@ -91,6 +101,11 @@
         ''' <remarks></remarks>
         Public AnalyzeEndDate As Date
         ''' <summary>
+        ''' 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public IsDataMerged As Boolean
+        ''' <summary>
         ''' 合并的题目数据集。
         ''' </summary>
         ''' <remarks></remarks>
@@ -111,6 +126,11 @@
         ''' </summary>
         ''' <remarks></remarks>
         Public AnalyzeEndDate As Date
+        ''' <summary>
+        ''' 数据是否为已合并的数据，指示数据集为单一数据形式或列表 (数组) 形式。
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public IsDataMerged As Boolean
         ''' <summary>
         ''' 单一题目数据集。
         ''' </summary>
